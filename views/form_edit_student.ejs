@@ -9,10 +9,10 @@
 <body>
     <h1>Add Students Data</h1>
     <a href = "/students">show all data</a>
-    <form class= '' action='/students/edit/:id' method = 'post'>
-      <input type ='text' placeholder='first name' name='first_name'> </br>
-      <input type ='text' placeholder='last_name' name='last_name'> </br>
-      <input type ='text' placeholder='email' name='email'></br>
+    <form class= "" action="/students/edit/<%=dataStudent.id%>" method = "post">
+      <input type ="text" placeholder="first name" value="<%=dataStudent.first_name%>" name="first_name"> </br>
+      <input type ="text" placeholder="last_name" value="<%=dataStudent.last_name%>" name="last_name"> </br>
+      <input type ="text" placeholder="email" value="<%=dataStudent.email%>" name="email"></br>
       <button> Add Student </button>      
   </form>
 

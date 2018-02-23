@@ -39,7 +39,7 @@ router.get('/edit/:id',function(req,res){
   // console.log(id)
   models.Student.findById(id).then(detail=>{
     // console.log(JSON.parse(JSON.stringify(detail)))
-    
+    res.render('form_edit_student',{dataStudent : detail})
   })
 })
   
