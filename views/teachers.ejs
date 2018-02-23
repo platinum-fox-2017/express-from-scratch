@@ -1,0 +1,28 @@
+<%- include header.ejs %>
+  <div class="container-fluid">
+    <br>
+    <h3>List Teachers</h3>
+    <table class="table">
+      <thead>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>No Telp</th>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < teachers.length; i++) { %>
+          <tr>
+            <td>
+              <%= teachers[i].name %>
+            </td>
+            <td>
+              <%= teachers[i].address %>
+            </td>
+            <td>
+              <%= teachers[i].phoneNumber %>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+  <%- include footer.ejs %>
