@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express()
 
+const index = require('./routes/index')
 
-app.get('/', function (req, res) {
-  res.send('I love u')
-})
+app.use('/', index)
 
 app.listen(3000, console.log('MASUK DI 3000'))
