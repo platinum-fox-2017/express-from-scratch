@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <h2>LIST USER</h2>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%dataUser.forEach(user =>{%>
+          <tr>
+            <td><%=user.id%></td>
+            <td><%=user.name%></td>
+            <td><%=user.gender%></td>
+            <td><%=user.age%></td>
+          </tr>
+        <%})%>
+      </tbody>
+    </table>
   </body>
 </html>
