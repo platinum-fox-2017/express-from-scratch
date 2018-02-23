@@ -4,8 +4,8 @@ var express = require('express')
 var router = express.Router()
 
 router.get('/', function (req, res) {
-    res.render('user');
-});
+    res.render('user')
+})
 
 router.post('/', (req, res) => {
     //method here
