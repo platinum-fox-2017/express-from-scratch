@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Student </title>
+</head>
+<body>
+    <h1><center>Student List</center></h1>
+    <center><a href="/students/add">add Student</a></center>
+    <center>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+                <%data.forEach(student => {%>
+            <tr>
+                <td><%=student.id%></td>
+                <td><%=student.first_name%></td>
+                <td><%=student.last_name%></td>
+                <td><%=student.email%></td>
+               <td><a href = "/students/edit/<%=student.id%>">Edit</a> |<a href = "/students/delete/<%=student.id%>">Delete</a> </td>
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>
