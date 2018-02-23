@@ -1,10 +1,14 @@
 'use strict'
 
 const express = require('express')
-let app = express()
-let port = 3000
+const routes = require('./routes')
+
+const app = express()
+const port = 3000
 
 app.listen(port, log =>{
     console.log(`App is running on port: ${port}`)
 })
+
+app.use('/', routes)
 
