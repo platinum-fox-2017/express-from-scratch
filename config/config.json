@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "hacktiv8",
+    "password": null,
+    "database": "school",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "hacktiv8",
+    "password": null,
+    "database": "school_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "hacktiv8",
+    "password": null,
+    "database": "school_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
