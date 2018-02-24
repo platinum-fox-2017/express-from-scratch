@@ -1,0 +1,26 @@
+<%- include ../templates/header.ejs %>
+  <div class="container">
+    <br>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/teachers">Teachers Data</a></li>
+      <li class="breadcrumb-item active">Edit Teacher</li>
+    </ol>
+    <h3>Edit Teacher</h3>
+    <form action="/teachers/edit/<%= teacher.id %>" method="post">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" value="<%= teacher.firstName %>" class="form-control" name="firstName" id="firstName" >
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" value="<%= teacher.lastName %>"class="form-control" name="lastName" id="lastName">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" value="<%= teacher.email %>" class="form-control" name="email" id="email">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <%- include ../templates/footer.ejs %>

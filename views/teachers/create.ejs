@@ -1,0 +1,26 @@
+<%- include ../templates/header.ejs %>
+  <div class="container">
+    <br>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/teachers">Teachers Data</a></li>
+      <li class="breadcrumb-item active">Create New</li>
+    </ol>
+    <h3>Add Teacher Data</h3>
+    <form action="/teachers/create" method="post">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" name="firstName" id="firstName" >
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" name="lastName" id="lastName">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" id="email">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <%- include ../templates/footer.ejs %>
