@@ -11,7 +11,9 @@ module.exports = {
       teachers.push({
         firstName: firstName,
         lastName: lastName,
-        email: email
+        email: email,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
     }
     return queryInterface.bulkInsert('Teachers', teachers, {});

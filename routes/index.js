@@ -22,7 +22,7 @@ router.get('/teachers', (req, res) => {
     teachers.push({
       name: randomName,
       phoneNumber: randomPhoneNumber,
-      address: address
+      address: address,
     });
   }
   let obj = {
