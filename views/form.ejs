@@ -1,16 +1,26 @@
 <html>
     <head>
+        <title>
+            WEBSITE SMDIA
+        </title>
+        <link href="../css/form.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     </head>
 
     <body>
+        <header>
+            <h1><%= title %></h1>
+        </header>
+
         <form action="/studentform">
-            Full name:<br>
-            <input type="text" name="fullname"><br>
-            Passwords:<br>
-            <input type="text" name="passwords"><br>
-            <input type="submit" value="Submit">
+            First Name:<br>
+            <input type="text" name="firstname"><br>
+            Last Name:<br>
+            <input type="text" name="lastname"><br>
+            Email:<br>
+            <input type="text" name="email"><br>            
+            <input type="submit" value="Add Student">
         </form>
     </body>
-
 
 </html>

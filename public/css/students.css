@@ -1,0 +1,20 @@
+html {
+    font-family: "Roboto Condensed";
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px whitesmoke solid;
+    padding: 5px;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+}
+
+

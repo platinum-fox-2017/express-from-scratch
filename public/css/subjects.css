@@ -1,0 +1,15 @@
+html {
+    font-family: "Roboto Condensed";
+    text-align: center;
+    background-color: white;
+    color: black;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px black solid;
+    padding: 5px;
+}
+
+
+
