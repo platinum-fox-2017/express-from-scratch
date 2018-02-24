@@ -1,0 +1,32 @@
+<% include ../v_index%>
+<container>
+   <center>
+   <form action="/subjects/<%=score.Subject.id%>/<%=score.Student.id%>/give-score" method="post">
+      <table>
+         <tbody>
+            <tr>
+               <td>Student Name</td>
+               <td>&nbsp; :&nbsp;</td>
+               <td><%=score.Student.fullName(score.Student.first_name,score.Student.last_name)%></td>
+            </tr>
+            <tr>
+               <td>Subject Name</td>
+               <td>&nbsp; :&nbsp;</td>
+               <td><%=score.Subject.subject_name%></td>
+            </tr>
+            <tr>
+               <td>Score</td>
+               <td>&nbsp; :&nbsp;</td>
+               <td> <input name="score" placeholder="ex: 79" class="form-control" autofocus="" type="text"></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td></td>
+               <td><button class="btn btn-info">Give Score</button></td>
+            </tr>
+         </tbody>
+      </table>
+   </form>
+   </center>
+</container>
+

@@ -1,0 +1,50 @@
+<% include ../v_index%>
+<div class="container">
+    <div>
+        <a href="subjects/add">
+            <button type="button" name="button" class="btn  btn-primary" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span> Add Subject
+            </button> 
+        </a>            
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <th>No</th>
+                <th>Sub ID</th>
+                <th>Subject Name</th>
+                <th>Teachers</th>
+                <th>Students</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <%subject.forEach((data,i)=>{%>
+                    <tr>
+                        <td><%= i+1%></td>
+                        <td><%=data.id%></td>
+                        <td><%=data.subject_name%></td>
+                        <%if(data.Teachers.length !== 0){%>
+                            <td>
+                                <%data.Teachers.forEach(teacher=>{%>
+                                    <ul>
+                                        <li><%=teacher.first_name%></li>
+                                    </ul>
+                                <%})%>
+                            </td>
+                        <%}else{%>
+                            <td> - </td>
+                        <%}%>
+                        <td>
+                            <a href="subjects/<%=data.id%>/enrolledstudents"><span class="glyphicon glyphicon-user"></span>Enrolled Students </a>
+                        </td>
+                        <td> 
+                            <a href="subjects/edit/<%=data.id%>"><span class="glyphicon glyphicon-edit"></span>edit</a>
+                            <a href="subjects/delete/<%=data.id%>"onclick="return confirm('Yakin mau delete subject ?')"><span class="glyphicon glyphicon-trash"></span>delete</a>
+                        </td>
+                    </tr>
+                <%})%>
+            </tbody>
+           
+        </table>
+    </div> 
+</div>
