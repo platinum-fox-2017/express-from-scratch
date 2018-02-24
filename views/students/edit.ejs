@@ -7,6 +7,11 @@
       <li class="breadcrumb-item active">Edit Student</li>
     </ol>
     <h3>Edit Student</h3>
+    <% if(alert.message != '') { %>
+    <div class="alert alert-<%= alert.status %>">
+      <%= alert.message %>
+    </div>
+    <% } %>
     <form action="/students/edit/<%= student.id %>" method="post">
       <div class="form-group">
         <label for="firstName">First Name:</label>
@@ -18,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" value="<%= student.email %>" class="form-control" name="email" id="email">
+        <input type="text" value="<%= student.email %>" class="form-control" name="email" id="email">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
