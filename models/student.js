@@ -13,8 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: {
           msg: "Email Format Is incorrect"
         }
-      },
-      unique: true
+      }
     }
   }, {});
   Student.associate = function(models) {

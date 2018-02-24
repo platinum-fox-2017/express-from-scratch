@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     let alertMessage = req.flash('alertMessage');
     let alertStatus = req.flash('alertStatus');
     let alert = { message: alertMessage, status: alertStatus};
-    let totalPage = Math.round(students.count / 10);
+    let totalPage = Math.ceil(students.count / 10);
     let pagination = {totalPage : totalPage, currentPage: page};
     res.render('students/index',{students: students.rows,alert: alert,pagination: pagination});
   }).catch((err) => {
