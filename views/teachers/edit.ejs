@@ -20,6 +20,18 @@
         <label for="email">Email:</label>
         <input type="email" value="<%= teacher.email %>" class="form-control" name="email" id="email">
       </div>
+      <div class="form-group">
+        <label for="subject">Subject:</label>
+        <select name="SubjectId" class="form-control" value="<%= teacher.SubjectId %>" >
+          <% for (var i = 0; i < subjects.length; i++) { %>
+            <% if (subjects[i].id == teacher.SubjectId) { %>
+              <option value="<%= subjects[i].id %>" selected="true"><%=subjects[i].subjectName %></option>
+            <% } else { %>
+              <option value="<%= subjects[i].id %>"><%=subjects[i].subjectName %></option>
+            <% } %>
+          <% } %>
+        </select>
+      </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>

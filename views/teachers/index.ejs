@@ -21,6 +21,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
+        <th>Subject</th>
         <th>Action</th>
       </thead>
       <tbody>
@@ -37,6 +38,13 @@
             </td>
             <td>
               <%= teachers[i].email %>
+            </td>
+            <td>
+              <% if (teachers[i].SubjectId) { %>
+                <%= teachers[i]['Subject.subjectName'] %>
+              <% } else { %>
+                unassigned
+              <% } %>
             </td>
             <td>
               <a href="/teachers/edit/<%= teachers[i].id %>" class="btn btn-sm btn-primary"> Edit </a>

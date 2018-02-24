@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
     raw: true,
     limit : 10,
     offset: offset,
-    order : [['id','DESC']]
+    order : [['id','DESC']],
+    include: [{ model: model.Subject}]
   }).then((teachers) => {
     let alertMessage = req.flash('alertMessage');
     let alertStatus = req.flash('alertStatus');
@@ -27,7 +28,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/create', (req, res) => {
-  res.render('teachers/create');
+  model.Subject.all({raw: true}).then((subjects) => {
+    res.render('teachers/create',{subjects: subjects});
+  })
 });
 router.post('/create', (req, res) => {
 
@@ -38,8 +41,12 @@ router.post('/create', (req, res) => {
   });
 });
 router.get('/edit/:id', (req, res) => {
+  let data;
   model.Teacher.findById(req.params.id).then((teacher) => {
-    res.render('teachers/edit',{teacher:teacher});
+    data = teacher;
+    return model.Subject.all({raw: true});
+  }).then((subjects) => {
+      res.render('teachers/edit',{teacher:data,subjects: subjects});
   }).catch((err) => {
     req.flash('alertMessage', `Something went Wrong :  ${err}`);
     req.flash('alertStatus', 'danger');
