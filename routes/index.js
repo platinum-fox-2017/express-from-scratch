@@ -1,17 +1,17 @@
 'use strict'
 
-const routes = require('express').Router();
-// const express = require('express')
-// const app = express()
+const express = require('express');
 
-app.get('/', (req, res) => {
-    res.send(`I Love Hacktiv8!`);
-});
+const app = express();
+const routes = express.Router();
 
-routes.use('/models', models);
+routes.post('/', (request, response) => {
+    console.log(request.body);
+    // response.render('index.ejs')
+})
 
-routes.get('/', (req, res) => {
-    res.send(`I Love Hacktiv8!`);
+routes.get('/', (request, response) => {
+    response.render('index.ejs');
 });
 
 module.exports = routes;
