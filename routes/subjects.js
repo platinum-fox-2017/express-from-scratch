@@ -4,6 +4,9 @@ const Model = require('../models')
 
 router.get('/',(req, res)=> {
     Model.Subject.findAll({
+        order:[
+            ['subject_name','ASC']
+        ],
         include:[Model.Teacher]
     }).then(data=>{
         // res.send(data)
@@ -95,7 +98,8 @@ router.post('/:idSubject/:idStudent/give-score',(req, res)=> {
     }).then(()=>{
         res.redirect(`/subjects/${req.params.idSubject}/enrolledstudents`)
     }).catch(err=>{
-        res.send(err)
+        // res.send(err)
+        res.render('./subject/v_giveScore', {pesan:err})
     })         
 })
 module.exports = router

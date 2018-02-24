@@ -3,7 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   var score = sequelize.define('score', {
     id_student: DataTypes.INTEGER,
     id_subject: DataTypes.INTEGER,
-    score: DataTypes.INTEGER
+    score:{
+      type: DataTypes.INTEGER,
+      validate:{
+        isNumeric: true,
+      }
+    } 
   }, {});
   score.associate = models=>{
     score.belongsTo(models.Subject,{

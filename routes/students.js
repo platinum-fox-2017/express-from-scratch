@@ -3,7 +3,11 @@ const router = express.Router()
 const Model = require('../models')
 
 router.get('/',(req, res)=> {
-    Model.Student.findAll().then(data=>{
+    Model.Student.findAll({
+        order:[
+            ['first_name','ASC']
+        ],
+    }).then(data=>{
         res.render('./student/v_listStudent', {student:data})
     }).catch(err=>res.send(err))
 })

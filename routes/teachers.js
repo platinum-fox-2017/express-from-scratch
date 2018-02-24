@@ -4,6 +4,9 @@ const Model = require('../models')
 
 router.get('/',(req, res)=> {
     Model.Teacher.findAll({
+        order:[
+            ['first_name','ASC']
+        ],
         include:[Model.Subject]
     }).then(data=>{
         // res.send(data)            

@@ -15,7 +15,7 @@
             <%score.forEach((data,i)=>{%>
             <tr>
                <td><%=i+1%></td>
-               <td><%=data.Student.first_name%></td>
+               <td><%=data.Student.fullName(data.Student.first_name, data.Student.last_name)%></td>
                <%if(data.score !== null){%>
                <td><%=data.score%></td>
                <%}else{%>

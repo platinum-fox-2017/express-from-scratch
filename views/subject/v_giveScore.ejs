@@ -1,6 +1,12 @@
 <% include ../v_index%>
 <container>
    <center>
+       <%if(pesan===true){%>
+        <div class="alert alert-danger alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%=pesan.errors.message%>
+        </div>
+        <%}%>
    <form action="/subjects/<%=score.Subject.id%>/<%=score.Student.id%>/give-score" method="post">
       <table>
          <tbody>
