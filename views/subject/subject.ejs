@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+     <div class="container">
+        <a href="/subject/back">back</a>
+        <h2>Subject</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Subject Name</th>
+                    <th>Students</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%data.forEach(each =>{%>
+                    <tr>
+                        <td><%=each.id%></td>
+                        <td><%=each.subject_name%></td>
+                        <td>
+                            <%if(each.Teachers.length > 0){%>
+                                <%for(let[index,value] of each.Teachers.entries()){%>
+                                    <span><%=index+1%>. <%=value.first_name%> <%=value.last_name%></span>
+                                <%}%>
+                            <%}else{%>
+                                <span>None</span>
+                            <%}%>
+                        </td>
+                        <td><a href="/subject/<%=each.id%>/enroll">Enrolled Student</a></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/teacher/edit/<%=beforeData.id%>" method="post" class="form">
+            <div class="form-group">
+                <label for="addStudentFirstName">First Name</label>
+                <input type="text" name="first_name" autocomplete="off" class="form-control" id="addStudentFirstName" aria-describedby="emailHelp" value="<%=beforeData.first_name%>">
+            </div>
+            <div class="form-group">
+                <label for="addStudentLastName">Last Name</label>
+                <input type="text" name="last_name" autocomplete="off" class="form-control" id="addStudentLastName" value="<%=beforeData.last_name%>">
+            </div>
+            <div class="form-group">
+                <label for="addStudentEmail">Email</label>
+                <input type="text" name="email" autocomplete="off" class="form-control" id="addStudentEmail" value="<%=beforeData.email%>">
+            </div>
+            <label for="">Subject</label>
+            <br>
+            <select name="subjectId" id="">
+                <%subject.forEach(each=>{%>
+                    <option value="<%=each.id%>"><%=each.subject_name%></option>
+                <%})%>
+            </select>
+            <br>
+            <button class="btn btn-primary">Edit Teacher</button>
+        </form>
+
+    </div>
+</body>
+</html>

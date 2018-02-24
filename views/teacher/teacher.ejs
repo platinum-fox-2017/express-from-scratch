@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/teacher/back">back</a>
+        <a href="/teacher/add">Add Teacher</a>
+        <h2>Teacher Data</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%teacherData.forEach(each =>{%>
+                    <tr>
+                        <td><%=each.id%></td>
+                        <td><%=each.first_name%></td>
+                        <td><%=each.last_name%></td>
+                        <td><%=each.email%></td>
+                        <%if(each.Subject !== null){%>
+                            <td><%=each.Subject.subject_name%></td>
+                        <%}else{%>
+                            <td>unassign</td>
+                        <%}%>
+                        
+                        <td>
+                            <a href="/teacher/edit/<%=each.id%>">Edit</a>
+                            <a onclick="return confirm('Yakin mau delete Guru: \n Klik cancel untuk membatalkan')" href="/teacher/delete/<%=each.id%>">Delete</a>
+                        </td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

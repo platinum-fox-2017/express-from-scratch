@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "kevinhimawanhie",
+    "password": "1",
+    "database": "Week4_Week_Project",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

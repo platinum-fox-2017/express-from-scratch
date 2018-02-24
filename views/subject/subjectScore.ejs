@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/subject/enroll/back">back</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Student Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(each=>{%>
+                    <tr>
+                        <td><%=each.studentId%></td>
+                        <td><%=each.Student.first_name%> <%=each.Student.last_name%></td>
+                        <%if(each.score === null){%>
+                            <td><a href="/subject/<%=each.subjectId%>/enroll/<%=each.studentId%>">Give Score</a></td>
+                        <%}else{%>
+                            <td><%=each.score%></td>
+                        <%}%>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

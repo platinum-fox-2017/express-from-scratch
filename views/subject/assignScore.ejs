@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+    <h3>Subject Name</h3>
+    <span><%=data.Subject.subject_name%></span>
+    <br>
+    <h3>Student Name</h3>
+    <span><%=data.Student.first_name%> <%=data.Student.last_name%></span>
+
+    <form action="/subject/<%=data.subjectId%>/enroll/<%=data.studentId%>" method="post">
+        <input type="number" name="score">
+        <button >Submit</button>
+    </form>
+</body>
+</html>

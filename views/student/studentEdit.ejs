@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/student/edit/<%=beforeData.id%>" method="post" class="form">
+            <div class="form-group">
+                <label for="addStudentFirstName">First Name</label>
+                <input type="text" name="first_name" autocomplete="off" class="form-control" id="addStudentFirstName" aria-describedby="emailHelp" placeholder="<%=beforeData.first_name%>">
+            </div>
+            <div class="form-group">
+                <label for="addStudentLastName">Last Name</label>
+                <input type="text" name="last_name" autocomplete="off" class="form-control" id="addStudentLastName" placeholder="<%=beforeData.last_name%>">
+            </div>
+            <div class="form-group">
+                <label for="addStudentEmail">Email</label>
+                <input type="text" name="email" autocomplete="off" class="form-control" id="addStudentEmail" placeholder="<%=beforeData.email%>">
+            </div>
+            <button class="btn btn-primary">Edit Student</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('../metahead'); %>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%=studentData.first_name%></td>
+                    <td><%=studentData.last_name%></td>
+                    <td><%=studentData.email%></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <label for="">Select Subject</label>
+        <br>
+        <form action="/student/addSubject/<%=studentData.id%>" method="post">
+            <select name="subjectId" id="">
+                <%subjectData.forEach(each=>{%>
+                    <option value="<%=each.id%>"><%=each.subject_name%></option>
+                <%})%>
+            </select>
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <script>
+    </script>
+</body>
+</html>
