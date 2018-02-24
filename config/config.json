@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "werkbau",
+    "password": "pokemon",
+    "database": "express",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "werkbau",
+    "password": "pokemon",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "werkbau",
+    "password": "pokemon",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

@@ -5,16 +5,54 @@
 </head>
 
 <body>
-  <h1><%= h1 %></h1>
-  <form action="/send" method="post">
-    Student Name:<br>
-    <input type="text" name="studentName">
-    <br>
-    Age:<br>
-    <input type="text" name="age"><br>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1><%= h1 %></h1>
+      <div class="form">
+        <form action="/students/send" method="post">
+          Student Name:<br>
+          <input type="text" name="studentName">
+          <br>
+          Age:<br>
+          <input type="text" name="age"><br>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
 </body>
 
 </html>
