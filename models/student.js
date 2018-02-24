@@ -1,9 +1,21 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Student = sequelize.define('Student', {
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    firstName: {
+      type: DataTypes.STRING,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: {
+          msg: "Email Format Is incorrect"
+        }
+      },
+      unique: true
+    }
   }, {});
   Student.associate = function(models) {
     // associations can be defined here
