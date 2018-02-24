@@ -8,11 +8,12 @@ router.get('/', (req, res) => {
      offset = ((page - 1) * 10)  + 1;
   }
   model.Student.findAndCountAll({
-    raw: true,
     limit : 10,
     offset: offset,
-    order : [['id','DESC']]
+    order : [['firstName','ASC']],
+    include: [{model : model.Subject}]
   }).then((students) => {
+    console.log(students);
     let alertMessage = req.flash('alertMessage');
     let alertStatus = req.flash('alertStatus');
     let alert = { message: alertMessage, status: alertStatus};
@@ -67,6 +68,30 @@ router.get('/delete/:id', (req, res) => {
     return student.destroy();
   }).then(() => {
     req.flash('alertMessage', `Succes Delete A Student with id ${id}`);
+    req.flash('alertStatus', 'success');
+    res.redirect('/students');
+  }).catch((err) => {
+    req.flash('alertMessage', `Something went Wrong :  ${err}`);
+    req.flash('alertStatus', 'danger');
+    res.redirect('/students');
+  });
+});
+router.get('/:id/subject', (req, res) => {
+  let id = req.params.id;
+  model.Student.findById(id).then((student) => {
+    model.Subject.all().then((subjects) => {
+      res.render('students/subject',{student: student,subjects: subjects});
+    });
+  });
+});
+
+router.post('/:id/subject', (req, res) => {
+  let id = req.params.id;
+  model.StudentSubject
+    .build({ StudentId: id, SubjectId: req.body.SubjectId})
+    .save()
+    .then(() => {
+    req.flash('alertMessage', `Succes Add Subject To Student with id ${id}`);
     req.flash('alertStatus', 'success');
     res.redirect('/students');
   }).catch((err) => {

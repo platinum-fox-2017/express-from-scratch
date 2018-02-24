@@ -8,51 +8,55 @@
     <% } %>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item">Students Data</li>
+      <li class="breadcrumb-item">Subjects Data</li>
     </ol>
-    <h3>Student Data</h3>
+    <h3>Subject Data</h3>
     <br>
-    <a href="/students/create" class="btn btn-primary">Add New Stutdent</a>
+    <a href="/subjects/create" class="btn btn-primary">Add New Stutdent</a>
     <br>
     <br>
     <table class="table">
       <thead>
         <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
+        <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Student</th>
         <th>Action</th>
       </thead>
       <tbody>
-        <% for (var i = 0; i < students.length; i++) { %>
+        <% for (var i = 0; i < subjects.length; i++) { %>
           <tr>
             <td>
-              <%= students[i].id %>
+              <%= subjects[i].id %>
             </td>
             <td>
-              <%= students[i].firstName %>
+              <%= subjects[i].subjectName %>
             </td>
             <td>
-              <%= students[i].lastName %>
+              <ol>
+              <% for (var j = 0; j < subjects[i].Teachers.length; j++) { %>
+                <li> <%= subjects[i].Teachers[j].firstName +" " + subjects[i].Teachers[j].lastName %> </li>
+              <% } %>
+              </ol>
             </td>
             <td>
-              <%= students[i].email %>
+              <a href="/subjects/<%= subjects[i].id %>/enrolled-students" class="btn btn-sm btn-warning"> Enrolled Students </a>
             </td>
             <td>
-              <a href="/students/edit/<%= students[i].id %>" class="btn btn-sm btn-primary"> Edit </a>
-              <button class="btn btn-sm btn-danger btn-delete" data-id="<%= students[i].id %>"> Delete </button>
+              <button class="btn btn-sm btn-danger btn-delete" data-id="<%= subjects[i].id %>"> Delete </button>
             </td>
           </tr>
           <% } %>
       </tbody>
     </table>
+    <% var paginationFor = "subjects" %>
     <%- include ../templates/pagination.ejs %>
   </div>
   <script type="text/javascript">
   $('.btn-delete').click(function(){
     let id = $(this).attr('data-id');
     swal({
-      title: "Yakin Ingin Menghapus Student?",
+      title: "Yakin Ingin Menghapus Subject?",
       text: "Data yang dihapus, tidak bisa kembali lagi.",
       icon: "warning",
       buttons: true,
@@ -60,7 +64,7 @@
     })
     .then((willDelete) => {
       if (willDelete) {
-        window.location.assign(`/students/delete/${id}`);
+        window.location.assign(`/subjects/delete/${id}`);
       }
     });
   });

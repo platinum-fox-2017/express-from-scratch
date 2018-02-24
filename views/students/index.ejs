@@ -21,6 +21,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
+        <th>Subject</th>
         <th>Action</th>
       </thead>
       <tbody>
@@ -39,6 +40,18 @@
               <%= students[i].email %>
             </td>
             <td>
+              <% if (students[i].Subjects.length) { %>
+                <ol>
+                <% for (var j = 0; j < students[i].Subjects.length; j++) { %>
+                  <li> <%= students[i].Subjects[j].subjectName %> </li>
+                <% } %>
+                </ol>
+              <% } else { %>
+                Has No Subject
+              <% } %>
+            </td>
+            <td>
+              <a href="/students/<%= students[i].id %>/subject" class="btn btn-sm btn-warning" >Add Subject </a>
               <a href="/students/edit/<%= students[i].id %>" class="btn btn-sm btn-primary"> Edit </a>
               <button class="btn btn-sm btn-danger btn-delete" data-id="<%= students[i].id %>"> Delete </button>
             </td>
@@ -46,6 +59,7 @@
           <% } %>
       </tbody>
     </table>
+    <% var paginationFor = "students" %>
     <%- include ../templates/pagination.ejs %>
   </div>
   <script type="text/javascript">

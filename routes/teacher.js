@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     raw: true,
     limit : 10,
     offset: offset,
-    order : [['id','DESC']],
+    order : [['firstName','ASC']],
     include: [{ model: model.Subject}]
   }).then((teachers) => {
     let alertMessage = req.flash('alertMessage');

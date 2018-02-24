@@ -1,0 +1,51 @@
+<%- include ../templates/header.ejs %>
+  <div class="container">
+    <br>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/students">Students Data</a></li>
+      <li class="breadcrumb-item">Students Subject</li>
+    </ol>
+    <h3>Add Subject To Student</h3>
+    <br>
+    <table class="table">
+      <tbody>
+          <tr>
+            <td>
+              First Name
+            </td>
+            <td>
+              <%= student.firstName %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Last Name
+            </td>
+            <td>
+              <%= student.lastName %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Email
+            </td>
+            <td>
+              <%= student.email %>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <form  action="/students/<%= student.id %>/subject" method="post">
+      <div class="form-group">
+        <label>Choose Subject</label>
+        <select name="SubjectId" class="form-control">
+        <% for (var i = 0; i < subjects.length; i++) { %>
+          <option value="<%= subjects[i].id %>"><%= subjects[i].subjectName %></option>
+        <% } %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Subject</button>
+    </form>
+  </div>
+  <%- include ../templates/footer.ejs %>

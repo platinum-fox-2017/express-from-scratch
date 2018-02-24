@@ -1,0 +1,43 @@
+<%- include ../templates/header.ejs %>
+  <div class="container">
+    <br>
+    <% if(alert.message != '') { %>
+    <div class="alert alert-<%= alert.status %>">
+      <%= alert.message %>
+    </div>
+    <% } %>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/subjects">Subjects Data</a></li>
+      <li class="breadcrumb-item">Enrolled Student</li>
+    </ol>
+    <h3>Enrolled Students In <%= students[0].Subject.subjectName %></h3>
+    <br>
+    <table class="table">
+      <thead>
+        <th>No</th>
+        <th> Name</th>
+        <th>Score</th>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < students.length; i++) { %>
+          <tr>
+            <td>
+            <%= i + 1 %>
+            </td>
+            <td>
+            <%= students[i].Student.firstName + ' ' + students[i].Student.lastName %>
+            </td>
+            <td>
+            <% if (students[i].score == null) { %>
+              <a href="/subjects/<%= students[i].id %>/give-score"> Give Score </a>
+            <% } else { %>
+              <%= students[i].score %>
+            <% } %>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+  <%- include ../templates/footer.ejs %>
