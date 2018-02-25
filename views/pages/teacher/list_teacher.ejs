@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <style>
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        
+        </style>        
+    </head>
+
+    <body>
+        <a href="/">Index</a>
+        <h2>All Teachers Data</h2>
+        <a href="/teachers/add">Add Teachers Data</a>
+        <form>
+            <table>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Options</th>
+            </tr>
+            <% for(let i = 0; i < data.length; i++) {%>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= data[i].first_name %></td>
+                    <td><%= data[i].last_name %></td>
+                    <td><%= data[i].email %></td>
+                    <td>
+                        <% if (data[i].Subject) { %>
+                        <%= data[i].Subject.subject_name %>
+                        <% } else { %>
+                        <%= 'unassigned' %>
+                        <% } %>
+                    </td>
+                    
+                    <td><a href="/teachers/edit/<%= data[i].id %>">Edit</a> | <input type="submit" formmethod="post" value="delete" formaction="/teachers/delete/<%= data[i].id %>" onclick="return confirm('delete this teacher?')"></td>
+                </tr>
+            <% } %>
+        </table>
+        </form>
+
+    </body>
+
+</html>
+

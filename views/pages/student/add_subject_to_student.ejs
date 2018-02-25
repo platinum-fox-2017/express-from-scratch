@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <style>
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 30%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        /*tr:nth-child(even) {
+            background-color: #dddddd;
+        }*/
+        
+        </style>
+    </head>
+
+    <body>
+
+        <h2>Add Subject to Student</h2>
+        <a href="/students/">show all data</a>
+        <form action="/students/<%= dataStudent.id %>/addsubject" method="post">
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <td><%= dataStudent.first_name %></td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td><%= dataStudent.last_name %></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><%= dataStudent.email %></td>
+                </tr>
+                <tr>
+                    <th>Subject</th>
+                    <td>
+                        <% if(dataStudent.Subjects.length > 0) { %>
+                        <ul>
+                            <% for(let i = 0; i < dataStudent.Subjects.length; i++) { %>
+                            <li><%= dataStudent.Subjects[i].subject_name %></li>
+                            <% } %>
+                        </ul>
+                        <% } else { %>
+                        -
+                        <% } %>
+                    </td>
+                </tr>
+            </table>
+
+            Subject: 
+            <select name="subject">
+                <option value="-1">-- Select Subject --</option>
+                <% for(let i = 0; i < dataSubject.length; i++) { %>
+                <option value="<%= dataSubject[i].id %>"><%= dataSubject[i].subject_name %></option>
+                <% } %>
+            </select>
+        	
+        	<br><br>
+        	<input type="submit" value="Submit">
+        </form>
+        <label><%= message || '' %></label>
+    </body>
+
+</html>

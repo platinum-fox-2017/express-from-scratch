@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+    </head>
+
+    <body>
+
+        <h2>Edit Teacher Data</h2>
+        <a href="/teachers/">show all data</a>
+        <form action="/teachers/edit/<%= dataTeacher.id %>" method="post">
+        	First name:<br>
+        	<input type="text" name="first_name" value="<%= dataTeacher.first_name %>">
+        	<br>
+        	Last name:<br>
+        	<input type="text" name="last_name" value="<%= dataTeacher.last_name %>">
+        	<br>
+        	Email:<br>
+        	<input type="text" name="email" value="<%= dataTeacher.email %>">
+        	<br>
+            Subject:<br>
+            <select name="subject">
+                <option value="-1">-- Select Subject --</option>
+                <% for(let i = 0; i < dataSubject.length; i++) { 
+                    let selected = ( dataTeacher.SubjectId == dataSubject[i].id ) ? 'selected' : '';
+                %>
+                <option value="<%= dataSubject[i].id %>" <%= selected %> ><%= dataSubject[i].subject_name %></option>
+                <% } %>
+            </select>
+            <br><br>
+        	<input type="submit" value="Submit">
+        </form>
+        <label><%= message || '' %></label>
+    </body>
+
+</html>

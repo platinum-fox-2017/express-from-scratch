@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <style>
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        
+        </style>        
+    </head>
+
+    <body>
+        <a href="/">Index</a>
+        <h2>All Subjects Data</h2>
+        <form>
+            <table>
+            <tr>
+                <th>Id</th>
+                <th>Subject Name</th>
+                <th>Teacher</th>
+                <th>Actions</th>
+            </tr>
+            <% for(let i = 0; i < data.length; i++) {%>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= data[i].subject_name %></td>
+                    <td>
+                        <ul>
+                            <% if (data[i].Teachers.length > 0) {
+                                    for(let j = 0; j < data[i].Teachers.length; j++) {%>
+                            <li><%= `${data[i].Teachers[j].first_name} ${data[i].Teachers[j].last_name}`%></li>
+                            <% }} else {%>
+                            <li> - </li>
+                            <%}%>
+                        </ul>
+                    </td>
+                    <td><a href="subjects/<%= data[i].id %>/enrolledstudents">Enrolled Students</a></td>
+                </tr>
+            <% } %>
+        </table>
+        </form>
+
+    </body>
+
+</html>
+

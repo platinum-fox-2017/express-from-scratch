@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+    </head>
+
+    <body>
+
+        <h2>Add Students Data</h2>
+        <a href="/students/">show all data</a>
+        <form action="/students/add" method="post">
+        	First name:<br>
+        	<input type="text" name="first_name">
+        	<br>
+        	Last name:<br>
+        	<input type="text" name="last_name">
+        	<br>
+        	Email:<br>
+        	<input type="text" name="email">
+        	<br><br>
+        	<input type="submit" value="Submit">
+        </form>
+        <label><%= message || '' %></label>
+    </body>
+
+</html>
