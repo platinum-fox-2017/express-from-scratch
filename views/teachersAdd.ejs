@@ -1,0 +1,30 @@
+<div>
+    <h1>SMK Hacktiv8</h1>
+    <h3>Jakarta Selatan - Indonesia</h3>
+</div>
+    
+<div>
+    <button onclick="location.href ='/';">Dashboard</button>
+    <button onclick="location.href ='/students';">Students</button>
+    <button onclick="location.href ='/teachers';">Teachers</button>
+    <button onclick="location.href ='/subjects';">Subjects</button>
+    <button onclick="location.href ='/users';">User</button>
+    <button onclick="location.href ='/';">Logout</button>
+</div>
+
+<div>
+    <form method="post">
+        First Name:<br>
+        <input type="text" name="firstName"><br>
+        Last Name:<br>
+        <input type="text" name="lastName"><br>
+        Email:<br>
+        <input type="text" name="email"><br>
+        <select name="SubjectId">
+            <%for(let i in subject) {%>
+                <option value="<%=subject[i].id%>"><%=subject[i].name%></option>
+            <%}%>
+        </select>
+        <button type="submit">Add</button>
+    </form>
+</div>

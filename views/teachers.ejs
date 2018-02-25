@@ -4,31 +4,37 @@
 </div>
 
 <div>
-    <button onclick="location.href ='/';">Dashboard</button>
-    <button onclick="location.href ='/students';">Students</button>
-    <button onclick="location.href ='/teachers';">Teachers</button>
-    <button onclick="location.href ='/subjects';">Subjects</button>
-    <button onclick="location.href ='/users';">User</button>
-    <button onclick="location.href ='/';">Logout</button>
+    <button onclick="location.href = '/';">Dashboard</button>
+    <button onclick="location.href = '/students';">Students</button>
+    <button onclick="location.href = '/teachers';">Teachers</button>
+    <button onclick="location.href = '/subjects';">Subjects</button>
+    <button onclick="location.href = '/users';">User</button>
+    <button onclick="location.href = '/';">Logout</button>
 </div>
 
-<table>
-    <tr>
-        <th><h4>No</h4></th>
-        <th><h4>Id</h4></th>
-        <th><h4>Name</h4></th>
-        <th><h4>Email</h4></th>
-        <!-- <% for(let i in Object.keys(data[0]).slice(2)) {%>
-            <th><%= Object.keys(data[0])[i]%></th>
-        <%}%> -->
-    </tr>
-    <% for(let i in data) {%>
-    <tr>
-        <th><h4><%=Number(i)+1%></h4></th>
-        <th><h4><%=data[i].id%></h4></th>
-        <th><h4><%=data[i].firstName%> <%=data[i].lastName%></h4></th>
-        <th><h4><%=data[i].email%></h4></th>
-    </tr>
-    <!-- <h4><%=data[i].firstName%> <%=data[i].lastName%> || email: <%=data[i].email%></h4> -->
-    <%}%>
-</table>
+<div>
+    <table>
+        <tr>
+            <th><h4>No</h4></th>
+            <th><h4>Id</h4></th>
+            <th><h4>Name</h4></th>
+            <th><h4>Email</h4></th>
+            <th><h4>Subject</h4></th>
+            <th><h4>Option</h4></th>
+        </tr>
+        <% for(let i in data) {%>
+        <tr>
+            <th><h4><%=Number(i)+1%></h4></th>
+            <th><h4><%=data[i].id%></h4></th>
+            <th><h4><%=data[i].firstName%> <%=data[i].lastName%></h4></th>
+            <th><h4><%=data[i].email%></h4></th>
+            <th><h4><%=data[i]['Subject.name']===null?'unassigned':data[i]['Subject.name']%></h4></th>
+            <th><h4><a href="/teachers/edit/<%=data[i].id%>">Edit</a> || <a href="/teachers/delete/<%=data[i].id%>">Delete</a></h4></th>
+        </tr>
+        <%}%>
+    </table>
+</div>
+
+<div>
+    <button onclick="location.href = '/teachers/Add';">Add Teacher</button>
+</div>

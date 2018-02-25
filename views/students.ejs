@@ -19,6 +19,7 @@
       <th><h4>Id</h4></th>
       <th><h4>Name</h4></th>
       <th><h4>Email</h4></th>
+      <th><h4>Subjects</h4></th>
       <th><h4>Actions</h4></th>
     </tr>
     <%for(let i in data) {%>
@@ -27,6 +28,7 @@
         <th><h4><%=data[i].id%></h4></th>
         <th><h4><%=data[i].firstName%> <%=data[i].lastName%></h4></th>
         <th><h4><%=data[i].email%></h4></th>
+        <th><h4><a href="/students/<%=data[i].id%>/addsubject">Add Subject</a></h4></th>
         <th><h4><a href="/students/edit/<%=data[i].id%>">Edit</a> || <a href="/students/delete/<%=data[i].id%>">Delete</a></h4></th>
         </th>
       </tr>
