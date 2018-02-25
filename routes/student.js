@@ -25,7 +25,10 @@ router.post('/add', (req, res) => {
     }).then(() => {
         res.redirect('/students')
         console.log('ADDED Student Data')
-    }).catch((err) => { console.log(err) })
+    }).catch((err) => {
+        // res.send(err.errors[0].message)
+        res.render('student/student-add', { err })
+    })
 })
 
 router.get('/edit/:id', (req, res) => {
