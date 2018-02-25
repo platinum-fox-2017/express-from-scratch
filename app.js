@@ -1,5 +1,6 @@
 // Bring in our dependencies
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // Connect all our routes to our application
 let PORT = 3000;
@@ -10,5 +11,6 @@ app.listen(PORT, () => {
 });
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', require('./routes'));

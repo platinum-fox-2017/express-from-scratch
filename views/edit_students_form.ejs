@@ -12,14 +12,16 @@
             <h1><%= title %></h1>
         </header>
 
-        <form action="/studentform">
+        <form method="POST"> 
+            ID:<br>
+            <input type="text" name="ID"><br>
             First Name:<br>
-            <input type="text" name="firstname"><br>
+            <input type="text" name="first_name"><br>
             Last Name:<br>
-            <input type="text" name="lastname"><br>
+            <input type="text" name="last_name"><br>
             Email:<br>
             <input type="text" name="email"><br>            
-            <input type="submit" value="Add Student">
+            <input type="submit" value="Edit Student">
         </form>
     </body>
 
