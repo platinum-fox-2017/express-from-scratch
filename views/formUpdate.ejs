@@ -1,0 +1,22 @@
+<body>
+    <h1>Update Student</h1>
+    <form name="formUpdate" method="POST" action="/students/update/<%= data.id %>">
+    <table>
+        <tr>
+        <td>First Name</td>
+        <td><input type="text" name="first_name" value="<%= data.first_name %>"></td>
+        </tr>
+        <tr>
+        <td>Last Name</td>
+        <td><input type="text" name="last_name" value="<%= data.last_name %>"></td>
+        </tr>
+        <tr>
+        <td>Email</td>
+        <td><input type="text" name="email" value="<%= data.email %>"></td>
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Save" ></td>
+        </tr>
+    </table>
+    </form>
+</body>
