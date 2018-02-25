@@ -9,22 +9,18 @@
   <body>
     <div class="container">
     <table class="table">
-      <h2>LIST USER</h2>
+      <h2>Subjects Data</h2>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Age</th>
+          <th>Subject Name</th>
         </tr>
       </thead>
       <tbody>
-        <%dataUser.forEach(user =>{%>
+        <%data.forEach(subject =>{%>
           <tr>
-            <td><%=user.id%></td>
-            <td><%=user.name%></td>
-            <td><%=user.gender%></td>
-            <td><%=user.age%></td>
+            <td><%=subject.id%></td>
+            <td><%=subject.subject_name%></td>
           </tr>
         <%})%>
       </tbody>
