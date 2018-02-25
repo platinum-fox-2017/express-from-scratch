@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subjects</title>
+    </head>
+    <body>
+        <h1>Subjects Data</h1>
+        <table class = "table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Subject Name</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <%data.forEach(value => {%>
+                    <tr>
+                        <td><%= value.id %></td>
+                        <td><%= value.subject_name %></td>
+                        <td><%= 'Edit' %></td>
+                        <td><%= 'Delete' %></td>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+    </body>
+    <footer>
+
+    </footer>
+</html>
