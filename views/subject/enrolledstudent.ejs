@@ -22,16 +22,24 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Student Name</th>
+                            <th scope="col">Score</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% data.map((data)=>{ %>
+                        <% data.map((datastudent)=>{ %>
                             <tr>
                                 <th scope="row">
-                                    <%=data.id %>
+                                    <%=datastudent.Student.id %>
                                 </th>
                                 <td>
-                                    <%=data.Student.first_name + ' ' + data.Student.last_name %>
+                                    <%=datastudent.Student.first_name + ' ' + datastudent.Student.last_name %>
+                                </td>
+                                <td>
+                                    <% if (datastudent.score === null) { %>
+                                        <a href="/subjects/<%=datastudent.Subject.id%>/<%=datastudent.Student.id%>/give-score">Give Score</a>
+                                        <% }else{ %>
+                                            <%=datastudent.score%>
+                                                <%} %>
                                 </td>
                             </tr>
                             <% })%>

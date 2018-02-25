@@ -33,17 +33,16 @@
             <div class="form-group">
                 <label>Subject</label>
                 <select class="form-control" name="subjectId">
-                    <%dataSubject.map((data)=>{ %>
-                        <%if (dataTeacher.Subject.id === data.id) { %>
-                            <option selected value="<%=data.id%>">
-                                <%=data.subject_name%>
+                    <% for(let i = 0; i < dataSubject.length; i++ ) { %>
+                        <% if(dataSubject[i].id === dataTeacher.subjectId){ %>
+                            <option value="<%=dataSubject[i].id%>" selected>
+                                <%=dataSubject[i].subject_name%>
                             </option>
                             <% }else{ %>
-                                <option value="<%=data.id%>">
-                                    <%= data.subject_name%>
+                                <option value="<%=dataSubject[i].id%>">
+                                    <%=dataSubject[i].subject_name%>
                                 </option>
-                                <%}%>
-                                    <% }) %>
+                                <% } }%>
                 </select>
             </div>
             <input type="submit" clas="btn btn-primary" value="Submit">

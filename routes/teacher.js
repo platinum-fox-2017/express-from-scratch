@@ -45,7 +45,6 @@ router.get('/edit/:id', (req, res) => {
         ]
     }).then((data) => {
         Subject.findAll().then((subject) => {
-            // res.send(data)
             res.render('teacher/teacher-edit', { dataTeacher: data, dataSubject: subject })
         })
     }).catch((err) => { console.log(err) })
