@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    </head>
+
+    <body>
+        <h2>Give Scores</h2>
+        <form action="/subjects/<%= id %>/<%= idScore %>/giveScore" method="post">
+            <label>Student Name : <%= `${data.Student.first_name} ${data.Student.last_name}` %></label>
+            <br>
+            <label>Subject Name : <%= data.Subject.subject_name %></label>
+            <br>
+            <label>Score : </label>
+            <input type="text" name="score" placeholder="ex: 79">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+    </body>
+
+</html>
