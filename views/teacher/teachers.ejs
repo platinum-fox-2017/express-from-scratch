@@ -22,6 +22,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">NO</th>
                     <th scope="col">ID</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
@@ -31,33 +32,36 @@
                 </tr>
             </thead>
             <tbody>
-                <% datas.map((data)=>{ %>
+                <% for (let i = 0; i <datas.length; i++) {%>
                     <tr>
-                        <th scope="row">
-                            <%=data.id %>
-                        </th>
                         <td>
-                            <%=data.first_name %>
+                            <%=i+1%>
                         </td>
                         <td>
-                            <%=data.last_name%>
+                            <%=datas[i].id %>
                         </td>
                         <td>
-                            <%=data.email%>
+                            <%=datas[i].first_name %>
                         </td>
                         <td>
-                            <% if (data.Subject === null) { %>
+                            <%=datas[i].last_name%>
+                        </td>
+                        <td>
+                            <%=datas[i].email%>
+                        </td>
+                        <td>
+                            <% if (datas[i].Subject === null) { %>
                                 <p>unassigned</p>
                                 <% }else{ %>
-                                    <%=data.Subject.subject_name%>
+                                    <%=datas[i].Subject.subject_name%>
                                         <%} %>
                         </td>
                         <td>
-                            <a href="/teachers/edit/<%=data.id%>">Edit</a>
-                            <a href="/teachers/delete/<%=data.id%>">Delete</a>
+                            <a href="/teachers/edit/<%=datas[i].id%>">Edit</a>
+                            <a href="/teachers/delete/<%=datas[i].id%>">Delete</a>
                         </td>
                     </tr>
-                    <% })%>
+                    <% }%>
             </tbody>
         </table>
     </div>

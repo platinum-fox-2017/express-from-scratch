@@ -35,6 +35,9 @@ router.get('/:id/enrolledstudents', (req, res) => {
             where: { subjectId: id },
             include: [
                 Student, Subject
+            ],
+            order: [
+                [Student, 'first_name', 'ASC']
             ]
         }
     ).then((data) => {

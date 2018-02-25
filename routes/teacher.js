@@ -3,16 +3,20 @@ const router = express.Router()
 const { Teacher, Subject } = require('../models')
 
 router.get('/', function (req, res) {
-    Teacher.findAll({
-        include: [
-            { model: Subject }
-        ]
-    }).then((datas) => {
-        // res.send(datas)
-        res.render('teacher/teachers', { datas: datas })
-    }).catch((err) => {
-        console.log(err)
-    })
+    Teacher.findAll(
+        {
+            include: [
+                { model: Subject }
+            ],
+            order: [
+                ['first_name', 'ASC']
+            ]
+        }).then((datas) => {
+            // res.send(datas)
+            res.render('teacher/teachers', { datas: datas })
+        }).catch((err) => {
+            console.log(err)
+        })
 })
 
 router.get('/add', (req, res) => {

@@ -20,29 +20,33 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">NO</th>
                             <th scope="col">ID</th>
                             <th scope="col">Student Name</th>
                             <th scope="col">Score</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% data.map((datastudent)=>{ %>
+                        <% for (let i = 0; i < data.length; i++) { %>
                             <tr>
-                                <th scope="row">
-                                    <%=datastudent.Student.id %>
-                                </th>
                                 <td>
-                                    <%=datastudent.Student.first_name + ' ' + datastudent.Student.last_name %>
+                                    <%= i+1 %>
                                 </td>
                                 <td>
-                                    <% if (datastudent.score === null) { %>
-                                        <a href="/subjects/<%=datastudent.Subject.id%>/<%=datastudent.Student.id%>/give-score">Give Score</a>
+                                    <%=data[i].Student.id %>
+                                </td>
+                                <td>
+                                    <%=data[i].Student.first_name + ' ' + data[i].Student.last_name %>
+                                </td>
+                                <td>
+                                    <% if (data[i].score === null) { %>
+                                        <a href="/subjects/<%=data[i].Subject.id%>/<%=data[i].Student.id%>/give-score">Give Score</a>
                                         <% }else{ %>
-                                            <%=datastudent.score%>
+                                            <%=data[i].score%>
                                                 <%} %>
                                 </td>
                             </tr>
-                            <% })%>
+                            <%} %>
                     </tbody>
                 </table>
             </div>

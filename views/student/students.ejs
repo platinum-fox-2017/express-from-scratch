@@ -19,6 +19,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">No</th>
                     <th scope="col">ID</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
@@ -28,29 +29,32 @@
                 </tr>
             </thead>
             <tbody>
-                <% datas.map((data)=>{ %>
+                <% for (let i = 0; i<datas.length; i++){ %>
                     <tr>
-                        <th scope="row">
-                            <%=data.id %>
-                        </th>
                         <td>
-                            <%=data.first_name %>
+                            <%= i+1 %>
                         </td>
                         <td>
-                            <%=data.last_name %>
+                            <%=datas[i].id %>
                         </td>
                         <td>
-                            <%=data.email %>
+                            <%=datas[i].first_name %>
                         </td>
                         <td>
-                            <a href="/students/<%=data.id%>/addsubject">Add Subject</a>
+                            <%=datas[i].last_name %>
                         </td>
                         <td>
-                            <a href="/students/edit/<%=data.id %>">Edit</a>
-                            <a href="/students/delete/<%=data.id %>">Delete</a>
+                            <%=datas[i].email %>
+                        </td>
+                        <td>
+                            <a href="/students/<%=datas[i].id%>/addsubject">Add Subject</a>
+                        </td>
+                        <td>
+                            <a href="/students/edit/<%=datas[i].id %>">Edit</a>
+                            <a href="/students/delete/<%=datas[i].id %>">Delete</a>
                         </td>
                     </tr>
-                    <% })%>
+                    <%  }%>
             </tbody>
         </table>
     </div>
