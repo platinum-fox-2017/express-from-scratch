@@ -18,6 +18,8 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Subject Name</th>
+                    <th scope="col">Teaches</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +30,18 @@
                         </th>
                         <td>
                             <%=data.subject_name %>
+                        </td>
+                        <td>
+                            <ul>
+                                <%data.Teachers.map((teacher)=> { %>
+                                    <li>
+                                        <%=teacher.first_name + ' ' + teacher.last_name%>
+                                    </li>
+                                    <%})%>
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="/subjects/<%=data.id%>/enrolledstudents">Enrolled Student</a>
                         </td>
                     </tr>
                     <% })%>

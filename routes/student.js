@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { Student } = require('../models')
+const { Student, Subject, StudentSubject } = require('../models')
 
 router.get('/', (req, res) => {
     Student.findAll().then((datas) => {
@@ -52,6 +52,25 @@ router.get('/delete/:id', (req, res) => {
     }).catch((err) => { console.log(err) })
 })
 
+router.get('/:id/addsubject', (req, res) => {
+    const id = req.params.id
+    Student.findById(id).then((student) => {
+        Subject.findAll().then((subject) => {
+            res.render('student/addsubject', { dataStudent: student, dataSubject: subject })
+        })
+    }).catch((err) => { console.log(err) })
+})
+
+router.post('/:id/addsubject', (req, res) => {
+    const id = req.params.id
+    const body = req.body
+    StudentSubject.create({
+        subjectId: body.subjectId,
+        studentId: id
+    }).then(() => {
+        res.redirect('/students')
+    }).catch((err) => { console.log(err) })
+})
 
 
 module.exports = router
