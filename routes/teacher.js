@@ -14,7 +14,6 @@ router.get('/', function (req, res) {
   
 })
 router.get('/add',function(req,res){
-  //posting new student
   res.render('formTeacher')
 })
 router.post('/add',function(req,res){
@@ -33,7 +32,7 @@ router.post('/add',function(req,res){
   })
 })
 router.get('/edit/:id',function(req,res){
-  // res.render('form_edit_student')
+
     let id = req.params.id
     // console.log(id)
     models.Teacher.findById(id).then(detail=>{

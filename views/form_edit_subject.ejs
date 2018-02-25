@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Edit Data Subject </title>
+    </head>
+<body>
+    <h1>Add Subject Data</h1>
+    <a href = "/subjects">show all data</a>
+    <form class= "" action="/subjects/edit/<%=dataSubject.id%>" method = "post">
+      <input type ="text" placeholder="subject name" value="<%=dataSubject.subject_name%>" name="subject_name"> </br>
+      <button> Edit Subject </button>      
+  </form>
+
+</body>
+</html>

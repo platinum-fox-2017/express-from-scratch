@@ -9,7 +9,7 @@ router.get('/',function(req,res){
   models.Student.findAll().then(dataStudent=>{
     res.render('student',{data:dataStudent})
   }).catch(err=>{
-    console.log(err);
+    res.send(err);
     
   })
 })
@@ -29,7 +29,7 @@ router.post('/add',function(req,res){
   models.Student.create(obj).then(addData=>{
     res.redirect('/students')
   }).catch(err=>{
-    console.log(err)
+    res.send(err)
   })
 })
 
@@ -60,13 +60,38 @@ router.post('/edit/:id',function(req,res){
 
 router.get('/delete/:id',function(req,res){
   let id = req.params.id
-  console.log(id)
+  // console.log(id)
   models.Student.destroy({where:{id:id}}).then(()=>{
     res.redirect('/students')
   }).catch(err=>{
     res.send(err)
   })
 
+})
+router.get('/:id/addsubject',function(req,res){
+  let id = req.params.id
+  models.Student.findById(id).then(student=>{
+    models.Subject.findAll().then(dataSubject=>{
+      res.render('form_addSubject',{dataStudent:student,subject:dataSubject})
+    }).catch(errSub=>{
+      res.send(errSub)
+    })
+  }).catch(errStud=>{
+    res.send(errStud)
+  })
+})
+
+router.post('/:id/addsubject',function(req,res){
+  let id = req.params.id
+  let obj={
+    id_student : id,
+    id_subject : req.body.id_subject
+  }
+  models.Student_subject.create(obj,{where:{id:id}}).then(()=>{
+    res.redirect('/students')
+  }).catch(err=>{
+    res.send(err)
+  })
 })
   
   
