@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>Add Teachers Data</h1>
+<form class="" action="/teachers/add" method="post">
+  <input type="text" placeholder="first name" name="first_name">
+  <input type="text" placeholder="last name" name="last_name">
+  <input type="text" placeholder="email" name="email">
+  <select name="id_subject">
+      <%subject.forEach((data) =>
+      {%>
+        <option value="<%=data.id%>"> <%=data.subject_name%> </option>
+      <%})%>
+  </select>
+  <button>SUBMIT</button>
+</form>
+</body>
+</html>

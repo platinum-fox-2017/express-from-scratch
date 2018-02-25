@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>Edit Student Data</h1>
+<form class="" action="/teachers/edit/<%=data_teacher.id%>" method="post">
+  <input type="text" placeholder="First Name" name="first_name" value=<%=data_teacher.first_name%>>
+  <input type="text" placeholder="Last Name" name="last_name" value=<%=data_teacher.last_name%>>
+  <input type="text" placeholder="Email" name="email" value=<%=data_teacher.email%>>
+  <select name="id_subject">
+      <%data_subject.forEach((data) =>
+      {%>
+        <option value="<%=data.id%>" <%if (data.id === data_teacher.id_subject) {%> selected   <%}%> > <%=data.subject_name%> </option>
+      <%})%>
+  </select>
+  <button>EDIT</button>
+</form>
+</body>
+</html>

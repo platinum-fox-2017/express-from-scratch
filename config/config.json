@@ -2,7 +2,7 @@
   "development": {
     "username": "devdots",
     "password": "Semau6ue",
-    "database": "database_express",
+    "database": "tugas_weekend",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

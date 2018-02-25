@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="utf-8"
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <center><h1>All Teachers Data</h1></center>
+    <center>
+      <a href="/teachers/add">add teacher</a>
+    </center>
+    <br>
+    <br>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Option</th>
+          </thead>
+          <tbody>
+            <%data_teacher.forEach(data =>{%>
+              <tr>
+                <td><%=data.id%></td>
+                <td><%=data.first_name%></td>
+                <td><%=data.last_name%></td>
+                <td><%=data.email%></td>
+                <%if (data.Subject) { %>
+                  <td><%=data.Subject.subject_name%></td>
+                <% } else { %>
+                  <td>Unassigned</td>
+                <% } %>
+                <th><a href = "/teachers/edit/<%=data.id%>" action="">Edit</a> ||
+                <a href="/teachers/delete/<%=data.id%>" action="/teachers" onclick="return confirm('delete this student ?');" >Delete</a></th
+              </tr>
+              <%})%>
+            </tbody>
+    </div>
+    </table>
+  </body>
+</html>
