@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <center>
+    <h1> Edit Teacher Data </h1>
+    <form class="" action="/teacher/edit/<%=data.id%>" method="post">
+        <p>First Name</p>
+        <input type="text" placeholder="first_name" name="first_name" value = <%= data.first_name %> >
+        <p>Last Name</p>
+        <input type="text" placeholder="last_name" name="last_name" value = <%= data.last_name %> >
+        <p>Email </p>
+        <input type="text" placeholder="email" name: "email" value = <%= data.email %> >
+        <p>Subject</p>
+        <select name="id_subject">
+        <%subject.forEach(subject=>{%>
+            <option type="text" value ="<%=subject.id%>" > <%=subject.subject_name%> </option>
+        <%})%>
+        </select> 
+        </br>
+        </br>
+        <button>Submit Data</button>
+    </form>
+    </center> 
+</body>
+</html>

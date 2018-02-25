@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <center>
+    <h1> Add Subject </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=student.first_name%></td>
+                <td><%=student.last_name%></td>
+                <td><%=student.email%></td>
+            </tr>
+        </tbody>
+    </table>
+        <form class="" action="/student/<%=student.id%>/addSubject" method="post"></form>
+        <%subject.forEach(subjects=>{ %>
+        <select>
+            <option value ="<%=subjects.id%>" > <%=subjects.subject_name%> </option>
+        </select>
+        <%})%>
+        </br>
+        </br>
+        <button>Submit Data</button>
+    </form>
+    </center> 
+</body>
+</html>
