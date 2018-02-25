@@ -27,6 +27,7 @@ router.get('/add' ,function(request, response){
             formValue_email: '',
             formValue_subjectId: '',
             button: 'Save',
+            hrefCss: '../css/style.css',
             data:subjectData
         }
         response.render('form-teacher.ejs', obj)
@@ -59,6 +60,7 @@ router.get('/edit/:id', function(request, response){
                 formValue_email: teachersData.email,
                 formValue_subjectId: teachersData.SubjectId,
                 button: 'Update',
+                hrefCss: '../../css/style.css',
                 data: subjectData,
             }
             response.render('form-teacher.ejs', obj)

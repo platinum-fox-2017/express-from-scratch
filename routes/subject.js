@@ -9,7 +9,8 @@ router.get('/', function(request, response){
         let obj = {
             title: 'Data Subject',
             heading: 'All Subjects Data',
-            data: subjectData
+            data: subjectData,
+            hrefCss: './css/style.css'
         }
         response.render('subject.ejs', obj)
     })
@@ -22,6 +23,7 @@ router.get('/add', function(request, response){
         id: '',
         formValue_s_name: '',
         button: 'Save',
+        hrefCss: '../css/style.css'
     }
     response.render('form-subject.ejs', obj)
 })
@@ -43,7 +45,8 @@ router.get('/edit/:id', function(request, response){
             formAction: '/subjects/update',
             id: subjectData.id,
             formValue_s_name: subjectData.subject_name,
-            button: 'Update'
+            button: 'Update',
+            hrefCss: '../../css/style.css'
         }
         response.render('form-subject.ejs', obj)
     })

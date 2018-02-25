@@ -22,7 +22,8 @@ router.get('/add', function(request, response){
         formValue_fname: '',
         formValue_lname: '',
         formValue_email: '',
-        button: 'Save'
+        button: 'Save',
+        hrefCss: '../css/style.css'
     }
     response.render('form-student.ejs', obj);
 })
@@ -49,7 +50,8 @@ router.get('/edit/:id', function(request, response){
             formValue_fname: studentsData.first_name,
             formValue_lname: studentsData.last_name,
             formValue_email: studentsData.email,
-            button: 'Update'
+            button: 'Update',
+            hrefCss: '../../css/style.css'
         }
         response.render('form-student.ejs', obj)
     })
