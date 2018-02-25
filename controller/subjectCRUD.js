@@ -86,6 +86,16 @@ class Subject {
     });
   }
 
+
+  static tableResponse(res){
+    db.Subject.findAll({
+      // attributes
+      attributes: ['id', ['subject_name', 'Subject Name']]
+    }).then(foundSubjects => {
+      View.displayTable(res, foundSubjects, 'Subjects');
+    });
+  }
+
 }
 
 module.exports = Subject;

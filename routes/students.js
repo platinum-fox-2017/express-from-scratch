@@ -1,16 +1,70 @@
 const express = require('express')
 const route = express.Router();
+const app = express();
+const Student = require('../controller/index.js').Student;
 // /student
 route.get('/', (req, res)=>{
+  // get all students
+  Student.tableResponse(res)
+  // res.render('form.ejs', { title:'Student', h1:'Student Data'})
+});
+
+// ############# ADD DATA ####################
+route.get('/add', (req, res)=>{
+  // get form for students
   res.render('form.ejs', { title:'Student', h1:'Student Data'})
 });
 
 route.post('/send', (req, res)=>{
   // console.log(req.body);
-  let studentName = req.body.studentName;
-  let studentAge = req.body.age;
-  res.render('home.ejs', { title:'Student', h1:`Student Name : ${studentName} Age : ${studentAge}`});
+  let first_name = req.body.first_name;
+  let last_name = req.body.last_name;
+  let email = req.body.email;
+  let options = [first_name, last_name, email];
+  // Controller => add student => view render tableResponse
+  Student.addStudent(options, res)
+  // res.render('home.ejs', { title:'Student', h1:`Student Name : ${first_name} ${last_name} email : ${email}`});
 });
+
+// ################# EDIT ####################
+
+route.get('/edit/:id', (req, res)=>{
+  let id = req.param('id')
+  // console.log(id);
+  // res.send([id])
+  // get edit form for students
+  // execute through controller => update student => view with res.render
+  res.render('formEdit.ejs', { title:'Edit Student', h1:'Edit Student Data', id: id})
+});
+
+route.post('/edit/:id', (req, res)=>{
+  // console.log(req.params.id);
+  // console.log('received success');
+  // get request from edit page
+  let id = req.params.id
+  let first_name = req.body.first_name;
+  let last_name = req.body.last_name;
+  let email = req.body.email;
+  let options = [id, first_name, last_name, email];
+  console.log(options);
+  // Controller => edit student => view render tableResponse
+  Student.updateStudent(options, res)
+  // Student.addStudent(options, res)
+  // res.render('home.ejs', { title:'Student', h1:`Student Name : ${first_name} ${last_name} email : ${email}`});
+});
+
+
+// ################# DELETE ####################
+route.get(`/delete/:id`, (req, res)=>{
+  let options = [req.params.id]
+  // sent alert to webpage
+  if (confirm('Do you want to delete this student record?')) {
+    // Student.deleteStudent(options, res)
+  }
+  // res.render('formEdit.ejs', { title:'Student', h1:'Edit Student Data'})
+});
+
+
 
 module.exports = route
 

@@ -1,0 +1,78 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+
+
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1><%= h1 %></h1>
+      <% if (newData) { %>
+        <% let info = `${method} ${newData.first_name} ${newData.last_name} ${newData.email}` %>
+        <h1><%= info %></h1>
+      <% } %>
+      <br>
+      <% if (title === 'Students') { %>
+        <a href="/Students/add">
+          <button type="button" name="button">
+            Add Student
+          </button>
+        </a>
+      <% } %>
+      <table>
+        <tr>
+          <% for (let i = 0; i < heads.length; i++) { %>
+            <th><%= heads[i] %></th>
+          <% } %>
+            <th>Actions</th>
+        </tr>
+        <!-- loop -->
+        <% for (let i = 0; i < foundDatas.length; i++) { %>
+          <tr>
+          <% let datas = Object.values(foundDatas[i].dataValues) %>
+          <% for (var j = 0; j < datas.length; j++) { %>
+            <td><%= datas[j] %></td>
+          <% } %>
+            <!-- edit/delete -->
+            <td> <a href="Students/edit/<%= datas[0] %>">edit</a>/<a href="Students/delete/<%= datas[0] %>">delete</a> </td>
+          </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+
+</body>
+
+</html>

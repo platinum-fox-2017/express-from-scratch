@@ -11,6 +11,20 @@ h1 {
   font-size: 2.4em;
 }
 
+table {
+  width: 100%;
+  border: solid 1px;
+}
+table th {
+  border: solid 1px;
+  padding : 4px 2px;
+}
+table td {
+  border: solid 1px;
+  padding : 2px;
+  text-align: center;
+}
+
 #topBanner {
   height: 60px;
   background-color: black;
@@ -61,7 +75,7 @@ button:hover {
   display: flex;
   padding: 10px 0px;
   margin:auto;
-  
+
 }
 
 body {

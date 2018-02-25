@@ -1,6 +1,7 @@
 'use strict'
 const db = require('../models/index.js');
-const View = require('../views/index.js')
+const View = require('../views/index.js');
+
 
 class Teacher {
   constructor() {
@@ -83,6 +84,16 @@ class Teacher {
     }).then(foundTeacher => {
       View.displayDestroyed(foundTeacher);
       return foundTeacher.destroy();
+    });
+  }
+
+  // display table
+  static tableResponse(res){
+    db.Teacher.findAll({
+      // attributes
+      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
+    }).then(foundTeachers => {
+      View.displayTable(res, foundTeachers, 'Teachers');
     });
   }
 

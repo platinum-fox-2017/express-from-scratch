@@ -1,6 +1,7 @@
 'use strict'
 const db = require('../models/index.js');
-const View = require('../views/index.js')
+const View = require('../views/index.js');
+const express = require('express');
 
 class Student {
   constructor() {
@@ -36,7 +37,7 @@ class Student {
   }
 
   // CRUD
-  static addStudent(options){
+  static addStudent(options, res){
     db.Student.create({
       first_name: options[0],
       last_name: options[1],
@@ -44,7 +45,12 @@ class Student {
       updatedAt: new Date(),
       email: options[2]
     }).then(newStudent => {
-      View.displayAddData(newStudent);
+      if (res) {
+        Student.tableResponse(res, newStudent, 'added')
+      } else {
+        View.displayAddData(newStudent);
+      }
+
     });
   }
 
@@ -66,14 +72,29 @@ class Student {
     }
   }
 
-  static updateStudent(options){
+  static updateStudent(options, res){
     db.Student.findOne({
       where:{id:options[0]}
     }).then(foundStudent => {
-      let updateData = {};
-      updateData[options[1]] = options[2];
-      foundStudent.update(updateData);
-      View.displayUpdate(foundStudent);
+      if (res) {
+        let updateData = {
+          first_name: options[1],
+          last_name: options[2],
+          email: options[3]
+        };
+        foundStudent.update(updateData).then(()=>{
+          Student.tableResponse(res, foundStudent, 'Edited')
+        });
+
+      } else {
+        let updateData = {};
+        updateData[options[1]] = options[2];
+        foundStudent.update(updateData).then(()=>{
+          View.displayUpdate(foundStudent);
+        });
+
+      }
+
     });
   }
 
@@ -83,6 +104,16 @@ class Student {
     }).then(foundStudent => {
       View.displayDestroyed(foundStudent);
       return foundStudent.destroy();
+    });
+  }
+
+  // display table
+  static tableResponse(res, newData, method){
+    db.Student.findAll({
+      // attributes
+      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
+    }).then(foundStudents => {
+      View.displayTable(res, foundStudents, 'Students', newData, method);
     });
   }
 
