@@ -15,11 +15,11 @@ body
             - for(let i = 0; i < dataTeacher.length; i++) {
             tr
                 td=dataTeacher[i].first_name + ' ' + dataTeacher[i].last_name
+                td=dataTeacher[i].email
+                td=dataTeacher[i].Subject.subject_name
                 td
-                td=dataTeacher[i].Subject['subject_name']
-                td
-                    a(href='') Edit 
-                    a(href='') Delete
+                    a(href=`/teacher/edit/${dataTeacher[i].id}`) Edit 
+                    a(href=`/teacher/delete/${dataTeacher[i].id}`) Delete
             - }
     br
     br
