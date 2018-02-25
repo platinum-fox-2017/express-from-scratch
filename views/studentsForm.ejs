@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="<%= formAction %>" method="post">
+      <input type="hidden" value="<%= id %>" name="id">
+      <input type="text" value="<%= firstName %>" name="newFirstName" placeholder="First Name"><br>
+      <input type="text" value="<%= lastName %>" name="newLastName" placeholder="Last Name"><br>
+      <input type="text" value="<%= email %>" name="newEmail" placeholder="Email"><br>
+      <input type="submit">
+      </form>
+  </body>
+</html>
