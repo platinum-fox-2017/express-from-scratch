@@ -57,6 +57,7 @@
             <th><%= heads[i] %></th>
           <% } %>
             <th>Actions</th>
+            <th>Options</th>
         </tr>
         <!-- loop -->
         <% for (let i = 0; i < foundDatas.length; i++) { %>
@@ -66,6 +67,8 @@
             <td><%= datas[j] %></td>
 
           <% } %>
+            <!-- Subject add -->
+            <td> <a href="/<%= path %>/<%= datas[0] %>/addsubject">Add Subject</a> </td>
             <!-- edit/delete -->
             <td> <a href="/<%= path %>/edit/<%= datas[0] %>">edit</a>
               /<a href="/<%= path %>/delete/<%= datas[0] %>">delete</a> </td>

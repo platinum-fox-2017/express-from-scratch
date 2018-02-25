@@ -83,7 +83,8 @@ class Student {
           email: options[3]
         };
         foundStudent.update(updateData).then(()=>{
-          Student.tableResponse(res, foundStudent, 'Edited')
+          // Student.tableResponse(res, foundStudent, 'Edited')
+          View.redirect(res, `/students`);
         });
 
       } else {
@@ -92,18 +93,22 @@ class Student {
         foundStudent.update(updateData).then(()=>{
           View.displayUpdate(foundStudent);
         });
-
       }
-
     });
   }
 
-  static deleteStudent(options){
+  static deleteStudent(options, res){
     db.Student.findOne({
       where:{id:options[0]}
     }).then(foundStudent => {
-      View.displayDestroyed(foundStudent);
-      return foundStudent.destroy();
+      if (res) {
+        return foundStudent.destroy().then(()=>{
+          View.redirect(res, '/students');
+        })
+      } else {
+        View.displayDestroyed(foundStudent);
+        return foundStudent.destroy();
+      }
     });
   }
 
@@ -113,7 +118,7 @@ class Student {
       // attributes
       attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
     }).then(foundStudents => {
-      View.displayTable(res, foundStudents, 'Students', newData, method);
+      View.displayStudentTable(res, foundStudents, 'Students', newData, method);
     });
   }
 

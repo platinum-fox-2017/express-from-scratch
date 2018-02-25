@@ -12,7 +12,7 @@ route.get('/', (req, res)=>{
 // ############# ADD DATA ####################
 route.get('/add', (req, res)=>{
   // get form for students
-  res.render('form.ejs', { title:'Student', h1:'Student Data'})
+  res.render('form.ejs', { title:'Student', h1:'Student Data', path:'students'})
 });
 
 route.post('/send', (req, res)=>{
@@ -27,14 +27,13 @@ route.post('/send', (req, res)=>{
 });
 
 // ################# EDIT ####################
-
 route.get('/edit/:id', (req, res)=>{
   let id = req.param('id')
   // console.log(id);
   // res.send([id])
   // get edit form for students
   // execute through controller => update student => view with res.render
-  res.render('formEdit.ejs', { title:'Edit Student', h1:'Edit Student Data', id: id})
+  res.render('formEdit.ejs', { title:'Edit Student', h1:'Edit Student Data', id: id, path:'students'})
 });
 
 route.post('/edit/:id', (req, res)=>{
@@ -46,7 +45,7 @@ route.post('/edit/:id', (req, res)=>{
   let last_name = req.body.last_name;
   let email = req.body.email;
   let options = [id, first_name, last_name, email];
-  console.log(options);
+  // console.log(options);
   // Controller => edit student => view render tableResponse
   Student.updateStudent(options, res)
   // Student.addStudent(options, res)
@@ -58,16 +57,31 @@ route.post('/edit/:id', (req, res)=>{
 route.get(`/delete/:id`, (req, res)=>{
   let options = [req.params.id]
   // sent alert to webpage
-  if (confirm('Do you want to delete this student record?')) {
-    // Student.deleteStudent(options, res)
-  }
+  // if (window.confirm('Do you want to delete this student record?')) {
+    Student.deleteStudent(options, res)
+  // }
   // res.render('formEdit.ejs', { title:'Student', h1:'Edit Student Data'})
 });
 
 
 
-module.exports = route
+// ################# SUBJECT ####################
+route.get('/students/:id/addsubject', (req, res)=>{
+  let id = req.param('id')
+  res.render('formAddSubject.ejs', { title:'Edit Student', h1:'Add Subject to Student', id: id, path:'students'})
+});
 
+route.post('/students/:id/addsubject', (req, res)=>{
+  let id = req.params.id
+  let first_name = req.body.first_name;
+  let last_name = req.body.last_name;
+  let email = req.body.email;
+  let options = [id, first_name, last_name, email];
+  Student.updateStudent(options, res)
+});
+
+
+module.exports = route
 
 
 

@@ -4,7 +4,6 @@ const View = require('../views/index.js')
 
 class Subject {
   constructor() {
-
   }
 
   static readCommands(argv){
@@ -36,7 +35,7 @@ class Subject {
   }
 
   // CRUD
-  static addSubject(options){
+  static addSubject(options, res){
     db.Subject.create({
       first_name: options[0],
       last_name: options[1],
@@ -44,7 +43,12 @@ class Subject {
       updatedAt: new Date(),
       email: options[2]
     }).then(newSubject => {
-      View.displayAddData(newSubject);
+      if (res) {
+        Subject.tableResponse(res, newSubject, 'added')
+      } else {
+        View.displayAddData(newSubject);
+      }
+
     });
   }
 
@@ -66,33 +70,51 @@ class Subject {
     }
   }
 
-  static updateSubject(options){
+  static updateSubject(options, res){
     db.Subject.findOne({
       where:{id:options[0]}
     }).then(foundSubject => {
-      let updateData = {};
-      updateData[options[1]] = options[2];
-      foundSubject.update(updateData);
-      View.displayUpdate(foundSubject);
+      if (res) {
+        let updateData = {
+          subject_name: options[1]
+        };
+        foundSubject.update(updateData).then(()=>{
+          View.redirect(res, '/subjects');
+        })
+      } else {
+        let updateData = {};
+        updateData[options[1]] = options[2];
+        foundSubject.update(updateData);
+        View.displayUpdate(foundSubject);
+      }
     });
   }
 
-  static deleteSubject(options){
+  static deleteSubject(options, res){
     db.Subject.findOne({
       where:{id:options[0]}
     }).then(foundSubject => {
-      View.displayDestroyed(foundSubject);
-      return foundSubject.destroy();
+      if (res) {
+        return foundSubject.destroy().then(()=>{
+          View.redirect(res, '/subjects');
+        });
+      } else {
+        View.displayDestroyed(foundSubject);
+        return foundSubject.destroy();
+      }
     });
   }
 
 
-  static tableResponse(res){
+  static tableResponse(res, newData, method){
     db.Subject.findAll({
-      // attributes
+      include:[{
+        model: db.Teacher ,
+        attributes: ['first_name', 'last_name']
+      }],
       attributes: ['id', ['subject_name', 'Subject Name']]
     }).then(foundSubjects => {
-      View.displayTable(res, foundSubjects, 'Subjects');
+      View.displayTable(res, foundSubjects, 'Subjects', newData, method);
     });
   }
 

@@ -37,7 +37,7 @@ class Teacher {
   }
 
   // CRUD
-  static addTeacher(options){
+  static addTeacher(options, res){
     db.Teacher.create({
       first_name: options[0],
       last_name: options[1],
@@ -45,7 +45,11 @@ class Teacher {
       updatedAt: new Date(),
       email: options[2]
     }).then(newTeacher => {
-      View.displayAddData(newTeacher);
+      if (res) {
+        Teacher.tableResponse(res, newTeacher, 'added');
+      } else {
+        View.displayAddData(newTeacher);
+      }
     });
   }
 
@@ -67,33 +71,55 @@ class Teacher {
     }
   }
 
-  static updateTeacher(options){
+  static updateTeacher(options, res){
     db.Teacher.findOne({
       where:{id:options[0]}
     }).then(foundTeacher => {
-      let updateData = {};
-      updateData[options[1]] = options[2];
-      foundTeacher.update(updateData);
-      View.displayUpdate(foundTeacher);
+      if (res) {
+        let updateData = {
+          first_name: options[1],
+          last_name: options[2],
+          email: options[3]
+        };
+        foundTeacher.update(updateData).then(()=>{
+          View.redirect(res, '/teachers')
+        });
+      } else {
+        let updateData = {};
+        updateData[options[1]] = options[2];
+        foundTeacher.update(updateData);
+        View.displayUpdate(foundTeacher);
+      }
     });
   }
 
-  static deleteTeacher(options){
+  static deleteTeacher(options, res){
     db.Teacher.findOne({
       where:{id:options[0]}
     }).then(foundTeacher => {
-      View.displayDestroyed(foundTeacher);
-      return foundTeacher.destroy();
+      if (res) {
+        return foundTeacher.destroy().then(()=>{
+          View.redirect(res, '/teachers')
+        });
+      } else {
+        View.displayDestroyed(foundTeacher);
+        return foundTeacher.destroy();
+      }
+
     });
   }
 
   // display table
-  static tableResponse(res){
+  static tableResponse(res, newData, method){
     db.Teacher.findAll({
       // attributes
+      include:[{
+        model: db.Subject,
+        attributes: [['subject_name', 'Subject Name']]
+      }],
       attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
     }).then(foundTeachers => {
-      View.displayTable(res, foundTeachers, 'Teachers');
+      View.displayTeacherTable(res, foundTeachers, 'Teachers', newData, method);
     });
   }
 

@@ -33,14 +33,55 @@ class View {
     let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
     // console.log(props);
     // let rawData = foundDatas
+    let path = tableName.toLowerCase();
     res.render('table.ejs', {
       title: tableName,
       h1: tableName,
       heads: props,
       foundDatas: foundDatas,
       newData: newData,
-      method: method
+      method: method,
+      path: path
     })
+  }
+
+  static displayStudentTable(res, foundDatas, tableName, newData, method) {
+    // console.log(foundDatas[0].dataValues);
+    let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
+    // console.log(props);
+    // let rawData = foundDatas
+    let path = tableName.toLowerCase();
+    res.render('tableStudent.ejs', {
+      title: tableName,
+      h1: tableName,
+      heads: props,
+      foundDatas: foundDatas,
+      newData: newData,
+      method: method,
+      path: path
+    })
+  }
+
+  static displayTeacherTable(res, foundDatas, tableName, newData, method) {
+    // console.log(foundDatas[0].dataValues);
+    let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
+    // console.log(props);
+    // let rawData = foundDatas
+    let path = tableName.toLowerCase();
+    res.render('tableTeacher.ejs', {
+      title: tableName,
+      h1: tableName,
+      heads: props,
+      foundDatas: foundDatas,
+      newData: newData,
+      method: method,
+      path: path
+    })
+  }
+
+
+  static redirect(res, route){
+    res.redirect(route);
   }
 
   // for (let i = 0; i < teachers.length; i++) {

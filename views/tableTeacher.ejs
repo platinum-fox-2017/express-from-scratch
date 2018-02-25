@@ -53,19 +53,22 @@
 
       <table>
         <tr>
-          <% for (let i = 0; i < heads.length; i++) { %>
+          <% for (let i = 0; i < heads.length-1; i++) { %>
             <th><%= heads[i] %></th>
           <% } %>
+            <th><%= Object.keys(foundDatas[0].dataValues[heads[heads.length-1]].dataValues)[0] %></th>
             <th>Actions</th>
         </tr>
         <!-- loop -->
+
         <% for (let i = 0; i < foundDatas.length; i++) { %>
           <tr>
           <% let datas = Object.values(foundDatas[i].dataValues) %>
-          <% for (var j = 0; j < datas.length; j++) { %>
+          <% for (var j = 0; j < datas.length-1; j++) { %>
             <td><%= datas[j] %></td>
 
           <% } %>
+            <td><%=  foundDatas[i].dataValues[heads[heads.length-1]].dataValues[Object.keys(foundDatas[0].dataValues[heads[heads.length-1]].dataValues)[0]]  %></td>
             <!-- edit/delete -->
             <td> <a href="/<%= path %>/edit/<%= datas[0] %>">edit</a>
               /<a href="/<%= path %>/delete/<%= datas[0] %>">delete</a> </td>

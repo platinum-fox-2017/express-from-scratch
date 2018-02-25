@@ -38,18 +38,30 @@
     <div class="content">
       <h1><%= h1 %></h1>
       <div class="form">
-        <form action="/students/send" method="post">
-          First Name:<br>
-          <input type="text" name="first_name"><br>
-          <br>
-          Last Name:<br>
-          <input type="text" name="last_name"><br>
-          <br>
-          email:<br>
-          <input type="text" name="email"><br>
-          <br>
-          <input type="submit" value="Submit">
-        </form>
+        <% if (path === "students" || path === "teachers") { %>
+          <form action="/<%= path %>/send" method="post">
+            First Name:<br>
+            <input type="text" name="first_name"><br>
+            <br>
+            Last Name:<br>
+            <input type="text" name="last_name"><br>
+            <br>
+            email:<br>
+            <input type="text" name="email"><br>
+            <br>
+            <input type="submit" value="Submit">
+          </form>
+        <% } else { %>
+          <form action="/<%= path %>/send" method="post">
+            Subject Name:<br>
+            <input type="text" name="subject_name"><br>
+            <br>
+            <input type="submit" value="Submit">
+          </form>
+        <% } %>
+
+
+
       </div>
 
     </div>
