@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
   Student.associate = function (models) {
     // associations can be defined here
     models.Student.belongsToMany(models.Subject, { through: 'StudentSubjects', foreignKey: 'studentId' })
+
+    Student.prototype.getFullName = function () {
+      return (this.first_name + ' ' + this.last_name)
+    }
   };
+
+
   return Student;
 };

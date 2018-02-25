@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
             ['first_name', 'ASC']
         ]
     }).then((datas) => {
+
+        for (let index = 0; index < datas.length; index++) {
+            datas[index].fullname = datas[index].getFullName()
+        }
         res.render('student/students', { datas: datas })
     }).catch((err) => { console.log(err) })
 })
