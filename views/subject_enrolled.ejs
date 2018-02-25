@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enrolled Student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <center>
+        <h1><%=data.subject_name%></h1>
+        <h3><a href= "/subject">Return to Subject List</a></h3>
+        <table class = 'table'>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            <% data.students.forEach(value => { %>
+            <tr>
+                <td><%= value.id %></td>
+                <td>
+                    <span><%=value.first_name%> <%=value.last_name%></span>
+                </td>
+                <% value.subject_students.forEach(nilai=> { %>
+                    <% if(nilai.score == null ){ %>
+                        <td><a href = "/subject/<%=value.id%>/givescore  "> Give Score </a> </td>
+                    <%}else{%>
+                        <td> <%= nilai.score %>  </td>
+                    <%}%>
+                <%})%>
+            </tr>
+            <%})%>
+        </table>
+    </center>   
+</body>
+</html>

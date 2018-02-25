@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {student,subject} = require('../models')
+const {student,subject,subject_student} = require('../models')
 
 
 router.get('/',(req,res)=>{
@@ -75,4 +75,18 @@ router.get('/:id/addSubject',(req,res)=>{
         res.send(err)
     })
 })
+
+router.post('/:id/addSubject',(req,res)=>{
+    let obj = { 
+        id_student : req.params.id,
+        id_subject : req.body.id_subject
+    }
+    subject_student.create(obj).then(data=>{
+        res.redirect('/student')
+    }).catch(err=>{
+        res.send(err)
+    })
+})
+
+
 module.exports = router

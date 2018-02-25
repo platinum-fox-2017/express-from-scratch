@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-        <%include ./partial/head %>
+        <!-- <%include ./partial/head %> -->
 <head>
     <title>Subject</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,6 +13,7 @@
             <th>ID</th>
             <th>Subject_name</th>
             <th>Teacher</th>
+            <th>Actions </th>
         </tr>
           <% data.forEach(row => { %>
           <tr>
@@ -27,6 +28,9 @@
                 <%}else{%>
                     <span>None</span>
                 <%}%>
+            </td>
+            <td> 
+                <a href = 'subject/<%=row.id%>/enrolledstudent'> Enrolled Students </a>
             </td>
           </tr>
           <% }) %>
