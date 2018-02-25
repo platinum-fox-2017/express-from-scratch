@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><%= title %></title>
+        <link rel="stylesheet" type="text/css" href="<%= hrefCss %>">
+    </head>
+    <body>
+        <% include header.ejs %>
+
+        <h1>Form Subject</h1>
+        <form action="<%= formAction %>" method="post">
+            <input type="hidden" value="<%= id %>" name="id">
+            <input value="<%= formValue_s_name %>" type="text" name="s_name" placeholder="Subject Name.."><br>
+            <input type="submit" value="<%= button %>">
+        </form>
+    </body>
+</html>

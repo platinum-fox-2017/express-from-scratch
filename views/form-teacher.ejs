@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><%= title %></title>
+        <link rel="stylesheet" type="text/css" href="<%= hrefCss %>">
+    </head>
+    <body>
+        <% include header.ejs %>
+
+        <h1>Form Teacher</h1>
+        <form action="<%= formAction %>" method="post">
+            <input type="hidden" name="id" value="<%= formValue_id %>">
+            <input value="<%= formValue_f_name %>" type="text" name="f_name" placeholder="First Name.."><br>
+            <input value="<%= formValue_l_name %>" type="text" name="l_name" placeholder="Las Name.."><br>
+            <input value="<%= formValue_email %>" type="text" name="email" placeholder="Email.."><br>
+            <select name="selectOpt">
+                <% for(let i=0; i<data.length; i++){ %>
+                    <% if(data[i].id === formValue_subjectId){ %>
+                        <option value="<%= data[i].id %>" selected><%= data[i].subject_name %></option>
+                    <% } else { %>
+                        <option value="<%= data[i].id %>"><%= data[i].subject_name %></option>
+                    <% } %>
+                <% } %>
+            </select>
+            <input type="submit" value="<%= button %>">
+        </form>
+    </body>
+</html>

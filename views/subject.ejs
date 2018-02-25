@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><%= title %></title>
+        <link rel="stylesheet" type="text/css" href="<%= hrefCss %>">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <% include header.ejs %>
+        <div class="container">
+            <h1><%= heading %></h1>
+            <a class="addButton" href="/subjects/add">Add Subject</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Subject Name</th>
+                        <th>Teacher</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% no= 1%>
+                    <% for(let i=0; i<data.length; i++){ %>
+                    <tr>
+                        <td><%= data[i].id %></td>
+                        <td><%= data[i].subject_name %></td>
+                        <td>
+                            <% for(let j=0; j < data[i].Teachers.length; j++){ %>
+                                <%= data[i].Teachers[j]['first_name'] %><br>
+                            <% } %>
+                        </td>
+                        <td>
+                            <a href="/subjects/edit/<%= data[i].id %>">Edit</a>
+                            <a href="/subjects/delete/<%= data[i].id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <% no++%>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
