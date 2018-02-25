@@ -1,6 +1,5 @@
 "use strict"
 
-const data = require('../data.json');
 const express = require('express');
 const model = require('../models');
 const app = express();
@@ -14,9 +13,9 @@ students.post('/', function(request, response){
 });
 
 students.get('/', (request, response) => {
-    model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})
+    model.Student.findAll({order:[['firstName', 'ASC']]})
     .then(data => {response.render('students.ejs',{data:data});})
-    .catch(err => console.log(err));
+    .catch(err => {console.log(err);});
 })
 
 students.get('/add', (request, response) => {
@@ -26,9 +25,11 @@ students.get('/add', (request, response) => {
 students.post('/add', (request, response) => {
     console.log(request.body.email);
     model.Student.create(request.body)
-    .then(() => {return model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})})
+    .then(() => {return model.Student.findAll({order:[['firstName', 'ASC']]})})
     .then((data) => response.render('students.ejs', {data:data}))
-    .catch(err => console.log(err));
+    .catch(err => { 
+        console.log(err.message);
+    });
 });
 
 students.get('/edit/:id', (request, response) => {
@@ -41,14 +42,14 @@ students.post('/edit/:id', (request, response) => {
     let changed = request.body;
     let id = request.params.id;
     model.Student.update(changed, {where: {id: id}})
-    .then(() => {return model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})})
+    .then(() => {return model.Student.findAll({order:[['firstName', 'ASC']]})})
     .then((data) => response.render('students.ejs', {data:data}))
     .catch(err => console.log(err));
 });
 
 students.get('/delete/:id', (request, response) => {
     model.Student.destroy({where: {id: request.params.id}})
-    .then(() => {return model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})})
+    .then(() => {return model.Student.findAll({order:[['firstName', 'ASC']]})})
     .then((data) => response.render('students.ejs', {data:data}))
     .catch(err => console.log(err));
 });
@@ -58,7 +59,7 @@ students.get('/:id/addsubject', (request, response) => {
     model.Student.findById(request.params.id)
     .then(data => {
         studentData = data;
-        return model.Subject.findAll({raw:true})
+        return model.Subject.findAll()
     })
     .then(data => {response.render('studentsAddSubject.ejs', {subjects:data, student:studentData})})
     .catch(err => console.log(err));
@@ -66,7 +67,7 @@ students.get('/:id/addsubject', (request, response) => {
 
 students.post('/:id/addsubject', (request, response) => {
     model.StudentsSubject.create({SubjectId:request.body.SubjectId, StudentId:request.params.id})
-    .then(() => {return model.Student.findAll({raw:true})})
+    .then(() => {return model.Student.findAll()})
     .then((data) => response.render('students.ejs', {data:data}))
     .catch(err => console.log(err));
 })

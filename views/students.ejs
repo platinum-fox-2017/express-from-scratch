@@ -1,3 +1,12 @@
+<script>
+function deleteStudent(id, fullName) {
+  if (confirm(`Are You Sure to Delete ${fullName}`)) {
+      location.href = `/students/delete/${id}`;
+  } else {
+  }
+}
+</script>
+
 <div>
     <h1>SMK Hacktiv8</h1>
     <h3>Jakarta Selatan - Indonesia</h3>
@@ -26,10 +35,10 @@
       <tr>
         <th><h4><%=Number(i)+1%></h4></th>
         <th><h4><%=data[i].id%></h4></th>
-        <th><h4><%=data[i].firstName%> <%=data[i].lastName%></h4></th>
+        <th><h4><%=data[i].getFullName()%></h4></th>
         <th><h4><%=data[i].email%></h4></th>
-        <th><h4><a href="/students/<%=data[i].id%>/addsubject">Add Subject</a></h4></th>
-        <th><h4><a href="/students/edit/<%=data[i].id%>">Edit</a> || <a href="/students/delete/<%=data[i].id%>">Delete</a></h4></th>
+        <th><h4><button onclick="location.href ='/students/<%=data[i].id%>/addsubject'">Add Subject</button></h4></th>
+        <th><h4><button onclick="location.href ='/students/edit/<%=data[i].id%>'">Edit</button> || <button onclick="deleteStudent('<%=data[i].id%>','<%=data[i].getFullName()%>')">Delete</button></h4></th>
         </th>
       </tr>
     <%}%>

@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use('/', routes);
 app.use('/students', students);
 app.use('/teachers', teachers);
-app.use('/subjects', subjects);
+// app.use('/subjects', subjects);
 
 app.listen(PORT, () => {
     console.log('App listening on port 3000')
