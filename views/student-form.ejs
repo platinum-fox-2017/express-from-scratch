@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>SIT Permata Bunda</title>
+    <meta charset="utf-8">
+    <link href="../styles/student.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <nav class="navbar" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">SIT Permata Bunda</a>
+        <ul>
+            <li><a href="/subject">Subject</a></li>
+            <li><a href="/student">Student</a></li>
+            <li><a href="/teacher">Teacher</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="box">
+      <form class="pure-form pure-form-stacked" action="/student" method="post">
+          <fieldset>
+            <label for="first_name">First Name</label>
+            <input name="first_name" type="text" placeholder="First Name">
+          
+            <label for="last_name">Last Name</label>
+            <input name="last_name" type="text" placeholder="Last Name">
+          
+            <label for="email">Email</label>
+            <input name="email" type="email" placeholder="Email">
+          
+            <button type="submit" class="pure-button pure-button-primary" value="Save">Add Student</button>
+          </fieldset>
+        </form>
+    </div>
+
+    <div class="table">
+      <table class="table-striped">
+        <thead>
+          <th>No</th>
+          <th>ID</th>
+          <th>Student Name</th>
+          <th>Email</th>
+          <th>Subject</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <%student.forEach((data,i)=>{%>
+            <tr>
+              <td><%=i+1%></td>
+              <td><%=data.id%></td>
+              <td><%=`${data.first_name} ${(data.last_name)}`%></td>
+              <td class="email"><%=data.email%></td>
+              <td>Kimiaaaaaaaaaaaaa</td>
+              <td>
+                <a href="student/update/<%=data.id%>"></span>edit</a>
+                <a href="student/delete/<%=data.id%>"onclick="return confirm('Are you sure you want to delete: \n<%=`${data.first_name} ${(data.last_name)}`%>\n')"></span>delete</a>
+              </td>
+            </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>SIT Permata Bunda</title>
+    <meta charset="utf-8">
+    <link href="../styles/student.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <nav class="navbar" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">SIT Permata Bunda</a>
+        <ul>
+            <li><a href="/subject">Subject</a></li>
+            <li><a href="/student">Student</a></li>
+            <li><a href="/teacher">Teacher</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="box">
+      <form class="pure-form pure-form-stacked" action="/student/update/<%=data.id %>" method="post">
+          <fieldset>
+            <label for="first_name">First Name</label>
+            <input name="first_name" type="text" placeholder="First Name" value="<%=data.first_name %>">
+          
+            <label for="last_name">Last Name</label>
+            <input name="last_name" type="text" placeholder="Last Name" value="<%=data.last_name %>">
+          
+            <label for="email">Email</label>
+            <input name="email" type="email" placeholder="Email" value="<%=data.email %>">
+          
+            <button type="submit" class="pure-button pure-button-primary" value="Save">Edit Teacher</button>
+          </fieldset>
+        </form>
+    </div>
+  </body>
+</html>
