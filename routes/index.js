@@ -7,7 +7,6 @@ const routes = express.Router();
 
 routes.post('/', (request, response) => {
     console.log(request.body);
-    // response.render('index.ejs')
 })
 
 routes.get('/', (request, response) => {

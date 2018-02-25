@@ -27,10 +27,18 @@
             <%if(!data[i]['Subjects.StudentsSubject.score']) {%>
             <th><button onclick = "location.href ='/subjects/<%=data[i]['Subjects.id']%>/<%=data[i].id%>/givescore';">Give Score</button></th>
             <%} else {%>
-            <th><h4>score</h4></th>
+            <th><h4><%=data[i]['Subjects.StudentsSubject.score']%></h4></th>
             <%}%>
             <th><h4>
-            <%if(data[i]['Subjects.StudentsSubject.score'])%>
+            <%if(data[i]['Subjects.StudentsSubject.score'] >= 85) {%>
+            A
+            <%} else if(data[i]['Subjects.StudentsSubject.score'] >= 75) {%>
+            B
+            <%} else if(data[i]['Subjects.StudentsSubject.score'] >= 65) {%>
+            C
+            <%} else if(data[i]['Subjects.StudentsSubject.score'] >0) {%>
+            D
+            <%}%>
             </h4></th>
         </tr>
         <%}%>

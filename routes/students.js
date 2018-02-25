@@ -14,10 +14,9 @@ students.post('/', function(request, response){
 });
 
 students.get('/', (request, response) => {
-    model.Student.findAll({raw:true})
-    .then(data => {
-        response.render('students.ejs',{data:data});
-    });
+    model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})
+    .then(data => {response.render('students.ejs',{data:data});})
+    .catch(err => console.log(err));
 })
 
 students.get('/add', (request, response) => {
@@ -26,28 +25,50 @@ students.get('/add', (request, response) => {
 
 students.post('/add', (request, response) => {
     console.log(request.body.email);
-    model.Student.create(request.body);
-    response.render('studentsAdd.ejs');
+    model.Student.create(request.body)
+    .then(() => {return model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})})
+    .then((data) => response.render('students.ejs', {data:data}))
+    .catch(err => console.log(err));
 });
 
 students.get('/edit/:id', (request, response) => {
     model.Student.findById(request.params.id)
-    .then(data => {
-        response.render('studentsEdit.ejs', {data:data})
-    })
+    .then(data => {response.render('studentsEdit.ejs', {data:data})})
+    .catch(err => console.log(err));
 });
 
 students.post('/edit/:id', (request, response) => {
     let changed = request.body;
     let id = request.params.id;
     model.Student.update(changed, {where: {id: id}})
-    .then(() => response.render('index.ejs'))
+    .then(() => {return model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})})
+    .then((data) => response.render('students.ejs', {data:data}))
+    .catch(err => console.log(err));
 });
 
 students.get('/delete/:id', (request, response) => {
-    // console.log(request.params.id)
     model.Student.destroy({where: {id: request.params.id}})
-    .then(() => response.render('index.ejs'))
+    .then(() => {return model.Student.findAll({raw:true,order:[['firstName', 'ASC']]})})
+    .then((data) => response.render('students.ejs', {data:data}))
+    .catch(err => console.log(err));
 });
+
+students.get('/:id/addsubject', (request, response) => {
+    let studentData;
+    model.Student.findById(request.params.id)
+    .then(data => {
+        studentData = data;
+        return model.Subject.findAll({raw:true})
+    })
+    .then(data => {response.render('studentsAddSubject.ejs', {subjects:data, student:studentData})})
+    .catch(err => console.log(err));
+});
+
+students.post('/:id/addsubject', (request, response) => {
+    model.StudentsSubject.create({SubjectId:request.body.SubjectId, StudentId:request.params.id})
+    .then(() => {return model.Student.findAll({raw:true})})
+    .then((data) => response.render('students.ejs', {data:data}))
+    .catch(err => console.log(err));
+})
 
 module.exports = students;

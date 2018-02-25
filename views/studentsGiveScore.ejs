@@ -12,7 +12,7 @@
     <button onclick="location.href ='/';">Logout</button>
 </div>
 
-<div>
+<!-- <div>
     <table>
         <tr>
             <th><h4>Students Name</h4></th>
@@ -22,6 +22,7 @@
         <tr>
             <th><h4>Subject</h4></th>
             <th><h4>:</h4></th>
+            <th><h4><%=data['Subjects.name']%></h4></th>
         </tr>
         <tr>
             <th><h4>Score</h4></th>
@@ -29,4 +30,29 @@
             <th><input type="text" name="score"></th>
         </tr>
     </table>
+</div> -->
+
+<div>
+    <form method="post">
+        <table>
+            <tr>
+                <th><h4>Students Name</h4></th>
+                <th><h4>:</h4></th>
+                <th><h4><%=data.firstName%> <%=data.lastName%></h4></th>
+            </tr>
+            <tr>
+                <th><h4>Subject</h4></th>
+                <th><h4>:</h4></th>
+                <th><h4><%=data['Subjects.name']%></h4></th>
+            </tr>
+            <tr>
+                <th><h4>Score</h4></th>
+                <th><h4>:</h4></th>
+                <th><input type="text" name="score"></th>
+            </tr>
+            <tr>
+                <th><input type="submit" value="Give Score"></th>
+            </tr>
+        </table>
+    </form>
 </div>
