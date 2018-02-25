@@ -65,5 +65,44 @@ router.get('/delete/:id',function(req,res){
 
 })
 
+router.get('/:id/enrolledstudents',function(req,res){
+  let id = req.params.id
+  models.Student_subject.findAll({
+    where:{id_subject:id},
+    include:[models.Student,models.Subject]
+  }).then(detail=>{
+    console.log(JSON.parse(JSON.stringify(detail)))
+    res.render('enrolledStudent',{data:detail})
+  })
+})
+
+router.get('/:id_subject/:id_student/givescore',function(req,res){
+  models.Student_subject.findOne({
+    where:{
+    id_subject:req.params.id_subject,
+    id_student:req.params.id_student},
+    include:[models.Student,models.Subject]}).then(detail=>{
+      // console.log(JSON.parse(JSON.stringify(detail)))
+      // console.log(`subj ${req.params.id_subject} stud ${req.params.id_student}`)
+      res.render('givescore',{data:detail})
+    }).catch(err=>{
+      res.send(err)
+    })
+})
+
+router.post('/:id_subject/:id_student/givescore',function(req,res){
+  let obj = {
+    score : req.body.score
+  }
+  models.Student_subject.update(obj,{where:{
+    id_subject:req.params.id_subject,
+    id_student:req.params.id_student
+  }}).then(()=>{
+    res.redirect(`/subjects/${req.params.id_subject}/enrolledstudents`)
+  }).catch(err=>{
+    res.send(err)
+  })
+})
+
 
 module.exports = router

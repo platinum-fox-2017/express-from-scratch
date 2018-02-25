@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Enrolled student </title>
+</head>
+<body>
+	
+		<%if(data.length === 0){%>
+			<h1><center>Currently no student enrolled in this course!</center></h1>
+			<center><a href="/subjects">return to subject list</a></center>
+		<%}else{%>
+			<h1><center><%=data[0].Subject.subject_name%></center></h1>
+			<center><a href="/subjects">return to subject list</a></center>
+			<center>
+			<table class = "table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Score</th>
+					</tr>
+				</thead>
+				<tbody>
+						<%data.forEach(detail => {%>  
+					<tr>
+						<td><%=detail.Student.first_name + ' ' + detail.Student.last_name%></td>
+						<%if(detail.score !== null){%>
+							<td><%=detail.score%></td>
+						<%}else{%>
+							<td><a href = '/subjects/<%=detail.id_subject%>/<%=detail.id_student%>/givescore'>Give Score</a></td>
+						<%}%>
+						
+					</tr>
+					<%})%>
+				</tbody>
+			</table>
+			</center>
+		<%}%>
+	
+
+</body>
+</html>
