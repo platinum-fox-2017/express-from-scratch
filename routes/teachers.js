@@ -15,7 +15,7 @@ teachers.get('/', (request, response) => {
 
 teachers.get('/add', (request, response) => {
     model.Subject.findAll()
-    .then(data => response.render('teachersAdd.ejs', {subject:data}))
+    .then(data => response.render('teachersAdd.ejs', {subject:data, err:''}))
     .catch(err => console.log(err))
 })
 
@@ -24,7 +24,11 @@ teachers.post('/add', (request, response) => {
     model.Teacher.create(request.body)
     .then(() => {return model.Teacher.findAll({include:[{model: model.Subject}],order:[['firstName', 'ASC']]})})
     .then((data) => response.render('teachers.ejs', {data:data}))
-    .catch(err => console.log(err));
+    .catch(err => {
+        model.Subject.findAll()
+        .then(data => response.render('teachersAdd.ejs', {subject:data, err:err}))
+        .catch(err => console.log(err))
+    });
 })
 
 teachers.get('/edit/:id', (request, response) => {

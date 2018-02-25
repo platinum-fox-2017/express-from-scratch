@@ -3,11 +3,8 @@
 const express = require('express');
 const model = require('../models');
 const app = express();
-// const bodyParser = require('body-parser');
 
 const students = express.Router();
-
-// students.use(bodyParser.json());
 
 students.post('/', function(request, response){
 });
@@ -19,7 +16,7 @@ students.get('/', (request, response) => {
 })
 
 students.get('/add', (request, response) => {
-    response.render('studentsAdd.ejs')
+    response.render('studentsAdd.ejs', {err:''})
 });
 
 students.post('/add', (request, response) => {
@@ -28,7 +25,8 @@ students.post('/add', (request, response) => {
     .then(() => {return model.Student.findAll({order:[['firstName', 'ASC']]})})
     .then((data) => response.render('students.ejs', {data:data}))
     .catch(err => { 
-        console.log(err.message);
+        // console.log(err.message);
+        response.render('studentsAdd.ejs', {err: err.message})
     });
 });
 

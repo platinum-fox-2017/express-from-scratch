@@ -28,7 +28,7 @@
             <th><h4><%=data[i].id%></h4></th>
             <th><h4><%=data[i].getFullName()%></h4></th>
             <th><h4><%=data[i].email%></h4></th>
-            <th><h4><%=data[i]['Subject.name']===null?'unassigned':data[i]['Subject.name']%></h4></th>
+            <th><h4><%=data[i]['Subject.name']===null?'unassigned':data[i].Subject.dataValues.name%></h4></th>
             <th><h4><a href="/teachers/edit/<%=data[i].id%>">Edit</a> || <a href="/teachers/delete/<%=data[i].id%>">Delete</a></h4></th>
         </tr>
         <%}%>
