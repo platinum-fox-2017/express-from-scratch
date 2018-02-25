@@ -17,11 +17,10 @@
       .konten{
         background-image:url('papantulis.png');
         background-repeat: no-repeat;
-        background-size: cover;
-        margin-right : 200px;
-        margin-left : 200px;
-        height : 500px;
-        padding-top: 1px
+        background-size: 100% 100%;
+        margin-right : 50px;
+        margin-left : 50px;
+        padding-bottom: 20px;
       }
       .table{
         margin: 80px;
@@ -49,27 +48,46 @@
         border-collapse: collapse;
         border-color: white;
       }
+
+      button {
+          background-color: #008CBA;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+      }
+
+      button:hover {
+          background-color: #4CAF50; 
+          color: white;
+      }
     </style>
   </head>
   <body>
     <div class="konten">
       <div class="table">
+        <br/><br/>
         <h1>DAFTAR GURU</h1>
+        <a href="/teachers/formtambahguru"><button type="button" name="button">tambah teacher</button></a> <br /> <br />
         <table border='1'>
           <tr>
             <th style="padding-left:5px; padding-right:5px"> NO </th>
-            <th width="30%">NAMA</th>
-            <th width="20%">KELAMIN</th>
-            <th width="20%">MATA KULIAH</th>
-            <th width="30%">STATUS</th>
+            <th width="30%">FIRST NAME</th>
+            <th width="20%">LAST NAME</th>
+            <th width="20%">EMAIL</th>
+            <th width="30%">OPTION</th>
           </tr>
-          <% for(let i=0;i<guru.length;i++){ %>
+          <% for(let i=0;i<data.length;i++){ %>
           <tr>
-            <% for(let j=0;j<guru[i].length;j++){%>
-            <td><%= guru[i][j] %></td>
-            <% } %>
-            <td><a href="#"><button>update</button></a>
-            <a href="#"><button>delete</button></a> </td>
+            <td><%= (i+1) %></td>
+            <td><%= data[i].first_name %></td>
+            <td><%= data[i].last_name %></td>
+            <td><%= data[i].email %></td>
+            <td><a href="/teachers/update/<%= data[i].id %>"><button>update</button></a>
+            <a href="/teachers/delete/<%= data[i].id %>"><button>delete</button></a> </td>
           </tr>
           <% } %>
         </table>
