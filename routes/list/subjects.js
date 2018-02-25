@@ -1,9 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const teacherlist = express.Router()
+const model = require('../../models')
+const subjectlist = express.Router()
 
-teacherlist.get('/', (request, response) => {
-    response.render('subject-list.ejs')
+subjectlist.get('/', (request, response) => {
+    model.Subject.findAll({
+        raw:true,
+        order: [['id', 'ASC']]
+    })
+    .then((subjects) => {
+        console.log(subjects)
+        response.render('subject-list.ejs', {data: subjects})
+    })
 })
 
-module.exports = teacherlist
+module.exports = subjectlist

@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const model = require('../../models')
 const teacher = express.Router()
 
 teacher.use(bodyParser.json())
@@ -18,6 +19,13 @@ teacher.post('/', (request, response) => {
             return response.render('teacher-add.ejs')
         }
     }
+
+    model.Teacher.create(request.body)
+    .then(() => {
+        console.log(`The following object was added to teacher's list:
+        ${request.body}`)
+    })
+
     response.render('register-success.ejs')
 })
 

@@ -22,43 +22,21 @@
                 <div>
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Subject</th>
-                            <!-- <th>Option</th> -->
+                            <% let keys = Object.keys(data[0]) %>
+                            <% for (let i = 0; i < keys.length-2; i++){ %>
+                            <th><%= keys[i] %></th>
+                            <% } %>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bambang</td>
-                            <td>Suprapto</td>
-                            <td>bambangsuprapto@sekolah.id</td>
-                            <td>Biologi</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Rukmana</td>
-                            <td>Fatmawati</td>
-                            <td>rukmanafatmawati@sekolah.id</td>
-                            <td>Kimia</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Butet</td>
-                            <td>Naiborhu</td>
-                            <td>butetnaiborhu@sekolah.id</td>
-                            <td>Geografi</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Yulius</td>
-                            <td>Prawiranegara</td>
-                            <td>yuliusprawinegara@sekolah.id</td>
-                            <td>Sosiologi</td>
-                        </tr>
+                        <% for (let i = 0; i < data.length; i++){ %>
+                        <% let values = Object.values(data[i]) %>
+                            <tr>
+                        <%  for (let j = 0; j < values.length-2; j++) {%>
+                            <td><%= values[j] %></td>
+                            <% } %>
+                            </tr>   
+                        <% } %>
                     </tbody>
                 </div>
             </table>
