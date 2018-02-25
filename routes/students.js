@@ -2,6 +2,8 @@ const express = require('express')
 const route = express.Router();
 const app = express();
 const Student = require('../controller/index.js').Student;
+const db = require('../models/index.js');
+
 // /student
 route.get('/', (req, res)=>{
   // get all students
@@ -66,18 +68,32 @@ route.get(`/delete/:id`, (req, res)=>{
 
 
 // ################# SUBJECT ####################
-route.get('/students/:id/addsubject', (req, res)=>{
+route.get('/:id/addsubject', (req, res)=>{
   let id = req.param('id')
-  res.render('formAddSubject.ejs', { title:'Edit Student', h1:'Add Subject to Student', id: id, path:'students'})
+  db.Student.findOne({
+    where:{id:id}
+  }).then((foundStudent)=>{
+    res.render('formAddSubject.ejs',
+    { title:'Edit Student',
+      h1:'Add Subject to Student',
+      id: id,
+      path:'students',
+      foundStudent:foundStudent
+    })
+  })
+
 });
 
-route.post('/students/:id/addsubject', (req, res)=>{
-  let id = req.params.id
-  let first_name = req.body.first_name;
-  let last_name = req.body.last_name;
-  let email = req.body.email;
-  let options = [id, first_name, last_name, email];
-  Student.updateStudent(options, res)
+route.post('/:id/addsubject', (req, res)=>{
+  console.log('logging post');
+  console.log(req.param('id'));
+  console.log(req.body);
+  // let id = req.params.id
+  // let first_name = req.body.first_name;
+  // let last_name = req.body.last_name;
+  // let email = req.body.email;
+  // let options = [id, first_name, last_name, email];
+  Student.updateSubject(req.body.Subject, req.param('id'))
 });
 
 

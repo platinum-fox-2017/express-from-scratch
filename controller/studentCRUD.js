@@ -116,10 +116,23 @@ class Student {
   static tableResponse(res, newData, method){
     db.Student.findAll({
       // attributes
+      include:[{
+        model: db.Subject
+      }],
       attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
     }).then(foundStudents => {
       View.displayStudentTable(res, foundStudents, 'Students', newData, method);
     });
+  }
+
+  static updateSubject(subject, id){
+    db.Student.findOne({
+      where:{id:id},
+      include:{model:db.Subject}
+    }).then(foundStudent=>{
+      console.log(foundStudent.dataValues.Subjects);
+      // foundStudent.update({})
+    })
   }
 
 }

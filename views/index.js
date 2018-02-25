@@ -46,7 +46,7 @@ class View {
   }
 
   static displayStudentTable(res, foundDatas, tableName, newData, method) {
-    // console.log(foundDatas[0].dataValues);
+    console.log(foundDatas[0].dataValues);
     let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
     // console.log(props);
     // let rawData = foundDatas

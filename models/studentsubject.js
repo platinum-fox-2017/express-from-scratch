@@ -5,8 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     StudentId: DataTypes.INTEGER,
     SubjectId: DataTypes.INTEGER
   }, {});
-  StudentSubject.associate = function(models) {
-    // associations can be defined here
+  StudentSubject.associate = function(db) {
+    db.StudentSubject.belongsTo(db.Student, {foreignKey:'StudentId'})
+    db.StudentSubject.belongsTo(db.Subject, {foreignKey:'SubjectId'})
+
   };
   return StudentSubject;
 };

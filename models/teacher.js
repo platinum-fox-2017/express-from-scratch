@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Teacher.associate = function(db) {
     // associations can be defined here
-    Teacher.belongsTo(db.Subject)
+    Teacher.belongsTo(db.Subject, {foreignKey:'SubjectId'})
   };
   return Teacher;
 };

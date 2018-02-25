@@ -38,20 +38,21 @@
     <div class="content">
       <h1><%= h1 %></h1>
       <div class="form">
-        <form action="/<%= path %>/edit/<%= id %>" method="post">
+        <form action="/<%= path %>/<%= id %>/addsubject" method="post">
             First Name:<br>
-            <input type="text" name="first_name"><br>
+            <input type="text" name="first_name" value="<%= foundStudent.first_name %>"><br>
             <br>
             Last Name:<br>
-            <input type="text" name="last_name"><br>
+            <input type="text" name="last_name" value="<%= foundStudent.last_name %>"><br>
             <br>
             email:<br>
-            <input type="text" name="email"><br>
+            <input type="text" name="email" value="<%= foundStudent.email %>"><br>
             <br>
             <select name="Subject">
               <option value="Kimia">Kimia</option>
               <option value="Ekonomi">Ekonomi</option>
-            </select>
+            </select><br>
+            <br>
           <input type="submit" value="Submit">
         </form>
       </div>
