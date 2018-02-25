@@ -1,26 +1,19 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title><%= title %></title>
     </head>
     <body>
-        <div id="header">
-            <div class="logo"></div>
-            <div class="menu">
-                <ul>
-                    <li><a href="/teachers">Teacher</a></li>
-                    <li><a href="/students">Student</a></li>
-                    <li><a href="/subjects">Subject</a></li>
-                </ul>
-            </div>
-        </div>
-        <a href="/subjects/add">Add Subject</a>
+        <% include header.ejs %>
+
         <h1><%= heading %></h1>
+        <a href="/subjects/add">Add Subject</a>
         <table>
-            <h3><%= body %></h3>
             <thead>
                 <tr>
                     <td>ID</td>
                     <td>Subject Name</td>
+                    <td>Teacher</td>
                     <td>Option</td>
                 </tr>
             </thead>
@@ -30,6 +23,11 @@
                 <tr>
                     <td><%= data[i].id %></td>
                     <td><%= data[i].subject_name %></td>
+                    <td>
+                        <% for(let j=0; j < data[i].Teachers.length; j++){ %>
+                            <%= data[i].Teachers[j]['first_name'] %><br>
+                        <% } %>
+                    </td>
                     <td>
                         <a href="/subjects/edit/<%= data[i].id %>">Edit</a>
                         <a href="/subjects/delete/<%= data[i].id %>">Delete</a>

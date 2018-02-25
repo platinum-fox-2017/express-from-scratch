@@ -3,11 +3,12 @@ var router = express.Router();
 var model = require('../models/index');
 
 router.get('/', function(request, response){
-    model.Subject.findAll().then(subjectData =>{
+    model.Subject.findAll({
+        include: [{model: model.Teacher}]
+    }).then(subjectData =>{
         let obj = {
-            title: 'Subject Data',
-            heading: 'Table Subject',
-            body: 'Subject List',
+            title: 'Data Subject',
+            heading: 'All Subjects Data',
             data: subjectData
         }
         response.render('subject.ejs', obj)
@@ -16,9 +17,11 @@ router.get('/', function(request, response){
 
 router.get('/add', function(request, response){
     let obj = {
+        title: 'Form Subject',
         formAction: '/subjects/add',
         id: '',
         formValue_s_name: '',
+        button: 'Save',
     }
     response.render('form-subject.ejs', obj)
 })
@@ -36,9 +39,11 @@ router.post('/add', function(request, response){
 router.get('/edit/:id', function(request, response){
     model.Subject.findById(request.param('id')).then(subjectData => {
         let obj = {
+            title: 'Form Subjects',
             formAction: '/subjects/update',
             id: subjectData.id,
             formValue_s_name: subjectData.subject_name,
+            button: 'Update'
         }
         response.render('form-subject.ejs', obj)
     })

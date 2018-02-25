@@ -5,9 +5,8 @@ var model = require('../models/index');
 router.get('/', function(request, response){
     model.Student.findAll().then(studentsData =>{
         let obj = {
-            title: 'Students Data',
-            heading: 'Table Students',
-            body: 'List Students',
+            title: 'Data Students',
+            heading: 'All Students Data',
             data: studentsData
         }
         response.render('student.ejs', obj);
@@ -17,12 +16,13 @@ router.get('/', function(request, response){
 router.get('/add', function(request, response){
     let obj = {
         title: 'Form Student',
-        heading: 'Form Students',
+        heading: 'Form Student',
         formAction: '/students/add',
         id: '',
         formValue_fname: '',
         formValue_lname: '',
         formValue_email: '',
+        button: 'Save'
     }
     response.render('form-student.ejs', obj);
 })
@@ -43,12 +43,13 @@ router.get('/edit/:id', function(request, response){
     model.Student.findById(request.param('id')).then(studentsData => {
         let obj = {
             title: 'Form Student',
-            heading: 'Form Students',
+            heading: 'Form Student',
             formAction: '/students/edit',
             id: studentsData.id,
             formValue_fname: studentsData.first_name,
             formValue_lname: studentsData.last_name,
             formValue_email: studentsData.email,
+            button: 'Update'
         }
         response.render('form-student.ejs', obj)
     })

@@ -5,26 +5,18 @@
         <title><%= title %></title>
     </head>
     <body>
-        <div id="header">
-            <div class="logo"></div>
-            <div class="menu">
-                <ul>
-                    <li><a href="/teachers">Teacher</a></li>
-                    <li><a href="/students">Student</a></li>
-                    <li><a href="/subjects">Subject</a></li>
-                </ul>
-            </div>
-        </div>
+        <% include header.ejs %>
+
         <h1><%= heading %></h1>
         <a href="/teachers/add">Add Teacher</a>
         <table>
-            <h3><%= body %></h3>
             <thead>
                 <tr>
                     <td>ID</td>
                     <td>First Name</td>
                     <td>Last Name</td>
                     <td>Email</td>
+                    <td>Subject</td>
                     <td>Option</td>
                 </tr>
             </thead>
@@ -36,6 +28,10 @@
                     <td><%= data[i].first_name %></td>
                     <td><%= data[i].last_name %></td>
                     <td><%= data[i].email %></td>
+                    <% if(data[i].SubjectId){ %>
+                        <td><%= data[i].Subject['subject_name'] %></td>
+                    <% } else %>
+
                     <td>
                         <a href="/teachers/edit/<%= data[i].id %>">Edit</a>
                         <a href="/teachers/delete/<%= data[i].id %>">Delete</a>
