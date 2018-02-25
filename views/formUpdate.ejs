@@ -1,6 +1,6 @@
 <body>
-    <h1>Update Teacher</h1>
-    <form name="formUpdate" method="POST" action="/teachers/update/<%= data.id %>">
+    <h1>Update Student</h1>
+    <form name="formUpdate" method="POST" action="/students/update/<%= data.id %>">
     <table>
         <tr>
         <td>First Name</td>
@@ -13,15 +13,6 @@
         <tr>
         <td>Email</td>
         <td><input type="text" name="email" value="<%= data.email %>"></td>
-        </tr>
-        <tr>
-        <td>Subject</td>
-        <td><select name="id_subject">
-          <%data_subject.forEach((data) =>
-          {%>
-            <option value="<%=data.id%>" <%if (data.id === data.id_subject) {%> selected   <%}%> > <%=data.subject_name%> </option>
-          <%})%>
-      </select></td>
         </tr>
         <tr>
         <td colspan="2"><input type="submit" value="Save" ></td>

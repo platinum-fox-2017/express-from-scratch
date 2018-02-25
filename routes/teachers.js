@@ -7,12 +7,18 @@ const teachers = require('express').Router();
 
     teachers.get('/', function (req, res) {
       model.Teacher.findAll({
-        order: [['id','ASC']],
+        order: ['id'],
+        include: [{
+          model: model.Subject
+        }]
+      }).then(teachers => {
+        let data = JSON.parse(JSON.stringify(teachers))
+        // console.log(data);
+        res.render('listTeacher.ejs', {data_teacher: teachers})
       })
-      .then(data => {
-        res.render('listTeacher.ejs',{data:data});
-      });
-    });
+    })
+
+
 
     teachers.get('/add', function (req, res){
         res.render('formTeacher.ejs',{});
@@ -29,7 +35,11 @@ const teachers = require('express').Router();
 
     teachers.get('/update/:id', function (req, res){
       model.Teacher.findById(req.params.id).then(data => {
-          res.render('formUpdateTeacher.ejs',{data:data});
+        model.Subject.findAll().then(data_subject => {
+          res.render('formUpdateTeacher.ejs', {data: data, data_subject: data_subject})
+
+        })
+
       }).catch(err=>{
           res.send(err)
       });
@@ -39,7 +49,8 @@ const teachers = require('express').Router();
       let obj = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        email: req.body.email
+        email: req.body.email,
+        id_subject:req.body.id_subject
       }
       model.Teacher.update(obj, {
         where: {
