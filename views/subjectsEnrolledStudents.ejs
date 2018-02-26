@@ -1,0 +1,46 @@
+<div>
+    <h1>SMK Hacktiv8</h1>
+    <h3>Jakarta Selatan - Indonesia</h3>    
+</div>
+
+<div>
+    <button onclick="location.href ='/';">Dashboard</button>
+    <button onclick="location.href ='/students';">Students</button>
+    <button onclick="location.href ='/teachers';">Teachers</button>
+    <button onclick="location.href ='/subjects';">Subjects</button>
+    <button onclick="location.href ='/users';">User</button>
+    <button onclick="location.href ='/';">Logout</button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <th><h4>No</h4></th>
+            <th><h4>Students Name</h4></th>
+            <th><h4>Score</h4></th>
+            <th><h4>Desc</h4></th>
+        </tr>
+        <%for(let i in data) {%>
+        <tr>
+            <th><h4><%=Number(i)+1%></h4></th>
+            <th><h4><%=data[i].firstName%> <%=data[i].lastName%></h4></th>
+            <%if(!data[i]['Subjects.StudentsSubject.score']) {%>
+            <th><button onclick = "location.href ='/subjects/<%=data[i]['Subjects.id']%>/<%=data[i].id%>/givescore';">Give Score</button></th>
+            <%} else {%>
+            <th><h4><%=data[i]['Subjects.StudentsSubject.score']%></h4></th>
+            <%}%>
+            <th><h4>
+            <%if(data[i]['Subjects.StudentsSubject.score'] >= 85) {%>
+            A
+            <%} else if(data[i]['Subjects.StudentsSubject.score'] >= 75) {%>
+            B
+            <%} else if(data[i]['Subjects.StudentsSubject.score'] >= 65) {%>
+            C
+            <%} else if(data[i]['Subjects.StudentsSubject.score'] >0) {%>
+            D
+            <%}%>
+            </h4></th>
+        </tr>
+        <%}%>
+    </table>
+</div>

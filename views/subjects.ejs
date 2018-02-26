@@ -1,0 +1,49 @@
+<div>
+    <h1>SMK Hacktiv8</h1>
+    <h3>Jakarta Selatan - Indonesia</h3>    
+</div>
+
+<div>
+    <button onclick="location.href ='/';">Dashboard</button>
+    <button onclick="location.href ='/students';">Students</button>
+    <button onclick="location.href ='/teachers';">Teachers</button>
+    <button onclick="location.href ='/subjects';">Subjects</button>
+    <button onclick="location.href ='/users';">User</button>
+    <button onclick="location.href ='/';">Logout</button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <th><h4>No</h4></th>
+            <th><h4>Id</h4></th>
+            <th><h4>Name</h4></th>
+            <th><h4>Teachers</h4></th>
+            <th><h4>Students</h4></th>
+        </tr>
+        <%let count=1;%>
+        <%for(let i =0; i<data.length; i++) {%>
+            <tr>
+                <th><h4><%=count%></h4></th>
+                <th><h4><%=data[i].id%></h4></th>
+                <th><h4><%=data[i].name%></h4></th>
+                <%count++%>
+                <th>
+                    <%let subjectNow=data[i].id%>
+                    <%while(i<data.length && subjectNow>=data[i].id) {%>
+                        <%if(data[i]['Teachers.id']) {%>
+                            <li><%=data[i]['Teachers.firstName']%> <%=data[i]['Teachers.lastName']%></li>
+                        <%}%>
+                        <%i++%>
+                    <%}%>
+                    <%i=i-1;%>
+                </th>
+                <th><h4><a href="/subjects/<%=data[i].id%>/enrolledstudents">enrolled students</a></h4></th>
+            </tr>
+        <%}%>
+    </table>
+</div>
+
+<div>
+    <button onclick="location.href='./subjects/add'">Add Subject</button>
+</div>
