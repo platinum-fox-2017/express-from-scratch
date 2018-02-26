@@ -43,7 +43,7 @@ router.post('/add',(req, res)=> {
 router.get('/edit/:id',(req, res)=> {
     Model.Teacher.findById(req.params.id).then(dataTeacher=>{
         Model.Subject.findAll().then(dataSubject=>{
-            res.render('./teacher/v_teacherForm',{subject:dataSubject,teacher:dataTeacher, action:'edit'})  
+            res.render('./teacher/v_teacherForm',{subject:dataSubject,teacher:dataTeacher, action:'edit', error:null})  
         }) 
     })         
 })

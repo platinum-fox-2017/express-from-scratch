@@ -33,7 +33,7 @@ router.post('/add',(req, res)=> {
 
 router.get('/edit/:id',(req, res)=> {
     Model.Student.findById(req.params.id).then(datastudent=>{
-        res.render('./student/v_studentForm',{student:datastudent, action:'edit'})    
+        res.render('./student/v_studentForm',{student:datastudent, action:'edit', error:null})    
     })         
 })
 router.post('/edit/:id',(req, res)=> {

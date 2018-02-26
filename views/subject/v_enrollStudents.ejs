@@ -15,7 +15,7 @@
             <%score.forEach((data,i)=>{%>
             <tr>
                <td><%=i+1%></td>
-               <td><%=data.Student.fullName(data.Student.first_name, data.Student.last_name)%></td>
+               <td><%=data.Student.getFullName()%></td>
                <%if(data.score !== null){%>
                <td><%=data.score%></td>
                <%}else{%>
@@ -26,7 +26,7 @@
                </td>
                 <%}%>
                 <%if(data.score !== null){%>
-                    <td><%=data.description(data.score)%></td>
+                    <td><%=predicate.getPredicate(data.score)%></td>
                 <%}else{%>
                <td>-</td>
                <%}%>

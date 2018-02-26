@@ -27,7 +27,7 @@
                             <td>
                                 <%data.Teachers.forEach(teacher=>{%>
                                     <ul>
-                                        <li><%=teacher.first_name%></li>
+                                        <li><%=teacher.getFullName()%></li>
                                     </ul>
                                 <%})%>
                             </td>

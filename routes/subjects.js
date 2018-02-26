@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
+const getPredicate = require('../helpers/getPredicate')
 
 router.get('/',(req, res)=> {
     Model.Subject.findAll({
@@ -68,7 +69,7 @@ router.get('/:id/enrolledstudents',(req, res)=> {
         include:[Model.Student, Model.Subject]
     }).then(data=>{
         // res.send(data)
-        res.render('./subject/v_enrollStudents', {score:data})
+        res.render('./subject/v_enrollStudents', {score:data, predicate:getPredicate})
     }).catch(err=>{
         res.send(err)
     })         
@@ -80,9 +81,8 @@ router.get('/:idSubject/:idStudent/give-score',(req, res)=> {
             id_student:req.params.idStudent,
         },
         include:[Model.Student, Model.Subject]
-    }).then(data=>{
-        // res.send(data)        
-        res.render('./subject/v_giveScore', {score:data})
+    }).then(data=>{   
+        res.render('./subject/v_giveScore', {score:data, error:null})
     }).catch(err=>{
         res.send(err)
     })         
@@ -98,8 +98,15 @@ router.post('/:idSubject/:idStudent/give-score',(req, res)=> {
     }).then(()=>{
         res.redirect(`/subjects/${req.params.idSubject}/enrolledstudents`)
     }).catch(err=>{
-        // res.send(err)
-        res.render('./subject/v_giveScore', {pesan:err})
+        Model.score.findOne({
+            where:{
+                id_subject:req.params.idSubject,
+                id_student:req.params.idStudent,
+            },
+            include:[Model.Student, Model.Subject]
+        }).then(data=>{   
+            res.render('./subject/v_giveScore', {score:data, error:err.errors[0].message})
+        })
     })         
 })
 module.exports = router

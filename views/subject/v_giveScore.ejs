@@ -1,19 +1,19 @@
 <% include ../v_index%>
 <container>
    <center>
-       <%if(pesan===true){%>
-        <div class="alert alert-danger alert-dismissible fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <%=pesan.errors.message%>
-        </div>
-        <%}%>
    <form action="/subjects/<%=score.Subject.id%>/<%=score.Student.id%>/give-score" method="post">
+    <%if(error !== null){%>
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> <%=error%>.
+        </div>
+    <%}%>
       <table>
          <tbody>
             <tr>
                <td>Student Name</td>
                <td>&nbsp; :&nbsp;</td>
-               <td><%=score.Student.fullName(score.Student.first_name,score.Student.last_name)%></td>
+               <td><%=score.Student.getFullName()%></td>
             </tr>
             <tr>
                <td>Subject Name</td>

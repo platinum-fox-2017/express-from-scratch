@@ -23,7 +23,7 @@
                     <tr>
                         <td><%=i+1%></td>
                         <td><%=data.id%></td>
-                        <td><%=data.fullName(data.first_name, data.last_name)%></td>
+                        <td><%=data.getFullName()%></td>
                         <td><%=data.email%></td>
                         <%if(data.Subject !== null){%>
                             <td><%=data.Subject.subject_name%></td>
