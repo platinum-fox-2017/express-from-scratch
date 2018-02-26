@@ -8,6 +8,13 @@ module.exports = (sequelize, DataTypes) => {
     Subject.hasMany(models.Teacher, {
       foreignKey: 'id_subject'
     })
+
+    Subject.belongsToMany(models.Student, { through: models.StudentSubject, foreignKey: 'id_subject'});
+    Subject.hasMany(models.StudentSubject,{
+      foreignKey: 'id_subject'
+    })
+
+
   };
   return Subject;
 };

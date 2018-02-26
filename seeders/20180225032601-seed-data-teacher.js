@@ -8,6 +8,7 @@ module.exports = {
       email:"bambangsuprapto@sekolah.id",
       createdAt:new Date(),
       updatedAt:new Date(),
+      id_subject:2
     },
     {
       first_name:"Rukmana",
@@ -15,6 +16,7 @@ module.exports = {
       email:"rukmanafatmawati@sekolah.id",
       createdAt:new Date(),
       updatedAt:new Date(),
+      id_subject:3
     },
     {
       first_name:"Butet",
@@ -22,6 +24,7 @@ module.exports = {
       email:"butetnaiborhu@sekolah.id",
       createdAt:new Date(),
       updatedAt:new Date(),
+      id_subject:2
     },
     {
       first_name:"Yulius",
@@ -29,6 +32,7 @@ module.exports = {
       email:"yuliusprawiranegara@sekolah.id",
       createdAt:new Date(),
       updatedAt:new Date(),
+      id_subject:3
     }
     ],{})
     /*

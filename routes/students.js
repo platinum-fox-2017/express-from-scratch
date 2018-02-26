@@ -2,10 +2,10 @@
 const model = require('../models');
 module.exports = (function() {
   // app.set('view engine', 'ejs')
-const students = require('express').Router();
+const studentsRoute = require('express').Router();
 
 
-    students.get('/', function (req, res) {
+    studentsRoute.get('/', function (req, res) {
       model.Student.findAll({
         order: [['id','ASC']],
       })
@@ -14,12 +14,17 @@ const students = require('express').Router();
       });
     });
 
-    students.get('/add', function (req, res){
+    studentsRoute.get('/add', function (req, res){
         res.render('form.ejs',{});
     });
 
-    students.post('/add', (req, res) => {
-      model.Student.create(req.body)
+    studentsRoute.post('/add', (req, res) => {
+      let obj = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email
+      }
+      model.Student.create(obj)
       .then(data => {
           res.redirect('/students')
       }).catch(err=>{
@@ -27,7 +32,31 @@ const students = require('express').Router();
       });
     });
 
-    students.get('/update/:id', function (req, res){
+    studentsRoute.get('/:id/addsubject', function(req, res){
+      model.Student.findById(req.params.id).then(data => {
+        model.Subject.findAll().then(data_subject=> {
+          res.render('formSubject.ejs',{data:data, data_subject:data_subject});
+        })
+      }).catch(err=>{
+          res.send(err)
+      });
+    })
+
+    studentsRoute.post('/:id/addsubject', (req, res) => {
+      let obj = {
+        id_student: req.params.id,
+        id_subject: req.body.id_subject,
+      }
+      model.StudentSubject.create(obj)
+      .then(data => {
+          res.redirect('/students')
+      }).catch(err=>{
+          res.send(err)
+      });
+    });
+
+
+    studentsRoute.get('/update/:id', function (req, res){
       model.Student.findById(req.params.id).then(data => {
           res.render('formUpdate.ejs',{data:data});
       }).catch(err=>{
@@ -35,7 +64,7 @@ const students = require('express').Router();
       });
     });
 
-    students.post('/update/:id', function (req, res) {
+    studentsRoute.post('/update/:id', function (req, res) {
       let obj = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -52,7 +81,7 @@ const students = require('express').Router();
         });
       })
 
-      students.get('/delete/:id', function (req, res) {
+      studentsRoute.get('/delete/:id', function (req, res) {
         model.Student.destroy({
           where: {
             id: req.params.id
@@ -64,5 +93,5 @@ const students = require('express').Router();
           });
         })
 
-    return students;
+    return studentsRoute;
 })();

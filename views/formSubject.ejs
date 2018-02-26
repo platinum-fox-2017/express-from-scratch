@@ -1,18 +1,18 @@
 <body>
-    <h1>Add Teacher</h1>
-    <form name="form" method="POST" action="/teachers/add">
+    <h1>Add Subject to Student</h1>
+    <form name="formSubject" method="POST" action="/students/<%= data.id %>/addsubject">
     <table>
         <tr>
         <td>First Name</td>
-        <td><input type="text" name="first_name" required></td>
+        <td><input type="text" name="first_name" value="<%= data.first_name %>" required readonly></td>
         </tr>
         <tr>
         <td>Last Name</td>
-        <td><input type="text" name="last_name" required></td>
+        <td><input type="text" name="last_name" value="<%= data.last_name %>" required readonly></td>
         </tr>
         <tr>
         <td>Email</td>
-        <td><input type="email" name="email" required></td>
+        <td><input type="email" name="email" value="<%= data.email %>" required readonly></td>
         </tr>
         <tr>
         <td>Subject</td>
@@ -21,10 +21,11 @@
           <%data_subject.forEach((data_subject) =>
           {
             %>
-            <option value="<%= data_subject.id%>" %>> <%= data_subject.subject_name %> </option>
+            <option value="<%= data_subject.id %>"> <%=data_subject.subject_name%> </option>
           <%})%>
           </select></td>
         </tr>
+
         <tr>
         <td colspan="2"><input type="submit" value="Save" ></td>
         </tr>

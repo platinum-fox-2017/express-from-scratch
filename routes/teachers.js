@@ -2,10 +2,10 @@
 const model = require('../models');
 module.exports = (function() {
   // app.set('view engine', 'ejs')
-const teachers = require('express').Router();
+const teachersRoute = require('express').Router();
 
 
-    teachers.get('/', function (req, res) {
+    teachersRoute.get('/', function (req, res) {
       model.Teacher.findAll({
         order: ['id'],
         include: [{
@@ -19,13 +19,20 @@ const teachers = require('express').Router();
     })
 
 
-
-    teachers.get('/add', function (req, res){
-        res.render('formTeacher.ejs',{});
+    teachersRoute.get('/add', function (req, res){
+        model.Subject.findAll().then(data_subject => {
+          res.render('formTeacher.ejs', {data_subject: data_subject})
+        })
     });
 
-    teachers.post('/add', (req, res) => {
-      model.Teacher.create(req.body)
+    teachersRoute.post('/add', (req, res) => {
+      let obj = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        id_subject:req.body.id_subject
+      }
+      model.Teacher.create(obj)
       .then(data => {
           res.redirect('/teachers')
       }).catch(err=>{
@@ -33,19 +40,17 @@ const teachers = require('express').Router();
       });
     });
 
-    teachers.get('/update/:id', function (req, res){
+    teachersRoute.get('/update/:id', function (req, res){
       model.Teacher.findById(req.params.id).then(data => {
         model.Subject.findAll().then(data_subject => {
           res.render('formUpdateTeacher.ejs', {data: data, data_subject: data_subject})
-
         })
-
       }).catch(err=>{
           res.send(err)
       });
     });
 
-    teachers.post('/update/:id', function (req, res) {
+    teachersRoute.post('/update/:id', function (req, res) {
       let obj = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -63,7 +68,7 @@ const teachers = require('express').Router();
         });
       })
 
-      teachers.get('/delete/:id', function (req, res) {
+      teachersRoute.get('/delete/:id', function (req, res) {
         model.Teacher.destroy({
           where: {
             id: req.params.id
@@ -75,5 +80,5 @@ const teachers = require('express').Router();
           });
         })
 
-    return teachers;
+    return teachersRoute;
 })();

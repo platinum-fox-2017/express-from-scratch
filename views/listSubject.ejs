@@ -1,0 +1,28 @@
+<body>
+    <h1>All Subjects Data</h1>
+
+    <table border='1'>
+        <tr>
+          <td><center>Id.</center></td>
+          <td><center>Subject Name</center></td>
+          <td><center>Teacher</center></td>
+
+        </tr>
+
+        <% let i=1 %>
+        <%data_subjects.forEach(data =>{%>
+          <tr>
+            <td><%=i++%></td>
+            <td><a href="/subjects/<%=data.id%>/enrolledstudents"><%=data.subject_name%></a></td>
+            <td>
+            <%for(let a=0;a< data.Teachers.length ;a++){ %>
+             <%= a+1+' . '+ data.Teachers[a].first_name+' '+data.Teachers[a].last_name %><br>
+            <% } %>
+            </td>
+
+        </tr>
+        <%});%>
+    </table>
+
+    <a href="/">Back</a>
+</body>

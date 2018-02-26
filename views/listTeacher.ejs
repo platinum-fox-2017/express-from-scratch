@@ -1,18 +1,20 @@
 <body>
-    <h1>List Teacher</h1>
+    <h1>All Teachers Data</h1>
 
     <table border='1'>
         <tr>
-          <td><center>No.</center></td>
+          <td><center>Id.</center></td>
           <td><center>First Name</center></td>
           <td><center>Last Name</center></td>
           <td><center>Email</center></td>
           <td><center>Subject</center></td>
           <td colspan=2><center>Action</center></td>
         </tr>
+        <% let i=1 %>
         <%data_teacher.forEach(data =>{%>
+
           <tr>
-            <td><%=data.id%></td>
+            <td><%=i++%></td>
             <td><%=data.first_name%></td>
             <td><%=data.last_name%></td>
             <td><%=data.email%></td>
@@ -21,11 +23,11 @@
             <% } else { %>
             <td>Unassigned</td>
             <% } %>
-          <td><a href="/teachers/update/<%= data.id %>">Update Teacher</a></td>
-          <td><a href="/teachers/delete/<%= data.id %>" onclick="return confirm('delete this teachers ?');">Delete Student</a></td>
+          <td><a href="/teachers/update/<%= data.id %>">Update</a></td>
+          <td><a href="/teachers/delete/<%= data.id %>" onclick="return confirm('delete this teachers ?');">Delete</a></td>
         </tr>
        <%})%>
     </table>
-    <a href="/teachers/add">Add Teacher</a>
+    <a href="/teachers/add">Add</a>
     <a href="/">Back</a>
 </body>
