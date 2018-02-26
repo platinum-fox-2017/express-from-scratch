@@ -125,9 +125,7 @@ class Subject {
      }],
      attributes: ['id', ['subject_name', 'Subject Name']]
     }).then(foundSubjects => {
-      // View.displaySubjectTable(res, foundSubjects, 'Subjects', newData, method);
       let props = Object.getOwnPropertyNames(foundSubjects[0].dataValues);
-      // let path = tableName.toLowerCase();
       res.render('./subjects_view/tableSubject.ejs', {
         title: 'Subjects',
         h1: 'Subjects',
@@ -191,9 +189,9 @@ class Subject {
       let updateData = {
         subject_name: subject_name
       };
-      foundSubject.update(updateData).then(()=>{
-        View.redirect(res, '/subjects');
-      })
+      return foundSubject.update(updateData)
+    }).then(()=>{
+      res.redirect('/subjects');
     }).catch(err =>{
       res.render('formEdit.ejs', {
         title:'Edit Subject',
@@ -214,7 +212,7 @@ class Subject {
     }).then(foundSubject => {
         return foundSubject.destroy()
     }).then(()=>{
-      View.redirect(res, '/subjects');
+      res.redirect('/subjects');
     });
   }
 
@@ -230,7 +228,6 @@ class Subject {
         model: db.StudentSubject
       }]
     }).then(foundSubject=>{
-      // View.displayEnrolledStudents(res, foundSubject, 'Subjects', subjectId)
       let params = {
         title: 'Subjects',
         foundDatas: foundSubject.Students,
