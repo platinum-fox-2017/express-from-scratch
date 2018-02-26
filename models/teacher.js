@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     SubjectName:DataTypes.STRING
   }, {});
   Teacher.associate = function(models) {
-    // associations can be defined here
+    Teacher.belongsTo(models.Subject,{foreignKey:'SubjectName'});
   };
   return Teacher;
 };

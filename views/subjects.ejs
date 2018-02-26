@@ -7,18 +7,18 @@
   <body>
     <header>
       <h1><%= title %></h1>
-      </header>
-        <table align="center">
-          <tr>
-            <th>ID</th>
-            <th>Subject Name</th>
-          </tr>
-            <% for(let i=0;i<subjects.length;i++){ %>
-            <tr>
-              <td><%= subjects[i].id %></td>
-              <td><%= subjects[i].subject_name %></td>
-            </tr>
-            <% } %>
-        </table>
+    </header>
+    <table align="center">
+      <tr>
+        <th>ID</th>
+        <th>Subject Name</th>
+      </tr>
+      <% for(let i=0;i<subjects.length;i++){ %>
+      <tr>
+        <td><%= subjects[i].id %></td>
+        <td><%= subjects[i].subject_name %></td>
+      </tr>
+      <% } %>
+    </table>
   </body>
 </html>
