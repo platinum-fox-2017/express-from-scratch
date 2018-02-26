@@ -1,0 +1,27 @@
+<body>
+    <h1>List Student</h1>
+
+    <table border='1'>
+        <tr>
+          <td><center>Id.</center></td>
+          <td><center>First Name</center></td>
+          <td><center>Last Name</center></td>
+          <td><center>Email</center></td>
+          <td><center>Actions</center></td>
+          <td colspan=2><center>Options</center></td>
+        </tr>
+      <% for(let i in data) {%>
+        <tr>
+          <td><%= Number(i)+1 %></td>
+          <td><%= data[i].first_name %></td>
+          <td><%= data[i].last_name %></td>
+          <td><%= data[i].email %></td>
+          <td><a href="/students/<%= data[i].id %>/addsubject">Add Subject</a></td>
+          <td><a href="/students/update/<%= data[i].id %>">Update</a></td>
+          <td><a href="/students/delete/<%= data[i].id %>" onclick="return confirm('delete this student ?');">Delete</a></td>
+        </tr>
+      <% }%>
+    </table>
+    <a href="/students/add">Add</a>
+    <a href="/">Back</a>
+</body>

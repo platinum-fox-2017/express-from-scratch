@@ -1,0 +1,27 @@
+<body>
+    <h1><%= data_subjects[0].Subject.subject_name %></h1>
+    <form name="formSubject" method="POST" action="/subjects/<%= data_subjects.id %>/addsubject">
+    <table>
+        <tr>
+          <td>Name</td>
+          <td>Score</td>
+        </tr>
+      <% for(let a=0;a<data_subjects.length ;a++){ %>
+        <tr>
+        <td>
+         <%= data_subjects[a].Student.first_name+' '+data_subjects[a].Student.last_name %><br>
+       </td>
+       <td>
+          <%if (data_subjects[a].score === null){%>
+            <a href='/subjects/<%= data_subjects[a].id %>/givescore'>Give Score</a>
+          <%}
+          else{
+          %>
+          <%= data_subjects[a].score %>
+        <% } %>
+      </td>
+    </tr>
+      <% } %>
+    </table>
+    </form>
+</body>
