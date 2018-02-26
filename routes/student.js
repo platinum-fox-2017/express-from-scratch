@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
             ['first_name', 'ASC']
         ]
     }).then((datas) => {
-
         for (let index = 0; index < datas.length; index++) {
             datas[index].fullname = datas[index].getFullName()
         }
@@ -17,7 +16,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/add', (req, res) => {
-    res.render('student/student-add')
+    let err = ''
+    res.render('student/student-add', { err })
 })
 
 router.post('/add', (req, res) => {

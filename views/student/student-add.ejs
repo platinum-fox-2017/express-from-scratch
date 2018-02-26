@@ -19,24 +19,28 @@
         <p class="text-center">
             <a href="/students">Show All Data</a>
         </p>
-        <div class="alert alert-danger" role="alert">
-            <%= err.message %>
-        </div>
-        <form action="/students/add" method="post">
-            <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control" name="first_name">
+        <%if (err !== ''){ %>
+            <div class="alert alert-danger" role="alert">
+
+                <%= err.message %>
             </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" name="last_name">
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" name="email">
-            </div>
-            <input type="submit" clas="btn btn-primary" value="Submit">
-        </form>
+
+            <%} %>
+                <form action="/students/add" method="post">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" name="first_name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" name="last_name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <input type="submit" clas="btn btn-primary" value="Submit">
+                </form>
     </div>
 </body>
 

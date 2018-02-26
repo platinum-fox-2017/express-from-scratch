@@ -32,17 +32,18 @@ router.get('/:id/enrolledstudents', (req, res) => {
     const id = req.params.id
     StudentSubject.findAll(
         {
-            where: { subjectId: id },
             include: [
                 Student, Subject
             ],
+            attributes: ['id'],
+            where: { subjectId: id },
             order: [
                 [Student, 'first_name', 'ASC']
             ]
         }
     ).then((data) => {
-        // res.send(data)
-        res.render('subject/enrolledstudent', { data: data })
+        res.send(data)
+        // res.render('subject/enrolledstudent', { data: data })
     }).catch((err) => { console.log(err) })
 })
 
@@ -51,14 +52,15 @@ router.get('/:id/:studentId/give-score', (req, res) => {
     const studentId = req.params.studentId
     StudentSubject.findOne(
         {
-            where: { subjectId: id, studentId: studentId },
             include: [
                 Student, Subject
-            ]
+            ],
+            attributes: ['id'],
+            where: { subjectId: id, studentId: studentId }
         }
     ).then((data) => {
-        // res.send(data)
-        res.render('subject/score', { data: data })
+        res.send(data)
+        // res.render('subject/score', { data: data })
     }).catch((err) => { console.log(err) })
 })
 
