@@ -9,7 +9,7 @@ route.get('/', (req, res)=>{
 
 // ############# ADD DATA ####################
 route.get('/add', (req, res)=>{
-  res.render('form.ejs', { title:'Teacher', h1:'Teacher Data', path:'teachers'})
+  res.render('./teachers_view/formTeachers.ejs', { title:'Teacher', h1:'Teacher Data', path:'teachers'})
 });
 
 route.post('/send', (req, res)=>{

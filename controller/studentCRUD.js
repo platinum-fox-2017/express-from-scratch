@@ -115,23 +115,46 @@ class Student {
   // display table
   static tableResponse(res, newData, method){
     db.Student.findAll({
-      // attributes
       include:[{
         model: db.Subject
       }],
-      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
+      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email'],
+      order:[['first_name', 'ASC']]
     }).then(foundStudents => {
       View.displayStudentTable(res, foundStudents, 'Students', newData, method);
     });
   }
 
-  static updateSubject(subject, id){
+  static showSubjectAddForm(id, res){
+
+
     db.Student.findOne({
-      where:{id:id},
-      include:{model:db.Subject}
-    }).then(foundStudent=>{
-      console.log(foundStudent.dataValues.Subjects);
-      // foundStudent.update({})
+      where:{id:id}
+    }).then((foundStudent)=>{
+      res.render('./students_view/formAddSubject.ejs',
+      { title:'Edit Student',
+        h1:'Add Subject to Student',
+        id: id,
+        path:'students',
+        foundStudent:foundStudent
+      })
+    })
+  }
+
+  static updateSubject(studentData, StudentId, res){
+    let Subject = studentData.Subject;
+    db.Subject.findOne({
+      where:{
+        subject_name: Subject
+      }
+    }).then(foundSubject=>{
+      db.StudentSubject.create({
+        score: null,
+        StudentId: StudentId,
+        SubjectId: foundSubject.id
+      }).then(newConjunct=>{
+        View.redirect(res, '/students')
+      })
     })
   }
 

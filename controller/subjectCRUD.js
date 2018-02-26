@@ -106,16 +106,88 @@ class Subject {
   }
 
 
-  static tableResponse(res, newData, method){
+  // static tableResponse(res, newData, method){
+  //   db.Subject.findAll({
+  //     include:[{
+  //       model: db.Teacher ,
+  //       attributes: [['first_name', 'First Name'], ['last_name', 'Last Name']]
+  //     }],
+  //     attributes: ['id', ['subject_name', 'Subject Name']]
+  //   }).then(foundSubjects => {
+  //     View.displaySubjectTable(res, foundSubjects, 'Subjects', newData, method);
+  //   });
+  // }
+
+  static tableResponse(req, res) {
     db.Subject.findAll({
       include:[{
         model: db.Teacher ,
-        attributes: ['first_name', 'last_name']
-      }],
-      attributes: ['id', ['subject_name', 'Subject Name']]
+        attributes: [['first_name', 'First Name'], ['last_name', 'Last Name']]
+     }],
+     attributes: ['id', ['subject_name', 'Subject Name']]
     }).then(foundSubjects => {
-      View.displayTable(res, foundSubjects, 'Subjects', newData, method);
+      // View.displaySubjectTable(res, foundSubjects, 'Subjects', newData, method);
+      let props = Object.getOwnPropertyNames(foundSubjects[0].dataValues);
+      // let path = tableName.toLowerCase();
+      res.render('./subjects_view/tableSubject.ejs', {
+        title: 'Subjects',
+        h1: 'Subjects',
+        heads: props,
+        foundDatas: foundSubjects,
+        newData: 'newData',
+        method: 'method',
+        path: 'subjects'
+      })
     });
+  }
+
+  static subjectStudentsList(res, subjectId){
+    db.Subject.findOne({
+      where:{id:subjectId},
+      include:[{
+        model: db.Student,
+        attributes: ['id',['first_name', 'First Name'], ['last_name', 'Last Name']]
+      },{model: db.StudentSubject}]
+    }).then(foundSubject=>{
+      View.displayEnrolledStudents(res, foundSubject, 'Subjects', subjectId)
+    })
+  }
+
+  static giveScore(req, res){
+    db.Student.findOne({
+      where:{
+        id:req.params.studentId
+      },
+      attributes:[
+        'id',
+        ['first_name', 'First Name'],
+        ['last_name', 'Last Name']
+      ]
+    }).then(foundStudent => {
+      let params = {
+        subjectId: req.params.subjectId,
+        studentId: req.params.studentId,
+        foundStudent: foundStudent
+      }
+      res.render('./subjects_view/formGiveScore.ejs', params)
+    })
+
+
+  }
+
+  static submitScore(req, res){
+    db.StudentSubject.update(
+      {
+        score:req.body.score
+      },
+      {
+        where:{
+          SubjectId: req.params.subjectId,
+          StudentId: req.params.studentId
+      }
+    }).then(()=>{
+      res.redirect(`/subjects/${req.params.subjectId}/enrolledstudents`);
+    })
   }
 
 }

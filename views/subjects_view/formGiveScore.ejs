@@ -1,0 +1,53 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title>Scoring</title>
+</head>
+
+<body>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1>Give <%= foundStudent.fullName() %> Score</h1>
+      <div class="form">
+          <form action="/subjects/<%= subjectId %>/givescore/<%= studentId %>" method="post">
+            Score:<br>
+            <input type="number" name="score" min="0" max="100"><br>
+            <br>
+            <input type="submit" value="Submit Score">
+          </form>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

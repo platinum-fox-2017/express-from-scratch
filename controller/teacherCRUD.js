@@ -117,7 +117,8 @@ class Teacher {
         model: db.Subject,
         attributes: [['subject_name', 'Subject Name']]
       }],
-      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email']
+      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], 'email'],
+      order: [['first_name', 'ASC']]
     }).then(foundTeachers => {
       View.displayTeacherTable(res, foundTeachers, 'Teachers', newData, method);
     });

@@ -5,9 +5,16 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     email: DataTypes.STRING
   }, {});
+
+  Student.prototype.fullName = function(){
+    return this.dataValues['First Name']+' '+this.dataValues['Last Name']
+  }
+
+
   Student.associate = function(db) {
     // associations can be defined here
     Student.belongsToMany(db.Subject, {through: 'StudentSubject', foreignKey:'StudentId'})
+    Student.hasMany(db.StudentSubject);
   };
   return Student;
 };

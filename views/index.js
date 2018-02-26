@@ -46,12 +46,10 @@ class View {
   }
 
   static displayStudentTable(res, foundDatas, tableName, newData, method) {
-    console.log(foundDatas[0].dataValues);
+    // console.log(foundDatas[0]);
     let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
-    // console.log(props);
-    // let rawData = foundDatas
     let path = tableName.toLowerCase();
-    res.render('tableStudent.ejs', {
+    res.render('./students_view/tableStudent.ejs', {
       title: tableName,
       h1: tableName,
       heads: props,
@@ -68,7 +66,7 @@ class View {
     // console.log(props);
     // let rawData = foundDatas
     let path = tableName.toLowerCase();
-    res.render('tableTeacher.ejs', {
+    res.render('./teachers_view/tableTeacher.ejs', {
       title: tableName,
       h1: tableName,
       heads: props,
@@ -79,19 +77,43 @@ class View {
     })
   }
 
+  static displaySubjectTable(res, foundDatas, tableName, newData, method) {
+    let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
+    let path = tableName.toLowerCase();
+    res.render('./subjects_view/tableSubject.ejs', {
+      title: tableName,
+      h1: tableName,
+      heads: props,
+      foundDatas: foundDatas,
+      newData: newData,
+      method: method,
+      path: path
+    })
+  }
+
+  static displayEnrolledStudents(res, foundSubject, tableName, subjectId){
+    let path = tableName.toLowerCase()
+    console.log(foundSubject);
+    let params = {
+      title: tableName,
+      foundDatas: foundSubject.Students,
+      StudentSubjects: foundSubject.StudentSubjects,
+      subject_name:foundSubject.subject_name,
+      path: path,
+      subjectId:subjectId
+    }
+    res.render('./subjects_view/subjectStudentsList.ejs', params)
+  }
+
 
   static redirect(res, route){
     res.redirect(route);
   }
-
-  // for (let i = 0; i < teachers.length; i++) {
-  //   <tr>
-  //   for (var j = 0; j < teachers[i].dataValues.length; j++) {
-  //     <td><%= teachers[i].dataValues[j] %></td>
-  //   }
-  //   </tr>
-  // }
-
+  // <ol>
+  // <% for (let j = 0; j < foundDatas[i].Teachers.length; j++) { %>
+  //   <li><%= foundDatas[i].Teachers[j].fullName() %></li>
+  // <% } %>
+  // </ol>
 
 
   // <% for (let i = 0; i < teachers.length; i++) { %>

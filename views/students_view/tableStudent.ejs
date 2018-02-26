@@ -39,10 +39,7 @@
   <div class="main">
     <div class="content">
       <h1><%= h1 %></h1>
-      <% if (newData) { %>
-        <% let info = `${method} ${newData.first_name} ${newData.last_name} ${newData.email}` %>
-        <h1><%= info %></h1>
-      <% } %>
+
       <br>
 
         <a href="/<%= path %>/add">
@@ -53,25 +50,38 @@
 
       <table>
         <tr>
-          <% for (let i = 0; i < heads.length-1; i++) { %>
-            <th><%= heads[i] %></th>
-          <% } %>
-            <th><%= Object.keys(foundDatas[0].dataValues[heads[heads.length-1]].dataValues)[0] %></th>
+            <th>No</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>Subjects</th>
             <th>Actions</th>
+            <th>Options</th>
         </tr>
         <!-- loop -->
-
         <% for (let i = 0; i < foundDatas.length; i++) { %>
           <tr>
-          <% let datas = Object.values(foundDatas[i].dataValues) %>
-          <% for (var j = 0; j < datas.length-1; j++) { %>
-            <td><%= datas[j] %></td>
+            <td><%= i+1 %></td>
+            <td><%= foundDatas[i].id %></td>
+            <td><%= foundDatas[i].fullName() %></td>
+            <td><%= foundDatas[i].email %></td>
+            <td>
+              <ul>
+                <% if (foundDatas[i].Subjects.length < 1) { %>
+                  <li>Unassigned</li>
+                <% } else { %>
+                  <% for (let j = 0; j < foundDatas[i].Subjects.length; j++) { %>
+                    <li><%= foundDatas[i].Subjects[j].subject_name %></li>
+                  <% } %>
+                <% } %>
+              </ul>
+            </td>
 
-          <% } %>
-            <td><%=  foundDatas[i].dataValues[heads[heads.length-1]].dataValues[Object.keys(foundDatas[0].dataValues[heads[heads.length-1]].dataValues)[0]]  %></td>
+            <!-- Subject add -->
+            <td> <a href="/<%= path %>/<%= foundDatas[i].id %>/addsubject">Add Subject</a> </td>
             <!-- edit/delete -->
-            <td> <a href="/<%= path %>/edit/<%= datas[0] %>">edit</a>
-              /<a href="/<%= path %>/delete/<%= datas[0] %>">delete</a> </td>
+            <td> <a href="/<%= path %>/edit/<%= foundDatas[i].id %>">edit</a>
+              /<a href="/<%= path %>/delete/<%= foundDatas[i].id %>">delete</a> </td>
           </tr>
         <% } %>
       </table>

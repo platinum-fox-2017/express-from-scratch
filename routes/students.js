@@ -70,49 +70,15 @@ route.get(`/delete/:id`, (req, res)=>{
 // ################# SUBJECT ####################
 route.get('/:id/addsubject', (req, res)=>{
   let id = req.param('id')
-  db.Student.findOne({
-    where:{id:id}
-  }).then((foundStudent)=>{
-    res.render('formAddSubject.ejs',
-    { title:'Edit Student',
-      h1:'Add Subject to Student',
-      id: id,
-      path:'students',
-      foundStudent:foundStudent
-    })
-  })
-
+  Student.showSubjectAddForm(id,res)
 });
 
 route.post('/:id/addsubject', (req, res)=>{
-  console.log('logging post');
-  console.log(req.param('id'));
-  console.log(req.body);
-  // let id = req.params.id
-  // let first_name = req.body.first_name;
-  // let last_name = req.body.last_name;
-  // let email = req.body.email;
-  // let options = [id, first_name, last_name, email];
-  Student.updateSubject(req.body.Subject, req.param('id'))
+  // console.log('logging post');
+  // console.log(req.param('id'));
+  // console.log(req.body);
+  Student.updateSubject(req.body, req.param('id'), res)
 });
 
 
 module.exports = route
-
-
-
-// module.exports = function(app){
-//   'use strict'
-//
-//   // menampilkan form untuk menginput data student
-//   app.get('/student', (req, res)=>{
-//     res.render('form.ejs', { title:'Student', h1:'Student Data'})
-//   })
-//   // menerima data form untuk add student
-//   app.post('/send', (req, res)=>{
-//     // console.log(req.body);
-//     let studentName = req.body.studentName;
-//     let studentAge = req.body.age
-//     res.render('home.ejs', { title:'Student', h1:`Student Name : ${studentName} Age : ${studentAge}`})
-//   })
-// }

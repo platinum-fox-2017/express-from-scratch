@@ -1,11 +1,13 @@
 const express = require('express')
 const route = express.Router()
 const Subject = require('../controller/index.js').Subject;
-
+//
 // /subject
-route.get('/', (req, res)=>{
-  Subject.tableResponse(res)
-})
+// route.get('/', (req, res)=>{
+//   Subject.tableResponse(res)
+// })
+
+route.get('/', Subject.tableResponse)
 
 // ############# ADD DATA ####################
 route.get('/add', (req, res)=>{
@@ -20,7 +22,7 @@ route.post('/send', (req, res)=>{
 
 // ################# EDIT ####################
 route.get('/edit/:id', (req, res)=>{
-  let id = req.param('id')
+  let id = req.params.id
   res.render('formEdit.ejs', { title:'Edit Subject', h1:'Edit Subject Data', id: id, path:'subjects'})
 });
 
@@ -37,6 +39,17 @@ route.get(`/delete/:id`, (req, res)=>{
   let options = [req.params.id]
     Subject.deleteSubject(options, res)
 });
+
+// ################# ENROLLED STUDENTS ####################
+route.get(`/:subjectId/enrolledstudents`, (req, res)=>{
+  let subjectId = req.params.subjectId
+  Subject.subjectStudentsList(res,subjectId)
+  // res.render('./subject_view/subjectStudentsList.ejs')
+});
+
+route.get(`/:subjectId/givescore/:studentId`, Subject.giveScore);
+
+route.post('/:subjectId/givescore/:studentId', Subject.submitScore)
 
 
 module.exports = route

@@ -1,0 +1,84 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+
+
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1><%= h1 %></h1>
+      <br>
+
+        <a href="/<%= path %>/add">
+          <button type="button" name="button">
+            Add <%= title %>
+          </button>
+        </a>
+
+      <table>
+        <tr>
+            <th>No</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>Subject</th>
+            <th>Actions</th>
+        </tr>
+        <!-- loop -->
+        <% console.log(foundDatas[0].Subject.dataValues['Subject Name']) %>
+        <% for (let i = 0; i < foundDatas.length; i++) { %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= foundDatas[i].id %></td>
+            <td><%= foundDatas[i].fullName() %></td>
+            <td><%= foundDatas[i].email %></td>
+
+            <% if (foundDatas[i].Subject.dataValues['Subject Name']) { %>
+              <td><%= foundDatas[i].Subject.dataValues['Subject Name'] %></td>
+            <% } else { %>
+              <td>Unassigned</td>
+            <% } %>
+
+            <td> <a href="/<%= path %>/edit/<%= foundDatas[i].id  %>">edit</a>
+              /<a href="/<%= path %>/delete/<%= foundDatas[i].id %>">delete</a> </td>
+          </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+
+</body>
+
+</html>

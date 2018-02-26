@@ -1,0 +1,68 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1><%= subject_name %></h1>
+      <br>
+      <a href="/subjects">Return</a>
+      <br>
+      <table>
+        <tr>
+            <th>No</th>
+            <th>Student Name</th>
+            <th>Score</th>
+        </tr>
+        <!-- loop -->
+        <% console.log(foundDatas[0]) %>
+        <% for (let i = 0; i < foundDatas.length; i++) { %>
+          <tr>
+            <td><%= i+1  %></td>
+            <td><%= foundDatas[i].fullName() %></td>
+            <% if (StudentSubjects[i].score === null){ %>
+              <td><a href="/<%= path %>/<%= subjectId %>/givescore/<%= foundDatas[i].id %>">Give Score</a></td>
+            <% } else { %>
+              <td><%= StudentSubjects[i].score %></td>
+            <% } %>
+          </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>
