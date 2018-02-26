@@ -1,0 +1,14 @@
+<% include ./partials/header%>
+<container>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4">
+        <form action="/subjects/assignScore/<%=dataSubject.id%>/<%=dataStudents.id%>" method="post">
+            <div class="form-group">
+                <label for="Score" class="col-form-label">Score:</label>
+                <input type="text" class="form-control" name="score" value="<%=dataScore.score%>">
+            </div>
+            <button>ASSIGN SCORE</button>
+        </form>
+        </div>
+    </div>
+</container>

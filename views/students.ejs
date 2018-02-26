@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<%include ./partials/header%>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TEACHERS</title>
+  </head>
+  <container>
+      <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+              <body>
+                <table>
+                  <form action="/Students/add" method="POST" >
+                      <input name="name" type="text" placeholder="name" >
+                      <input name="email" type="text" placeholder="email" >
+                      <input type="submit" value="add new Students">
+                  </form>
+                </table>
+                <br>
+                <table border = '1'>
+                  <thead>
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>EMAIL</td>
+                    <td>Assign Subject</td>
+                    <td>OPTION</td>
+                  </thead>
+                  <tbody>
+                    <%dataStudents.forEach(student=>{%>
+                      <tr>
+                        <td><%=student.id%></td>
+                        <td><%=student.name%></td>
+                        <td><%=student.email%></td>
+                        <td> <a href="Students/assign/<%=student.id%>"><button type="button" name="button">ASSIGN SUBJECT</button> </a></td>
+                        <td>
+                          <a href="Students/update/<%=student.id%>">
+                          <button type="button" name="button">EDIT</button> </a>
+                          </a>
+                        <br>
+                      <a href="Students/delete/<%=student.id%>"onclick="return confirm('Yakin mau delete Guru: \n<%=student.name%>\n Klik cancel untuk membatalkan')">
+                        <button type="button" name="button">DELETE</button> </a>
+                        </td>
+                      </tr>
+                    <%})%>
+                  </tbody>
+                </table>
+              </body>
+            </div>
+          </div>
+        </container>
+</html>
