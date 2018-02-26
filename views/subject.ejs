@@ -2,7 +2,7 @@
   <head>
     <title>SIT Permata Bunda</title>
     <meta charset="utf-8">
-    <link href="../styles/subject.css" rel="stylesheet" type="text/css">
+    <link href="../styles/pages.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
   </head>
@@ -11,10 +11,10 @@
       <div class="container">
         <a class="navbar-brand" href="/">SIT Permata Bunda</a>
         <ul>
-            <li><a href="/subject">Subject</a></li>
-            <li><a href="/student">Student</a></li>
-            <li><a href="/teacher">Teacher</a></li>
-            <li><a href="#about">About</a></li>
+            <li class="menu"><a href="/subject">Subject</a></li>
+            <li class="menu"><a href="/student">Student</a></li>
+            <li class="menu"><a href="/teacher">Teacher</a></li>
+            <li class="menu"><a href="#about">About</a></li>
         </ul>
       </div>
     </nav>
@@ -44,8 +44,14 @@
               <td><%=i+1%></td>
               <td><%=data.id%></td>
               <td><%=data.subject_name%></td>
-              <td>Bambang Bambang</td>
-              <td>Badu budi</td>
+              <td>
+                <ul>
+                  <%data.Teachers.forEach((teacher)=>{%>
+                    <li class="list"><%=teacher.getFullName()%></li>
+                  <%})%>
+                </ul>
+              </td>
+              <td><a href="subject/<%=data.id%>/enrolledstudents"></span>Enrolled Students</a></td>
               <td>
                   <a href="subject/update/<%=data.id%>"></span>edit</a>
                   <a href="subject/delete/<%=data.id%>"onclick="return confirm('Are you sure you want to delete: \n<%=data.subject_name%>\n')"></span>delete</a>

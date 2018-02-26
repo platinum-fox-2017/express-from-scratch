@@ -19,24 +19,14 @@
       </div>
     </nav>
     <div class="box">
-      <form class="pure-form pure-form-stacked" action="/teacher/update/<%=teacher.id %>" method="post">
+      <p>Student Name: <%=studentsubject.Student.getFullName()%></p>
+      <p>Subject Name: <%=studentsubject.Subject.subject_name%></p>
+      <form class="pure-form pure-form-stacked" action="/subject/<%=studentsubject.SubjectId%>/<%=studentsubject.StudentId%>/givescore" method="post">
           <fieldset>
-            <label for="first_name">First Name</label>
-            <input name="first_name" type="text" placeholder="First Name" value="<%=teacher.first_name %>">
-          
-            <label for="last_name">Last Name</label>
-            <input name="last_name" type="text" placeholder="Last Name" value="<%=teacher.last_name %>">
-          
-            <label for="email">Email</label>
-            <input name="email" type="email" placeholder="Email" value="<%=teacher.email %>">
-          
-            <label for"subject">Subject:</label>
-            <select name="SubjectId">
-                <%subjects.forEach((subject)=>{%>
-                  <option value="<%=subject.id%>"><%= subject.subject_name%></option>
-                <%})%>
-            </select>
-            <button type="submit" class="pure-button pure-button-primary">Edit Teacher</button>
+            <label for="score">Score :</label>
+            <input name="score" type="text" placeholder="Score">
+
+            <button type="submit" class="pure-button pure-button-primary">Give Score</button>
           </fieldset>
         </form>
     </div>

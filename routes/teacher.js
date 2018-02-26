@@ -9,8 +9,14 @@ routes.get('/update/:id', (req, res) => {
   // res.status(200).json({ message: 'Connected!'})
   // console.log(req.params.id)
   Models.Teacher.findById(req.params.id)
-    .then(data=>{
-      res.render('teacher-update.ejs', {data: data})
+    .then(teacher=>{
+      Models.Subject.findAll().then(subjects=>{
+        // res.send(subjects[0].subject_name)
+        res.render('teacher-update.ejs', {teacher: teacher, subjects: subjects})
+      })
+      .catch(err=>{
+        console.log(err)
+      })
     })
     .catch(err=>{
       console.log(err)
@@ -19,11 +25,12 @@ routes.get('/update/:id', (req, res) => {
 
 routes.post('/update/:id', (req, res) => {
   // res.status(200).json({ message: 'Connected!'})
-  // console.log(req.body)
+  // res.send(req.body)
   let obj = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    email: req.body.email
+    email: req.body.email,
+    SubjectId: req.body.SubjectId
   }
   Models.Teacher.update(obj, {
     where: {
@@ -51,10 +58,14 @@ routes.get('/delete/:id', (req, res) => {
 
 routes.get('/', (req, res) => {
   Models.Teacher.findAll({
+    include: [{
+      model: Models.Subject
+    }],
     order: [
-      ['id', 'ASC']
+      ['first_name', 'ASC']
     ]
   }).then(data=>{
+    // console.log(data[0].Subject)
     // res.send(data)
     res.render('teacher.ejs', {teacher:data})
   }).catch(err=>{
@@ -64,7 +75,12 @@ routes.get('/', (req, res) => {
 
 routes.post('/', (req, res) => {
   // console.log(req.body);
-  Models.Teacher.create(req.body)
+  let obj = {
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email
+  }
+  Models.Teacher.create(obj)
     .then(data => {
       res.redirect('/teacher')
     })
