@@ -20,7 +20,7 @@
                 <td><b>First Name</b></td>
                 <td><b>Last Name</b></td>
                 <td><b>Email</b></td>
-                <td colspan=2><center><b>Action</b></center></td>
+                <td colspan=3><center><b>Action</b></center></td>
             </tr>
           <% data_students.forEach(dataStd => {%>
             <tr>
@@ -29,6 +29,7 @@
               <td><%= dataStd.last_name %></td>
               <td><%= dataStd.email %></td>
               <td><a href="/student/update/<%= dataStd.id %>">Edit</a></td>
+              <td><a href="/student/<%= dataStd.id %>/addsubject">Add Subject</a></td>
               <td><a href="/student/delete/<%= dataStd.id %>" onclick="return confirm('delete this student ?');">Delete</a></td>
             </tr>
           <% }) %>

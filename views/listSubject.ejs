@@ -18,19 +18,28 @@
             <tr>
                 <td><b>No.</b></td>
                 <td><b>Subject Name</b></td>
+                <td><b>Teachers List</b></td>
+                <td><b>Students List</b></td>
+                
                 <td colspan=2><center><b>Action</b></center></td>
             </tr>
           <% data_subject.forEach(dataSbj => {%>
             <tr>
               <td><%= dataSbj.id %></td>
               <td><%= dataSbj.subject_name %></td>
-              <td><a href="/subject/update/<%= dataSbj.id %>">Edit</a></td>
-              <td><a href="/subject/delete/<%= dataSbj.id %>" onclick="return confirm('delete this subject ?');">Delete</a></td>
+              <td><% dataSbj.Teachers.forEach(teacher => { %>
+                <ul>
+                    <li><%= teacher.first_name +' '+teacher.last_name %></li>
+                    <% }) %>
+                </ul>
+             <td><a href="subject/<%= dataSbj.id %>/enrolledstudents">Enrolled Students</a></td>       
+             </td>
+              <td><a href="/subject/delete/<%= dataSbj.id %>" onclick="return confirm('delete this subject   ?');">Delete</a></td>
             </tr>
           <% }) %>
     </table>
     </div>
-    <a href="/subject/add">Add Student</a>
+    <a href="/subject/add">Add Subject</a>
     <a href="/">Back</a>
 </main>
 

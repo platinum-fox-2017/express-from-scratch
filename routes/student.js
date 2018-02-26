@@ -60,6 +60,50 @@ routes.post('/add', function(request, response){
       });
     })
 
+  
+  routes.get('/delete/:id', function (request, response) {
+  model.Student.destroy({
+    where: {
+      id: request.params.id
+    }
+  }).then(data => {
+    response.redirect('/student')
+    }).catch(err=>{
+      response.send(err)
+    });
+  })
+
+  routes.get('/:id/addsubject',(request,response) => {
+    model.Student.findOne({
+        where : { 
+          id : request.params.id
+        }
+    }).then(students => {
+      // response.send(students)
+        model.Subject.findAll()
+        .then(subjects => {
+            response.render('formAddSubject', {students : students, subjects : subjects});
+            // response.send({students, subjects})
+        })
+    })
+    .catch(err => {
+      response.send(err);
+    });
+  })
+
+  routes.post('/:id/addsubject',(request,response) => {
+    model.StudentSubject.create({
+        StudentId : request.params.id,
+        SubjectId : request.body.SubjectId
+    })
+    .then(success=>{
+      response.redirect('/student');
+    })
+    .catch(err => {
+      response.send(err);
+    });
+  })
+
     
 
 module.exports = routes
