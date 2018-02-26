@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Students</title>
+    </head>
+    <body>
+        <h1>Students Data</h1>
+        <h2><a href= "/students/add/">add student</a></h2>
+        <table class = "table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <%data.sort((a,b) => a.id - b.id)
+                        .forEach(value => {%>
+                    <tr>
+                        <td><%= value.id %></td>
+                        <td><%= value.first_name %></td>
+                        <td><%= value.last_name %></td>
+                        <td><%= value.full_name() %></td>
+                        <td><%= value.email %></td>
+                        <td>
+                            <a href= "/students/<%= value.id %>/addsubject">Add Subject</a>
+                        </td>
+                        <td>
+                            <a href= "/students/edit/<%= value.id %>">Edit</a>
+                            <a>|</a>
+                            <a href= "/students/delete/<%= value.id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+    </body>
+    <footer>
+
+    </footer>
+</html>

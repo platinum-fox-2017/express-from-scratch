@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Teachers Data</title>
+    </head>
+    <body>
+        <h1>Edit Teachers Data</h1>
+        <h2><a href= "/students/">show all data</a></h2>
+        <form action="/teachers/edit/<%= data.id %>" method= "post">
+            First name:<br>
+            <input type="text" name="first_name" placeholder= "First name" value = <%= data.first_name %>>
+            <br>
+            Last name:<br>
+            <input type="text" name="last_name" placeholder= "Last Name" value = <%= data.last_name %>>
+            <br>
+            Email:<br>
+            <input type="text" name="email" placeholder= "Email" value = <%= data.email %>>
+            <br>
+             Subject:<br>
+            <select name ="subject">
+                <%subjects.forEach((value)=> {%>
+                    <option <%if(value.id === data.subject) {%> selected <%}%> value=<%= value.id %>><%= value.subject_name %></option>
+                <%})%>
+            </select>
+            <br>
+            <input type="submit" value="Edit Teacher">
+          </form>
+    </body>
+    <footer>
+
+    </footer>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Students Data</title>
+    </head>
+    <body>
+        <h1>Add Students Data</h1>
+        <h2><a href= "/students/">show all data</a></h2>
+        <h2><% if(err !== null){%>
+            <%= err %>
+            <%}%></h2>
+        <form action="/students/add" method= "post">
+            First name:<br>
+            <input type="text" name="first_name" placeholder= "First name">
+            <br>
+            Last name:<br>
+            <input type="text" name="last_name" placeholder= "Last Name">
+            <br>
+            Email:<br>
+            <input type="text" name="email" placeholder= "Email">
+            <br>
+            <input type="submit" value="Add Student">
+          </form>
+    </body>
+    <footer>
+
+    </footer>
+</html>

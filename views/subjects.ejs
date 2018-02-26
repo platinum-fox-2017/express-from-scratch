@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subjects</title>
+    </head>
+    <body>
+        <h1>Subjects Data</h1>
+        <table class = "table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Subject Name</th>
+                        <th>Teacher</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <%data.forEach(value => {%>
+                    <tr>
+                        <td><%= value.id %></td>
+                        <td><%= value.subject_name %></td>
+                        <td><% value.Teachers.forEach((value2,index2) => { %>
+                            <ul>
+                                <li><%= `${index2+1}. ${value2.first_name} ${value2.last_name}` %></li>
+                            </ul>
+                        <%}) %>
+                        </td>
+                        <td><a href ="/subjects/<%= value.id %>/enrolledstudents">Enrolled Students</a></td>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+    </body>
+    <footer>
+
+    </footer>
+</html>
+
+<!-- subjects/:id/enrolledstudents -->
