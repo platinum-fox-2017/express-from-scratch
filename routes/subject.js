@@ -1,5 +1,5 @@
 const express = require('express');
-const { Subject, Teacher } = require('../models')
+const { Subject, Teacher, SubjectStudent, Student } = require('../models')
 const router = express.Router();
 
 router.get('/', (req,res) => { 
@@ -46,6 +46,61 @@ router.post('/edit/:id', (req,res) => {
         console.log(err)
     })
 });
+
+router.get('/:id/enrolledstudent', (req,res) => {
+    SubjectStudent.findAll({
+        include: [Student, Subject],
+        where: {id_subject: req.params.id}
+    })
+    .then(data => {
+        let convertData = JSON.parse(JSON.stringify(data))
+        
+        res.render('subject_enroll', {dataSubjectStudent : convertData })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+});
+
+router.get('/:idConj/:idStudent/give-score/:idSubject', (req,res) => {
+    Student.findById(req.params.idStudent)
+    .then(studentData => {
+        Subject.findById(req.params.idSubject)
+        .then(subjectData => {
+            let studentObj = {
+                id_conjuction: req.params.idConj,
+                id_student: req.params.idStudent,
+                id_subject: req.params.idSubject,
+                subject_name: subjectData.subject_name,
+                full_name: studentData.first_name + ' ' + studentData.last_name
+            }
+            res.render('subject_giveScore', {studentObj})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+});
+
+router.post('/:idConj/:idStudent/give-score/:idSubject', (req,res) => {
+    SubjectStudent.update({ score: req.body.score }, {
+        where: {
+            id: req.params.idConj,
+            id_subject: req.params.idSubject,
+            id_student: req.params.idStudent
+        }
+    })
+    .then(data => {
+        res.redirect(`/subject/${req.params.idSubject}/enrolledstudent`)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
 
 router.get('/delete/:id', (req,res) => {
     Subject.destroy({

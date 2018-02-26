@@ -1,17 +1,22 @@
 const express = require('express');
-const { Student, Subject } = require('../models')
+const { Student, Subject, SubjectStudent } = require('../models')
 const router = express.Router();
 
 router.get('/', (req, res) => {
     Student.findAll()
     .then(data => {
         let convertData = JSON.parse(JSON.stringify(data));
-        res.render('student', { dataStudent: convertData })
+        let err = null
+        res.render('student', { dataStudent: convertData, err })
     })
     .catch(err => {
         console.log(err);
     })
 });
+
+router.get('/add', (req,res) => {
+    res.render('student_add')
+})
 
 router.post('/add', (req,res) => {
     let studentAddObj = {
@@ -24,7 +29,7 @@ router.post('/add', (req,res) => {
         res.redirect('/student')
     })
     .catch(err => {
-        console.log(err);
+        res.render('student_add', { dataErr: err.errors[0].message })
     })
 });
 
@@ -73,7 +78,21 @@ router.post('/edit/:id', (req,res) => {
     .catch(err => {
         console.log(err)
     })
-})
+});
+
+router.post('/add_subject/:id', (req,res) => {
+    let addSubjectStudent = {
+        id_subject: req.body.id_subject,
+        id_student: req.params.id,
+    }
+    SubjectStudent.create(addSubjectStudent)
+    .then(data => {
+        res.redirect('/student')
+    })
+    .catch(err => {
+        console.log(err)
+    })
+});
 
 router.get('/delete/:id', (req,res) => {
     Student.destroy({

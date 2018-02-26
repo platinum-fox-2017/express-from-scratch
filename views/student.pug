@@ -8,6 +8,9 @@ body
     a(href='/subject') Subject
     hr
     h1 Student
+    a(href='/student/add') Add Student
+    br
+    br
     table(border="1")
         thead
             tr
@@ -28,14 +31,4 @@ body
             -})
     br
     br
-    form(action="/student/add" method="post")
-        input(type="text" name="first_name" placeholder="First Name")
-        br
-        br
-        input(type="text" name="last_name" placeholder="Last Name")
-        br
-        br
-        input(type="text" name="email" placeholder="Email")
-        br
-        br
-        button Submit
+   

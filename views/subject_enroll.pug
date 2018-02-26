@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+head
+    title Entoll Student
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student
+    a(href='/subject') Subject
+
+    if dataSubjectStudent.length == 0
+        h1 Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini.
+    else 
+        h1=dataSubjectStudent[0].Subject.subject_name
+        table(border="1")
+            thead
+                tr
+                    th Student name
+                    th Score
+                    th Desc
+            tbody
+                - dataSubjectStudent.map(val => {
+                    tr
+                        td=val.Student.first_name + ' ' + val.Student.last_name 
+                        td
+                            if val.score == null
+                                a(href=`/subject/${val.id}/${val.Student.id}/give-score/${val.Subject.id}`) Give Score
+                            else
+                                =val.score
+                        td -
+                - })

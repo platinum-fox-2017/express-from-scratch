@@ -8,7 +8,7 @@ body
     a(href='/subject') Subject
     hr
     h1 Add Subject Student
-    form(action="/student/add_subject" method="post")
+    form(action=`/student/add_subject/${dataStudent.id}` method="post")
         input(type="text" name="first_name" placeholder="First Name"  value=`${dataStudent.first_name}` disabled)
         br
         br
