@@ -12,15 +12,24 @@
       <h2>Subjects Data</h2>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>No</th>
           <th>Subject Name</th>
+          <th>Teachers</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <%data.forEach(subject =>{%>
+        <%subjects.forEach((data, i)=>{%>
           <tr>
-            <td><%=subject.id%></td>
-            <td><%=subject.subject_name%></td>
+            <td><%=i+1%></td>
+            <td><%=data.subject_name%></td>
+            <td><%data.Teachers.forEach((teacher, i) => {%>
+              <%=i+1%>. <%=teacher.first_name%> <%=teacher.last_name%></br>
+            <%})%>
+            </td>
+            <td>
+              <a href="/subjects/<%=data.id%>/enrolledstudents">Enrolled Students</a>
+            </td>
           </tr>
         <%})%>
       </tbody>

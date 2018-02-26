@@ -21,25 +21,28 @@
         </tr>
       </thead>
       <tbody>
-        <%data.forEach(teacher =>{%>
+        <%data.forEach((teacher, i) =>{%>
           <tr>
-            <td><%=teacher.id%></td>
+            <td><%=i+1%></td>
             <td><%=teacher.first_name%></td>
             <td><%=teacher.last_name%></td>
             <td><%=teacher.email%></td>
             <%if(teacher.subjectId){%>
-              <td><%=teacher.subjectId%></td>
+              <td><%=teacher.Subject.subject_name%></td>
             <%} else {%>
               <td>unassigned</td>
             <%}%>
             <td>
               <a href="/teachers/edit/<%=teacher.id%>">Edit</a>
-              <a href="#"> | </a>
+              |
               <a href="/teachers/delete/<%=teacher.id%>" action="/teachers" onclick="return confirm('Delete this teacher?')" >Delete</a>
             </td>
           </tr>
         <%})%>
       </tbody>
+      <a href="/teachers/add">
+        <h4>Add Teacher</h4>
+      </a>
     </table>
   </div>
   </body>

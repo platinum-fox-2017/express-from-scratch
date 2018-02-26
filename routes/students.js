@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  models.Student.findAll().then(data => {
+  models.Student.findAll({
+    order: ['first_name']
+  }).then(data => {
     res.render('students', {title: 'Students', data: data})
   }).catch(err => {
     res.send(err)
@@ -12,9 +14,10 @@ router.get('/', (req, res) => {
 
 router.get('/add', (req, res) => {
   models.Student.findAll().then(data => {
-    res.render('add_student', {title: 'Add Student', data: data})
+    let err
+    res.render('add_student', {title: 'Add Student', data, err})
   }).catch(err => {
-    res.send(err)
+    res.render('add_student', {title: 'Add Student'})
   })
 })
 
@@ -26,7 +29,7 @@ router.post('/add', (req, res) => {
   }).then(data => {
     res.redirect('/students')
   }).catch(err => {
-    res.send(err)
+    res.render('add_student', {title: 'Add Student', err})
   })
 })
 
@@ -52,6 +55,30 @@ router.post('/edit/:id', (req, res) => {
 
 router.get('/delete/:id', (req, res) => {
   models.Student.destroy({where : {id: req.params.id}}).then(data => {
+    res.redirect('/students')
+  }).catch(err => {
+    res.send(err)
+  })
+})
+
+router.get('/:id/addsubject', (req, res) => {
+  models.Student.findById(req.params.id).then(students => {
+    models.Subject.findAll().then(subjects => {
+      res.render('addsubject', {title: 'Add Subject', students, subjects})
+    }).catch(err => {
+      res.send(err)
+    })
+  }).catch(err => {
+    res.send(err)
+  })
+})
+
+router.post('/:id/addsubject', (req, res) => {
+  let obj = {
+    studentId: req.params.id,
+    subjectId: req.body.subjectId
+  }
+  models.StudentsSubjects.create(obj).then(data => {
     res.redirect('/students')
   }).catch(err => {
     res.send(err)
