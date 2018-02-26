@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <table align="center">
+      <tr>
+        <th>Student Name</th>
+        <th>Score</th>
+      </tr>
+      <% for(let i=0;i<subjects[0].Students.length;i++){ %>
+      <tr>
+        <td><%= subjects[0].Students[i].first_name + ' ' + subjects[0].Students[i].last_name %></td>
+        <% if(subjects[0].Students[i].StudentSubject.score===null){ %>
+          <td><a href="/subjects/giveScore/<%= subjects[0].Students[i].StudentSubject.id %>"
+            >Give Score</a></td>
+        <% } else { %>
+          <td><%= subjects[0].Students[i].StudentSubject.score %></td>
+        <% } %>
+      </tr>
+      <% } %>
+    </table>
+  </body>
+</html>
