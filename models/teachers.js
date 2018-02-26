@@ -4,11 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,
-    subject_id: DataTypes.STRING,
+    subject: DataTypes.INTEGER,
   });
+  // 1:M <Subjects --- Teachers>
   Teachers.associate = models => {
     Teachers.belongsTo(models.Subjects, {
-      foreignKey: "subject_id",
+      foreignKey: "subject",
     })
   }
   return Teachers;

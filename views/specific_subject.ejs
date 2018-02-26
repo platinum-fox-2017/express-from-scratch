@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= data.subject_name %></title>
+    </head>
+    <body>
+        <h1><%= data.subject_name %></h1>
+        <h2><a href= "/subjects/">return to subject list</a></h2>
+        <table class = "table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <%data.Students.sort((a,b) => a.id - b.id)
+                        .forEach((value,index) => {%>
+                    <tr>
+                        <td><%= index+1 %></td>
+                        <td><%= `${value.first_name} ${value.last_name}` %></td>
+                        <% if(value.Subjects_Students.score === null){ %>
+                            <td><a href= "/subjects/<%= value.id %>/givescore/<%= data.id %>">Give score</a></td>
+                          <% } else{ %>  
+                            <td><%= value.Subjects_Students.score %></td>
+                         <% } %>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+    </body>
+    <footer>
+
+    </footer>
+</html>

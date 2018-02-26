@@ -5,6 +5,10 @@
     </head>
     <body>
         <h1>Add Students Data</h1>
+        <h2><a href= "/students/">show all data</a></h2>
+        <h2><% if(err !== null){%>
+            <%= err %>
+            <%}%></h2>
         <form action="/students/add" method= "post">
             First name:<br>
             <input type="text" name="first_name" placeholder= "First name">

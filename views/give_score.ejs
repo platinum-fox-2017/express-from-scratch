@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Give Score</title>
+    </head>
+    <body>
+        <h1><%= `${subject.subject_name} --- ${student.first_name} ${student.last_name}` %></h1>
+        <h2><a href= "/subjects/">return to subject list</a></h2>
+        <form action= "/subjects/<%= student.id %>/givescore/<%= subject.id %>" method= "post">
+            Student Name:<br>
+            <input type="text" name="student_id" placeholder= "<%= student.first_name %>" readonly>
+            <br>
+            New Score:<br>
+            <input type="number" name="score" placeholder= "New Score">
+            <br>
+            <input type="submit" value="Give Score">
+          </form>
+    </body>
+    <footer>
+
+    </footer>
+</html>
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Subject to Student</title>
+    </head>
+    <body>
+        <h1>Add Subject to Student</h1>
+        <form action="/students/<%= data.id %>/addsubject" method= "post">
+            First name:<br>
+            <input type="text" name="first_name" value= "<%=data.first_name%>" readonly>
+            <br>
+            Last name:<br>
+            <input type="text" name="last_name" value= "<%=data.last_name%>" readonly>
+            <br>
+            Email:<br>
+            <input type="text" name="email" value= "<%=data.email%>" readonly>
+            <br>
+            Choose Subject:<br>
+            Subject:<br>
+            <select name ="subject">
+                <%subjects.forEach((value)=> {%>
+                    <option value=<%= value.id %>><%= value.subject_name %></option>
+                <%})%>
+            </select>
+            <br>
+            <input type="submit" value="Add Subject">
+          </form>
+    </body>
+    <footer>
+
+    </footer>
+</html>

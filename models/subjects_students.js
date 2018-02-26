@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     subject_id: DataTypes.INTEGER,
     score: DataTypes.INTEGER
   });
+   //M:M <Subjects --- Subjects_Students --- Students>
   Subjects_Students.associate = models => {
     Subjects_Students.belongsTo(models.Students, {
       foreignKey:"student_id",
