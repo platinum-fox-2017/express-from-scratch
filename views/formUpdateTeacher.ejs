@@ -1,0 +1,54 @@
+<!-- views/formUpdateTeacher.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Update Teacher</h1>
+        <form name="formUpdate" method="POST" action="/teachers/update/<%= data_teacher.id %>">
+        <table>
+            <tr>
+            <td>First Name</td>
+            <td><input type="text" name="first_name" value="<%= data_teacher.first_name %>"></td>
+            </tr>
+            <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="last_name" value="<%= data_teacher.last_name %>"></td>
+            </tr>
+            <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" value="<%= data_teacher.email %>"></td>
+            <tr>
+            <td>Subject</td>
+            <td><select name="SubjectId">
+
+            <%data_subject.forEach((data) =>
+            {
+                %>
+                <option value="<%=data.id%>" <%if (data.id === data_teacher.id_subject) {%> selected   <%}%> > <%=data.subject_name%> </option>
+            <%})%>
+        </select></td>
+            </tr>
+            <tr>
+            <td colspan="2"><input type="submit" value="Save" ></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <% include ./footer %>
+</footer>
+
+</body>
+</html>

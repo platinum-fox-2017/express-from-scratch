@@ -1,0 +1,42 @@
+<!-- views/listStudent.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2>Data Subjects</h2>
+        <table border='1'>
+            <tr>
+                <td><b>No.</b></td>
+                <td><b>Subject Name</b></td>
+                <td colspan=2><center><b>Action</b></center></td>
+            </tr>
+          <% data_subject.forEach(dataSbj => {%>
+            <tr>
+              <td><%= dataSbj.id %></td>
+              <td><%= dataSbj.subject_name %></td>
+              <td><a href="/subject/update/<%= dataSbj.id %>">Edit</a></td>
+              <td><a href="/subject/delete/<%= dataSbj.id %>" onclick="return confirm('delete this subject ?');">Delete</a></td>
+            </tr>
+          <% }) %>
+    </table>
+    </div>
+    <a href="/subject/add">Add Student</a>
+    <a href="/">Back</a>
+</main>
+
+<footer>
+    <% include ./footer %>
+</footer>
+
+</body>
+</html>

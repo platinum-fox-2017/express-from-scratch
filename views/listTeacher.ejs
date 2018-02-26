@@ -1,0 +1,52 @@
+<!-- views/listTeacher.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2>Data Teachers</h2>
+        <table border='1'>
+            <tr>
+              <td><b>No.</b></td>
+              <td><b>First Name</b></td>
+              <td><b>Last Name</b></td>
+              <td><b>Email</b></td>
+              <td><center><b>Subject</b></center></td>
+              <td colspan=2><center><b>Action</b></center></td>
+            </tr>
+                <% teachers.forEach(dataTch => { %>
+            <tr>
+              <td><%= dataTch.id %></td>
+              <td><%= dataTch.first_name %></td>
+              <td><%= dataTch.last_name %></td>
+              <td><%= dataTch.email %></td>
+              <%if (dataTch.Subject) { %>
+              <td><%= dataTch.Subject.subject_name %></td>
+              <% } else { %>
+                <td>Bebas Tugas</td>
+              <% } %>
+              <td><a href="/teachers/update/<%= dataTch.id %>">Edit</a></td>
+              <td><a href="/teachers/delete/<%= dataTch.id %>" onclick="return confirm('delete this teachers ?');">Delete</a></td>
+            </tr>
+          <% }) %>
+    </table>
+    </div>
+    <a href="/teachers/add">Add Teacher</a>
+    <a href="/">Back</a>
+</main>
+
+<footer>
+    <% include ./footer %>
+</footer>
+
+</body>
+</html>
