@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+head
+    title Student Page
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student
+    a(href='/subject') Subject
+    hr
+    h1 Student
+    a(href='/student/add') Add Student
+    br
+    br
+    table(border="1")
+        thead
+            tr
+                th Student Name
+                th Email 
+                th Subject
+                th Action
+        tbody
+            - dataStudent.map(val => {
+            tr
+                td=val.first_name +' ' + val.last_name
+                td=val.email
+                td
+                    a(href=`/student/add_subject/${val.id}`) Add subject
+                td
+                    a(href=`/student/edit/${val.id}`) Edit 
+                    a(href=`/student/delete/${val.id}`) Delete
+            -})
+    br
+    br
+   

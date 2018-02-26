@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+head
+    title Student Add Subject Page
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student
+    a(href='/subject') Subject
+    hr
+    h1 Add Subject Student
+    form(action=`/student/add_subject/${dataStudent.id}` method="post")
+        input(type="text" name="first_name" placeholder="First Name"  value=`${dataStudent.first_name}` disabled)
+        br
+        br
+        input(type="text" name="last_name" placeholder="Last Name"  value=`${dataStudent.last_name}` disabled)
+        br
+        br
+        input(type="text" name="email" placeholder="Email"  value=`${dataStudent.email}` disabled)
+        br
+        br
+        select(name="id_subject")
+            - dataSubject.map(sub => {
+                option(value=`${sub.id}`)=sub.subject_name
+            - })
+        br
+        br
+        button Submit

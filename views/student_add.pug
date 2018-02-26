@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+head
+    title Student Page
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student
+    a(href='/subject') Subject
+    hr
+    h1 Add Student
+
+    if dataErr
+        p=dataErr
+
+    form(action="/student/add" method="post")
+        input(type="text" name="first_name" placeholder="First Name")
+        br
+        br
+        input(type="text" name="last_name" placeholder="Last Name")
+        br
+        br
+        input(type="text" name="email" placeholder="Email")
+        br
+        br
+        button Submit

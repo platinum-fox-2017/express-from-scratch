@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+head
+    title Teacher Page
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student
+    a(href='/subject') Subject
+    hr
+    h1 Teacher
+    table(border="1")
+        thead
+            tr
+                th Teacher Name
+                th Email 
+                th Subject
+                th Action
+        tbody
+            - for(let i = 0; i < dataTeacher.length; i++) {
+            tr
+                td=dataTeacher[i].first_name + ' ' + dataTeacher[i].last_name
+                td=dataTeacher[i].email
+                td=dataTeacher[i].Subject.subject_name
+                td
+                    a(href=`/teacher/edit/${dataTeacher[i].id}`) Edit 
+                    a(href=`/teacher/delete/${dataTeacher[i].id}`) Delete
+            - }
+    br
+    br
+    form(action="/teacher/add" method="post")
+        input(type="text" name="first_name" placeholder="First Name")
+        br
+        br
+        input(type="text" name="last_name" placeholder="Last Name")
+        br
+        br
+        input(type="text" name="email" placeholder="Email")
+        br
+        br
+        select(name="id_subject")
+            option(value="") Select Subject
+            - dataSubject.map(sub => {
+                option(value=`${sub.id}`)=sub.subject_name
+            - })
+        br
+        br
+        button Submit

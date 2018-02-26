@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+head
+    title Subject Page
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student 
+    a(href='/subject') Subject
+    hr
+    h1 Subject
+    table(border="1")
+        thead
+            tr
+                th Subject Name
+                th Teachers
+                th Students
+                th Action
+        tbody
+            - data.map(val => {
+            tr
+                td=val.subject_name
+                td
+                    - val.Teachers.map(teacher => {
+                        li=teacher.first_name + ' ' + teacher.last_name
+                    - })
+                td 
+                    a(href=`/subject/${val.id}/enrolledstudent`) Enroll Student
+                td
+                    a(href=`/subject/edit/${val.id}`) Edit 
+                    a(href=`/subject/delete/${val.id}`) Delete
+            -})
+    br
+    br
+    h2 Add Subject Name
+    form(action="/subject/add" method="post")
+        input(type="text" name="subject_name" placeholder="Ex: Database Oracle")
+        br
+        br
+        button Submit

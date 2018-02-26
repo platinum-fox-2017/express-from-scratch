@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+head
+    title Entoll Student
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student
+    a(href='/subject') Subject
+
+    
+    form(action=`/subject/${studentObj.id_conjuction}/${studentObj.id_student}/give-score/${studentObj.id_subject}` method="post")
+        table
+            tbody
+                tr
+                    td Subject
+                    td :
+                    td= studentObj.subject_name
+                tr
+                    td Student
+                    td :
+                    td=studentObj.full_name
+                tr
+                    td Score
+                    td :
+                    td 
+                        input(type="number" name="score" placeholder="ex: 70")
+                        
+                tr
+                    td 
+                        button(type="submit") Submit
+                    
