@@ -38,11 +38,19 @@ header {
     transition: 0.3s;
   }
   .home-container {
-    margin-right: 20%;
-    margin-left: 20%;
+    margin-right: 15%;
+    margin-left: 15%;
     font-family: Helvetica ,Arial, sans-serif;
     color: white;
     
+  }
+  #teacher-table{
+    margin-right:10%;
+    margin-left:10%
+  }
+  #subject-table{
+    margin-right:10%;
+    margin-left:10%
   }
   a {
     text-decoration: none;
@@ -95,6 +103,8 @@ header {
     border-collapse: collapse;
     width: 100%
   }
+
+
   th, td {
     border-bottom: 1px solid #ddd;
     padding: 5px 5px 10px 50px;

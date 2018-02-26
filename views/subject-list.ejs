@@ -14,7 +14,7 @@
                 </ul>
             </nav>
         </header>
-        <div class='home-container'>
+        <div class='home-container' id="subject-table">
             <div class='description'>
                 <h1>Our Subjects</h1>
             </div>
@@ -22,20 +22,26 @@
                 <div>
                     <thead>
                         <tr>
-                            <% let keys = Object.keys(data[0]) %>
-                            <% for (let i = 0; i < keys.length-2; i++){ %>
-                            <th><%= keys[i] %></th>
-                            <% } %>
+                            <th>id</th>
+                            <th>subject name</th>
+                            <th>teachers</th>
+                            <th>actions</th>
                             <th>options</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for (let i = 0; i < data.length; i++){ %>
-                        <% let values = Object.values(data[i]) %>
                             <tr>
-                        <%  for (let j = 0; j < values.length-2; j++) {%>
-                            <td><%= values[j] %></td>
-                            <% } %>
+                            <td><%= data[i].id %></td>
+                            <td><%= data[i].subject_name %></td>
+                            <td>
+                                <ul>
+                            <% data[i].Teachers.forEach(teachers => { %>
+                                    <li><%= teachers.fullName() %></li>
+                            <% }) %>
+                                </ul>
+                            </td>
+                            <td><a href='subjects/<%= data[i].id %>/enrolledstudents'>enrolled students</a></td>
                             <td>
                                 <a href='subjects/edit/<%= data[i].id %>'>
                                     <button>update</button>

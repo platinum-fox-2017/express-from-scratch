@@ -52,4 +52,31 @@ studentList.get('/delete/:id', (request, response) => {
 })
 
 
+studentList.get('/:id/addsubject', (req, res) => {
+    let identity = req.params.id
+    model.Subject.findAll().then(subjects => {
+        model.Student.findById(identity).then(student => {
+            // res.send(student)
+            // res.send(subjects)
+            res.render('student-addsubject.ejs', {profile: student, subject: subjects})
+        })
+    })
+})
+
+studentList.post('/:id/addsubject', (req, res) => {
+    console.log(req.params)
+    console.log(req.body)
+    // res.send(req.body)
+    model.StudentSubject.create({
+        StudentId: req.params.id,
+        SubjectId: req.body.SubjectId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    })
+    .then((data) => {
+        console.log(data)
+    })
+    res.redirect('/list/students')
+})
+
 module.exports = studentList

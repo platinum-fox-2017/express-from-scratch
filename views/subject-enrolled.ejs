@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title> SchoolExpress </title>
+        <link href='/styles/style.css' rel='stylesheet' type='text/css'/>
+    </head>
+    <body>
+        <header>
+            <nav class="navigation">
+                <ul>
+                    <a href='/'><li>HOME</li></a>
+                    <a class='right' href="/list/students"><li>OUR STUDENTS</li></a>                  
+                    <a class='right' href="/list/teachers"><li>OUR TEACHERS</li></a>                  
+                    <a class='right' href="/list/subjects"><li>OUR SUBJECTS</li></a> 
+                </ul>
+            </nav>
+        </header>
+        <div class='home-container'>
+            <div class='description'>
+                <h1>Student Scores</h1>
+            </div>
+                <form id ="correction" action="" method="POST">
+                    <h3><%= data[0].subject_name %></h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Students</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i = 0; i < data[0].Students.length; i++) { %>
+                                <tr>
+                                    <td><%= data[0].Students[i].first_name + ' ' + data[0].Students[i].last_name %> </td>
+                                    <% if (!data[0].StudentSubjects[i].Score){ %>
+                                        <td><a href='<%= `givescore/`+ data[0].StudentSubjects[i].StudentId %>'>Give Score</a></td>
+                                    <% } else { %>
+                                        <td><%= data[0].StudentSubjects[i].Score %></td>
+                                   <%  } %>
+                                </tr>
+                                <% }%>
+                        </tbody>
+                    </table>
+                    <p></p>
+                </form>
+        </div>
+    </body>
+</html>

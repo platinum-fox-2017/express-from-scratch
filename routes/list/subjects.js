@@ -8,11 +8,14 @@ subjectlist.use(bodyParser.urlencoded({extended: false}))
 
 subjectlist.get('/', (request, response) => {
     model.Subject.findAll({
-        raw:true,
+        include: [{
+            model: model.Teacher
+        }],
         order: [['id', 'ASC']]
     })
     .then((subjects) => {
-        console.log(subjects)
+        // console.log(subjects)
+        // response.send(subjects)
         response.render('subject-list.ejs', {data: subjects})
     })
 })
@@ -37,6 +40,46 @@ subjectlist.post('/edit/:id', (request, response) => {
             console.log(subject.dataValues)
             response.redirect('/list/subjects')
 
+    })
+})
+
+subjectlist.get('/:id/enrolledstudents', (req,res)=> {
+    // res.send('hello')
+    model.Subject.findAll({
+        include: [{
+            model: model.StudentSubject
+        },{
+            model: model.Student
+        }],
+        where: {id: req.params.id}
+    })
+    .then(data => {
+        // res.send(data)
+        res.render('subject-enrolled.ejs', {data: data})
+    })
+})
+
+subjectlist.get('/:subjectid/givescore/:studentid', (req,res)=> {
+    // res.send('hello')
+    res.render('subject-score.ejs')
+})
+
+subjectlist.post('/:subjectid/givescore/:studentid', (req,res)=> {
+    console.log(req.params.studentid)
+    console.log(req.params.subjectid)
+    // res.send(req.params.studentid)
+    console.log(req.body.Score)
+    model.StudentSubject.update({ 
+        Score: req.body.Score
+    }, {
+        where: {
+            StudentId: req.params.studentid,
+            SubjectId: req.params.subjectid
+        }
+    })
+    .then(result => {
+        console.log(result)
+        res.redirect('/list/subjects')
     })
 })
 
