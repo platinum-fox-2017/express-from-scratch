@@ -1,0 +1,164 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+
+body {
+    background-color: coral;
+}
+
+#logo-school{
+    position: relative;
+    height: 200px;
+}
+
+#logo-school img {
+    width: 300px;
+    height: 200px;
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#tag-line{
+    position: relative;
+    height: 100px;
+}
+
+#tag-line h1 {
+    margin: 0;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#navigation {
+    border: 3px solid seashell;
+    border-radius: 20px;
+    width: 30%;
+    height: 20%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#navigation #student-link a {
+    background-color: green; /* Green */
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#navigation  #teacher-link a {
+    background-color: lightseagreen; /* Green */
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#navigation  #subject-link a {
+    background-color: lightcoral; /* Green */
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.insert-form {
+    margin: 0;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.data-table {
+    margin: 0;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+table, td {
+    margin-top: 10%;
+    border: 2px solid white;
+    height: 30px;
+    text-align: center;
+}
+
+th {
+    width: 20%;
+    height: 50px;
+    border: 2px solid white;
+    background-color:gray;
+}
+
+.add-link {
+    background-color: lightseagreen; /* Green */
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    margin-top:20%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+a {
+    text-decoration: none;
+}

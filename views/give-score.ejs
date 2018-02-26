@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link href="/style/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="tag-line">
+            <h1>Welcome to Hacktiv8 School !</h1>
+        </div>
+        
+        <div id = "logo-school">
+            <img src="/images/hacktiv8.png">
+        </div>
+
+        <div class="insert-form">
+            <form action="/subjects/<%=subjectstudent.id%>/givescore" method="POST">
+                <input type="text" name="student_name" value="<%= subjectstudent.Student.name %>" style="width:300px;height:30px" disabled>
+                <br>
+                <br>
+                <input type="text" name="subject_name" value = "<%= subjectstudent.Subject.name %>" style="width:300px;height:30px" disabled>
+                <br>
+                <br>
+                <% if (subjectstudent.score != null) { %>
+                    <input type="text" name="score" value="<%=subjectstudent.score%>" style="width:300px;height:30px">
+                <% } else {%>
+                    <input type="text" name="score" placeholder="Beri Score !" style="width:300px;height:30px">
+                <% } %>
+                <br>
+                <br>
+                <input type="submit" value="Update !" style="margin-left:35%;width:100px;height:30px">
+            </form>
+        </div>        
+    </body>
+</html>
