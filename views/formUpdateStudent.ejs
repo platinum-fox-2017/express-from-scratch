@@ -1,0 +1,43 @@
+<!-- views/formUpdateStudent.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2>Update Student</h2>
+        <form name="formUpdate" method="POST" action="/student/update/<%= data_students.id %>">
+        <table>
+            <tr>
+            <td>First Name</td>
+            <td><input type="text" name="first_name" value="<%= data_students.first_name %>"></td>
+            </tr>
+            <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="last_name" value="<%= data_students.last_name %>"></td>
+            </tr>
+            <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" value="<%= data_students.email %>"></td>
+            <tr>
+            <td colspan="2"><input type="submit" value="Save" ></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <% include ./footer %>
+</footer>
+
+</body>
+</html>

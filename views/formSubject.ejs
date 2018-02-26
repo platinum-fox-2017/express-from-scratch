@@ -1,0 +1,36 @@
+<!-- views/formTeacher.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2>Add Subject</h2>
+        <form name="form" method="POST" action="/subject/add">
+            <table>
+                <tr>
+                <td>Subject Name</td>
+                <td><input type="text" name="subject_name" ></td>
+                </tr>
+                <tr>
+                <td colspan="2"><input type="submit" value="Save" ></td>
+                </tr>
+            </table>
+            </form>
+    </div>
+</main>
+
+<footer>
+    <% include ./footer %>
+</footer>
+
+</body>
+</html>
