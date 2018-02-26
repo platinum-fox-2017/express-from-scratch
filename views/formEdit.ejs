@@ -1,0 +1,71 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1><%= h1 %></h1>
+      <% if (err) { %>
+        <h1>Subject has to be alphabets</h1>
+        <p><%=err.message%></p>
+      <% } %>
+      <div class="form">
+        <form action="/<%= path %>/edit/<%= id %>" method="post">
+          <% if (path === "students" || path === "teachers") { %>
+            First Name:<br>
+            <input type="text" name="first_name"><br>
+            <br>
+            Last Name:<br>
+            <input type="text" name="last_name"><br>
+            <br>
+            email:<br>
+            <input type="text" name="email"><br>
+            <br>
+          <% } else { %>
+            Subject Name:<br>
+            <input type="text" name="subject_name"><br>
+            <br>
+          <% } %>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>

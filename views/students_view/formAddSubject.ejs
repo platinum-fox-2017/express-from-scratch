@@ -1,0 +1,75 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <div id="topBanner">
+    <div class="navigation">
+      <a href="/">
+        <button type="button" name="button">
+          Home
+        </button>
+      </a>
+      <a href="/students">
+        <button type="button" name="button">
+          Students
+        </button>
+      </a>
+      <a href="/teachers">
+        <button type="button" name="button">
+          Teachers
+        </button>
+      </a>
+      <a href="/subjects">
+        <button type="button" name="button">
+          Subjects
+        </button>
+      </a>
+      <a href="/users">
+        <button type="button" name="button">
+          Users
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="content">
+      <h1><%= h1 %></h1>
+      <div class="form">
+        <form action="/<%= path %>/<%= id %>/addsubject" method="post">
+
+
+            <table>
+              <tr>
+                <td>First Name</td>
+                <td><%= foundStudent.first_name %></td>
+              </tr>
+              <tr>
+                <td>Last Name</td>
+                <td><%= foundStudent.last_name %></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td><%= foundStudent.email %></td>
+              </tr>
+            </table>
+            <br>
+            Select Subject:<br>
+            <select name="Subject">
+              <option value="Kimia">Kimia</option>
+              <option value="Ekonomi">Ekonomi</option>
+            </select><br>
+            <br>
+          <input type="submit" value="Add Subject">
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>
