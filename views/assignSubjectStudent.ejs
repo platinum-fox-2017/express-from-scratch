@@ -1,0 +1,22 @@
+<% include ./partials/header%>
+<container>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4">
+        <form action="/students/assign/<%=dataStudents.id%>" method="post">
+            <div class="form-group">
+                <label for="last_name" class="col-form-label">Last Name:</label>
+                <input type="text" class="form-control" name="last_name" value="<%=dataStudents.name%>">
+            </div>
+            <div class="form-group">
+                <label for="last_name" class="col-form-label">Subject:</label>
+                <select name="id_subject">
+                    <%dataSubject.forEach(data=>{%>
+                        <option value=<%=data.id%>><%=data.name%></option>
+                    <%})%>
+                </select>
+            </div>
+            <button>ASSIGN SUBJECT</button>
+        </form>
+        </div>
+    </div>
+</container>

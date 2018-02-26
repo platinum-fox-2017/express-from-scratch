@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<%include ./partials/header%>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TEACHERS</title>
+  </head>
+  <body>
+    <table>
+      <form action="/teachers/add" method="POST" >
+          <input name="first_name" type="text" placeholder="first name" >
+          <input name="last_name" type="text"  placeholder="last name">
+          <input name="email" type="text" placeholder="email" >
+          <select name="id_subject">
+            <%dataSubject.forEach(subject=>{%>
+              <option value="<%= subject.id %>"> <%=subject.name%> </option>
+            <%})%>
+          </select>
+          <input type="submit" value="add new Teacher">
+      </form>
+    </table>
+    <br>
+    <table border = '1'>
+      <thead>
+        <td>ID</td>
+        <td>FIRST NAME</td>
+        <td>LAST NAME</td>
+        <td>EMAIL</td>
+        <td>Subject</td>
+        <td>OPTION</td>
+      </thead>
+      <tbody>
+        <%dataTeachers.forEach(teacher=>{%>
+          <tr>
+            <td><%=teacher.id%></td>
+            <td><%=teacher.first_name%></td>
+            <td><%=teacher.last_name%></td>
+            <td><%=teacher.email%></td>
+            <td><%=teacher.Subject.name%></td>
+            <td>
+              <a href="teachers/update/<%=teacher.id%>">
+              <button type="button" name="button">EDIT</button> </a>
+              </a>
+            <br>
+          <a href="teachers/delete/<%=teacher.id%>"onclick="return confirm('Yakin mau delete Guru: \n<%=teacher.first_name%>' '<%=teacher.last_name%>\n Klik cancel untuk membatalkan')">
+            <button type="button" name="button">DELETE</button> </a>
+            </td>
+          </tr>
+        <%})%>
+      </tbody>
+    </table>
+  </body>
+</html>

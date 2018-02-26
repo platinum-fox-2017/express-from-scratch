@@ -1,0 +1,18 @@
+<% include ./partials/header%>
+<container>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4">
+        <form action="/students/update/<%=dataStudents.id%>" method="post">
+            <div class="form-group">
+                <label for="last_name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" name="name" value="<%=dataStudents.name%>">
+            </div>
+            <div class="form-group">
+                <label for="last_name" class="col-form-label">Email:</label>
+                <input type="email" class="form-control" name="email" value="<%=dataStudents.email%>">
+            </div>
+            <button>UPDATE</button>
+        </form>
+        </div>
+    </div>
+</container>
