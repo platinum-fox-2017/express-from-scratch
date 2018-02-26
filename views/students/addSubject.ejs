@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="<%= formAction %>" method="post">
+      <input type="hidden" value="<%= id %>" name="id">
+      <ul>
+        <li>First Name: <%= firstName %></li>
+        <li>Last Name: <%= lastName %></li>
+        <li>Email: <%= email %></li>
+      </ul>
+      <select name="getSubject">
+      <% for(let i=0;i<subjects.length;i++){ %>
+        <option value="<%= subjects[i].id %>"><%= subjects[i].subject_name %></option>
+      <% } %>
+      </select>
+      <input type="submit">
+    </form>
+  </body>
+</html>

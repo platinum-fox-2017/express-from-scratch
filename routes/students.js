@@ -4,12 +4,14 @@ const models = require('../models');
 const sequelize = require('sequelize');
 
 routes.get('/', function(request,response) {
-  models.Student.findAll({raw:true,order:sequelize.literal('id ASC')}).then((dataStudent)=>{
-    let obj = {
-      title: 'STUDENTS',
-      students: dataStudent
-    }
-    response.render('students.ejs',obj);
+  models.Student.findAll({include:[{model:models.StudentSubject}],
+    order:sequelize.literal('id ASC')}).then((dataStudent)=>{
+      let obj = {
+        title: 'STUDENTS',
+        students: dataStudent
+      }
+      response.render('students/students.ejs',obj);
+      // response.send(dataStudent);
   });
 });
 
@@ -22,7 +24,7 @@ routes.get('/add', function(request, response){
     lastName: '',
     email: '',
   }
-  response.render('studentsForm.ejs', obj);
+  response.render('students/addEdit.ejs', obj);
 })
 
 routes.post('/add', function(request, response){
@@ -47,7 +49,7 @@ routes.get('/edit/:id', function(request, response){
       lastName: dataStudent.last_name,
       email: dataStudent.email,
     }
-      response.render('studentsForm.ejs', obj)
+      response.render('students/addEdit.ejs', obj)
   })
 })
 
@@ -67,6 +69,35 @@ routes.get('/delete/:id', function(request, response){
     where: {
       id: request.param('id')
       }
+  }).then(function(){
+    response.redirect('/students')
+  })
+})
+
+routes.get('/addSubject/:id', function(request, response){
+  models.Student.findById(request.param('id')).then(dataStudent => {
+    models.Subject.findAll().then(dataSubject => {
+      let obj = {
+        formAction: '/students/addSubject',
+        title: 'Form Add Subject',
+        subjects: dataSubject,
+        id: dataStudent.id,
+        firstName: dataStudent.first_name,
+        lastName: dataStudent.last_name,
+        email: dataStudent.email
+      }
+      response.render('students/addSubject.ejs', obj)
+    })
+  })
+})
+
+routes.post('/addSubject',function(request,response){
+  models.StudentSubject.create({
+    StudentId: request.body.id,
+    SubjectId: request.body.getSubject,
+    score: null,
+    createdAt: new Date(),
+    updatedAt: new Date()
   }).then(function(){
     response.redirect('/students')
   })

@@ -13,6 +13,7 @@
         <th>ID</th>
         <th>Subject Name</th>
         <th>Teacher</th>
+        <th>Option</th>
       </tr>
       <% for(let i=0;i<subjects.length;i++){ %>
       <tr>
@@ -25,6 +26,7 @@
             <td><%= subjects[i].Teachers[j].first_name + ' ' + subjects[i].Teachers[j].last_name%></br></td>
           <% } %>
         <% } %>
+        <td><a href="/subjects/enrolled/<%= subjects[i].id %>">Enrolled Students</a></td>
       </tr>
       <% } %>
     </table>

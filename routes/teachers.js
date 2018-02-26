@@ -10,7 +10,8 @@ routes.get('/', function(request,response) {
       title: 'TEACHERS',
       teachers: dataTeacher
     }
-    response.render('teachers.ejs',obj);
+    response.render('teachers/teachers.ejs',obj);
+    // response.send(dataTeacher);
   });
 });
 
@@ -24,7 +25,7 @@ routes.get('/add', function(request, response){
     email: '',
     subjectId: ''
   }
-  response.render('teachersForm.ejs', obj);
+  response.render('teachers/teachersForm.ejs', obj);
 })
 
 routes.post('/add', function(request, response){
@@ -51,7 +52,7 @@ routes.get('/edit/:id', function(request, response){
       email: dataTeacher.email,
       subjectId: dataTeacher.SubjectId
     }
-    response.render('teachersForm.ejs', obj)
+    response.render('teachers/teachersForm.ejs', obj)
   })
 })
 
