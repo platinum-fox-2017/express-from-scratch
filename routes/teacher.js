@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
     }]
   }).then(teachers => {
     let data = JSON.parse(JSON.stringify(teachers))
-    // console.log(data);
+    console.log(data);
     res.render('teacher', {data_teacher: teachers})
   })
 })

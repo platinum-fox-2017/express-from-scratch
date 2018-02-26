@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="utf-8"
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <center><h1>Add Subject to Student</h1></center>
+    <center>
+    </center>
+    <br>
+    <br>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </thead>
+          <tbody>
+          <tbody>
+              <tr>
+                <td><%=data_student.id%></td>
+                <td><%=data_student.first_name%></td>
+                <td><%=data_student.last_name%></td>
+                <td><%=data_student.email%></td>
+              </tr>
+          </tbody>
+    </div>
+    </table>
+    <center>
+      <div class="container">
+        <h2>Choose Subject</h2>
+        <form class="" action="/students/<%=data_student.id%>/addsubject" method="post">
+          <select name="id_subject">
+            <%data_subject.forEach((data) =>
+            {%>
+              <option value="<%=data.id%>"> <%=data.subject_name%> </option>
+              <%})%>
+            </select>
+            <br \>
+            <br \>
+            <button>Add Subject</button>
+          </form>
+        </div>
+
+    </center
+  </body>
+</html>

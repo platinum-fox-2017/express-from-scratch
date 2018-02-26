@@ -3,7 +3,12 @@ const router = express.Router()
 const models = require('../models')
 
 router.get('/', function (req,res) {
-  models.Student.findAll().then(students => {
+  models.Student.findAll({
+    include: [{
+      model: models.Subject
+    }]
+  }).then(students => {
+    let data = JSON.parse(JSON.stringify(students))
     res.render('student', {data_student: students})
   })
 })
@@ -50,10 +55,28 @@ router.get('/delete/:id', function (req, res) {
         id: req.params.id
       }
     }).then(student => {
-      res.redirect('/teachers')
+      res.redirect('/students')
     })
 })
 
-router.get('/delete:id')
+router.get('/:id/addsubject', function (req, res) {
+  models.Student.findById(req.params.id).then(students => {
+    models.Subject.findAll().then(subjects => {
+      res.render('add-subject', {data_student: students, data_subject: subjects})
+    })
+  })
+})
+
+router.post('/:id/addsubject', function (req, res) {
+  let obj = {
+    id_subject: req.body.id_subject,
+    id_student: req.params.id
+  }
+  models.subject_student.create(obj).then(data => {
+    res.send(`success to create data`)
+  })
+})
+
+
 
 module.exports = router
