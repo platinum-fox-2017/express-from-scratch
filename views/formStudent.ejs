@@ -8,13 +8,21 @@
     </head>
 <body>
     <h1>Add Students Data</h1>
-    <a href = "/students">show all data</a>
-    <form class= '' action='/students/add' method = 'post'>
-      <input type ='text' placeholder='first name' name='first_name'> </br>
-      <input type ='text' placeholder='last_name' name='last_name'> </br>
-      <input type ='text' placeholder='email' name='email'></br>
-      <button> Add Student </button>      
-  </form>
+		<a href = "/students">show all data</a>
+		<form class= 'form-inline' action='/students/add' method = 'post'>
+			<%if(error !== null){%>
+				<h4><%=error%></h4>
+			<%}else{%>
+				<label>Firstname</label>
+				<input type ='text' placeholder='first name' class="form-control"  name='first_name'> </br>
+				<label>Lastname</label>
+				<input type ='text' placeholder='last_name' class="form-control"  name='last_name'> </br>
+				<label>Email</label>
+				<input type ='text' placeholder='email' class="form-control"  name='email'></br>
+				<button> Add Student </button> 
 
+			<%}%>
+           
+	</form>
 </body>
 </html>

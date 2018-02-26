@@ -5,7 +5,7 @@ const models = require('../models')
 let router = express.Router();
 
 router.get('/', function (req, res) {
-  models.Teacher.findAll({include:[models.Subject],order:[['id','asc']]}).then(detail=>{
+  models.Teacher.findAll({include:[models.Subject],order:[['first_name','asc']]}).then(detail=>{
     res.render('teacher',{data:detail})
     // console.log(JSON.parse(JSON.stringify(detail)))
   }).catch(err=>{

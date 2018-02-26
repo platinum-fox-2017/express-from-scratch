@@ -6,7 +6,7 @@ let router = express.Router();
 
 router.get('/',function(req,res){
   // res.render('student')
-  models.Student.findAll().then(dataStudent=>{
+  models.Student.findAll({order:[['first_name','ASC']]}).then(dataStudent=>{
     res.render('student',{data:dataStudent})
   }).catch(err=>{
     res.send(err);
@@ -16,7 +16,7 @@ router.get('/',function(req,res){
 
 router.get('/add',function(req,res){
   //posting new student
-  res.render('formStudent')
+  res.render('formStudent',{error:null})
 })
 router.post('/add',function(req,res){
   let obj={
@@ -29,7 +29,8 @@ router.post('/add',function(req,res){
   models.Student.create(obj).then(addData=>{
     res.redirect('/students')
   }).catch(err=>{
-    res.send(err)
+    // res.send(err.errors[0].message)
+    res.render('formStudent',{error:err.errors[0].message})
   })
 })
 

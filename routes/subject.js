@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 
 const models = require('../models')
+const convertScore = require('../helpers/convertScore')
 let router = express.Router();
 
 router.get('/', function (req, res) {
@@ -69,10 +70,14 @@ router.get('/:id/enrolledstudents',function(req,res){
   let id = req.params.id
   models.Student_subject.findAll({
     where:{id_subject:id},
-    include:[models.Student,models.Subject]
+    include:[models.Student,models.Subject],
+    order:[[models.Student,'first_name','ASC']]
   }).then(detail=>{
-    console.log(JSON.parse(JSON.stringify(detail)))
-    res.render('enrolledStudent',{data:detail})
+    // console.log(JSON.parse(JSON.stringify(detail)))
+    res.render('enrolledStudent',{data:detail,convert:convertScore})
+    // res.send(detail)
+  }).catch(err=>{
+    res.send(err)
   })
 })
 

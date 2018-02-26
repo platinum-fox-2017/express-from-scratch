@@ -21,19 +21,24 @@
 			<table class = "table">
 				<thead>
 					<tr>
+						<th>No</th>
 						<th>Name</th>
 						<th>Score</th>
+						<th>Description</th>
 					</tr>
 				</thead>
 				<tbody>
-						<%data.forEach(detail => {%>  
+						<%data.forEach((detail,i) => {%>  
 					<tr>
+						<td><%=i+1%></td>
 						<td><%=detail.Student.first_name + ' ' + detail.Student.last_name%></td>
 						<%if(detail.score !== null){%>
 							<td><%=detail.score%></td>
+							<td><%=convert.convertScore(detail.score)%></td>
 						<%}else{%>
 							<td><a href = '/subjects/<%=detail.id_subject%>/<%=detail.id_student%>/givescore'>Give Score</a></td>
-						<%}%>
+							<td>-</td>
+							<%}%>
 						
 					</tr>
 					<%})%>
