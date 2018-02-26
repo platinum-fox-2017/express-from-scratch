@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+head
+    title Subject Page
+body
+    a(href='/teacher') Teacher 
+    a(href='/student') Student 
+    a(href='/subject') Subject
+    hr
+    h1 Edit Subject
+    form(action=`/subject/edit/${data.id}` method="post")
+        input(type="text" name="subject_name" placeholder="Ex: Database Oracle" value=`${data.subject_name}`)
+        br
+        br
+        button Submit
