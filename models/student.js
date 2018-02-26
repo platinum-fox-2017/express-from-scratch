@@ -3,7 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   var student = sequelize.define('student', {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: {
+      type : DataTypes.STRING,
+      validate : {
+        isEmail : {
+          args: true,
+          msg: `Format email salah`
+        }
+      }
+    }
   })
 
   student.associate = function(models){
@@ -13,7 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       through : 'subject_student',
       foreignKey :'id_student'
     })
-
   }
+
+  student.prototype.fullname = function(){
+    return `${this.first_name} ${this.last_name}`
+  }
+
   return student;
 };

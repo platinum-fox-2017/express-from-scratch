@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-        <!-- <%include ./partial/head %> -->
+        <%include ./partial/head %>
 <head>
     <title>Subject</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -10,14 +10,14 @@
         <h2> All Subjects Data</h2>
     <table class = 'table'>
         <tr>
-            <th>ID</th>
+            <th>No</th>
             <th>Subject_name</th>
             <th>Teacher</th>
             <th>Actions </th>
         </tr>
-          <% data.forEach(row => { %>
+          <% data.forEach((row,index) => { %>
           <tr>
-            <td><%= row.id        %></td>
+            <td><%= index+1      %></td>
             <td><%= row.subject_name%></td>
             <td>
                 <%if(row.teachers.length > 0){%>

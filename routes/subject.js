@@ -20,8 +20,11 @@ router.get('/delete/:id',(req,res)=>{
 
 router.get('/:id/enrolledstudent',(req,res)=>{
     let id = req.params.id
-    subject.findById(id,{include:[student,subject_student]}).then(data=>{
-        // res.send(data.students[0])
+    subject.findById(id,{
+        include:[student],
+        order : [[student,'first_name','asc']] 
+    }).then(data=>{
+        // res.send(data)
         res.render('subject_enrolled',{data:data})
     }).catch(err=>{
         res.send(err)

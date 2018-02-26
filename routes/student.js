@@ -4,7 +4,9 @@ const {student,subject,subject_student} = require('../models')
 
 
 router.get('/',(req,res)=>{
-    student.findAll().then(data=>{
+    student.findAll({
+        order:[['first_name','asc']]
+    }).then(data=>{
         res.render('student.ejs',{data:data})
     }).catch(err=>{
         res.send(err)
@@ -13,7 +15,7 @@ router.get('/',(req,res)=>{
 
 
 router.get('/add',(req,res)=>{
-    res.render('addStudent')
+    res.render('addStudent',{error:null})
 })
 
 
@@ -26,7 +28,11 @@ router.post('/add',(req,res)=>{
     student.create(obj).then(data=>{
         res.redirect('/student')
     }).catch(err=>{
-        res.send(err)
+        const error = err.errors.reduce((hasil,each)=>{
+            hasil[each.path] = each.message
+            return hasil 
+        },{})
+        res.render('addStudent',{error})
     })
 })
 

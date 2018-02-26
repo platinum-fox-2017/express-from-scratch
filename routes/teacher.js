@@ -4,7 +4,9 @@ const {teacher,subject} = require('../models')
 
 
 router.get('/',(req,res)=>{
-    teacher.findAll({include:subject}).then(data=>{
+    teacher.findAll({include:subject,
+                    order:[['first_name','asc']]
+    }).then(data=>{
         res.render('teacher.ejs',{data:data})
     }).catch(err=>{
         res.send(err)
