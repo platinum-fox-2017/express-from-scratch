@@ -81,3 +81,13 @@ div.content {
     background: rgb(255, 255, 255);
     opacity: 0.7;
 }
+
+table {
+    margin: auto;
+    padding: 20px 0 20px 0;
+    opacity: 1;
+}
+
+form {
+    margin: auto;
+}

@@ -19,13 +19,12 @@
         </header>
         <div class="content-container">
             <div class="content">
-                <button class="btn-add" onclick="window.location.href='/student/add'">Add New Student</button>
+                <button class="btn-add" onclick="window.location.href='/teacher/add'">Add New Teacher</button>
                 <table>
                     <tr>
                       <th>ID</th>
                       <th>Name</th> 
                       <th>Email</th>
-                      <th>Phone</th>
                       <th>Subject</th>
                     </tr>
                     <% for(let i=0; i<data.length; i++){ %>
@@ -33,15 +32,16 @@
                             <td><%= data[i].id %></td>
                             <td><%= data[i].name %></td> 
                             <td><%= data[i].email %></td>
-                            <td><%= data[i].phone %></td>
-                            <td><button onclick="window.location.href='/student/<%= data[i].id %>/add-subject'">Add Subject</button></td>
-                            <td><button onclick="window.location.href='/student/<%= data[i].id %>/edit'">Edit</button></td>
+                            <td><%= data[i].Subject.subjectName %></td>
                             <td>
-                                <form action="/student/<%= data[i].id %>/delete" method="POST">
+                                <button onclick="window.location.href='/teacher/<%= data[i].id %>/edit'">Edit</button>
+                            </td>
+                            <td>
+                                <form action="/teacher/<%= data[i].id %>/delete" method="POST">
                                     <input type="submit" value="Delete">
                                 </form>
                             </td>
-                        </tr>
+                          </tr>
                     <% } %>
                   </table> 
             </div>

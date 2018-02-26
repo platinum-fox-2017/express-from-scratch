@@ -17,5 +17,21 @@
                 </nav>
             </div>
         </header>
+        <div class="content-container">
+            <div class="content">
+                <table>
+                    <tr>
+                      <th>Student ID</th>
+                      <th>Name</th> 
+                    </tr>
+                    <% for(let i=0; i<data.length; i++){ %>
+                        <tr>
+                            <td><%= data[i].StudentId %></td>
+                            <td><%= data[i].Student.name %></td> 
+                        </tr>
+                    <% } %>
+                  </table> 
+            </div>
+        </div>
     </body>
 </html>

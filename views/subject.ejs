@@ -19,29 +19,34 @@
         </header>
         <div class="content-container">
             <div class="content">
-                <button class="btn-add" onclick="window.location.href='/student/add'">Add New Student</button>
+                <button class="btn-add" onclick="window.location.href='/subject/add'">Add New Subject</button>
                 <table>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th> 
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>Subject</th>
+                      <th>Subject Name</th>
+                      <th>Teachers</th> 
                     </tr>
                     <% for(let i=0; i<data.length; i++){ %>
                         <tr>
                             <td><%= data[i].id %></td>
-                            <td><%= data[i].name %></td> 
-                            <td><%= data[i].email %></td>
-                            <td><%= data[i].phone %></td>
-                            <td><button onclick="window.location.href='/student/<%= data[i].id %>/add-subject'">Add Subject</button></td>
-                            <td><button onclick="window.location.href='/student/<%= data[i].id %>/edit'">Edit</button></td>
+                            <td><%= data[i].subjectName %></td> 
                             <td>
-                                <form action="/student/<%= data[i].id %>/delete" method="POST">
+                                <% for(let j=0; j<data[i].Teachers.length; j++){ %>
+                                    <li><%= data[i].Teachers[j].name %></li>
+                                <% } %>
+                            </td>
+                            <td>
+                                <button onclick="window.location.href='/subject/<%= data[i].id %>/edit'">Edit</button>
+                            </td>
+                            <td>
+                                <form action="/subject/<%= data[i].id %>/delete" method="POST">
                                     <input type="submit" value="Delete">
                                 </form>
                             </td>
-                        </tr>
+                            <td>
+                                <button onclick="window.location.href='/subject/<%= data[i].id %>/enrolled-student'">Enrolled Student</button>
+                            </td>
+                          </tr>
                     <% } %>
                   </table> 
             </div>
