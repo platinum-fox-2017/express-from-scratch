@@ -53,7 +53,7 @@
           background-color: #008CBA;
           border: none;
           color: white;
-          padding: 15px 32px;
+          padding: 15px 15px;
           text-align: center;
           text-decoration: none;
           display: inline-block;
@@ -61,7 +61,7 @@
       }
 
       button:hover {
-          background-color: #4CAF50; 
+          background-color: #4CAF50;
           color: white;
       }
     </style>
@@ -75,10 +75,11 @@
         <table border='1'>
           <tr>
             <th style="padding-left:5px; padding-right:5px"> NO </th>
-            <th width="30%">FIRST NAME</th>
+            <th width="20%">FIRST NAME</th>
             <th width="20%">LAST NAME</th>
             <th width="20%">EMAIL</th>
-            <th width="30%">OPTION</th>
+            <th width="20%">MATA KULIAH</th>
+            <th width="20%">OPTION</th>
           </tr>
           <% for(let i=0;i<data.length;i++){ %>
           <tr>
@@ -86,6 +87,11 @@
             <td><%= data[i].first_name %></td>
             <td><%= data[i].last_name %></td>
             <td><%= data[i].email %></td>
+            <% if(data[i].subject_id == null){ %>
+              <td>unassigned</td>
+            <% } else{%>
+              <td><%= data[i].subject.subject_name %></td>
+            <% } %>
             <td><a href="/teachers/update/<%= data[i].id %>"><button>update</button></a>
             <a href="/teachers/delete/<%= data[i].id %>"><button>delete</button></a> </td>
           </tr>
