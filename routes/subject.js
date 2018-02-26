@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
+let router = express.Router();
 
 const models = require('../models')
 const convertScore = require('../helpers/convertScore')
-let router = express.Router();
+
 
 router.get('/', function (req, res) {
   models.Subject.findAll({

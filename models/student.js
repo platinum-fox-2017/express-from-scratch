@@ -1,4 +1,5 @@
 'use strict';
+const Op = require('sequelize').Op
 module.exports = (sequelize, DataTypes) => {
   var Student = sequelize.define('Student', {
     first_name: DataTypes.STRING,
@@ -9,12 +10,17 @@ module.exports = (sequelize, DataTypes) => {
         isEmail:{args:true,
         msg:'Email format is incorrect!'},
         isUnique :((value,next)=>{
-          Student.findAll({where:{email:value}}).then(data=>{
+          Student.findAll({where:{
+            email:value,
+            id:{[Op.ne]: this.id}}})
+            .then(data=>{
             if(data.length === 0){
               next()
             }else{
               next('Email address already in used'); 
             }
+          }).catch(err=>{
+            console.log(err)
           })
         })
       }
