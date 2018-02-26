@@ -8,9 +8,9 @@
             <nav class="navigation">
                 <ul>
                     <a href='../'><li>HOME</li></a>
-                    <a class='right' href="students.html"><li>OUR STUDENTS</li></a>                  
-                    <a class='right' href="teachers.html"><li>OUR TEACHERS</li></a>                  
-                    <a class='right' href="subjects.html"><li>OUR SUBJECTS</li></a> 
+                    <a class='right' href="students"><li>OUR STUDENTS</li></a>                  
+                    <a class='right' href="teachers"><li>OUR TEACHERS</li></a>                  
+                    <a class='right' href="subjects"><li>OUR SUBJECTS</li></a> 
                 </ul>
             </nav>
         </header>
@@ -36,7 +36,15 @@
                         <%  for (let j = 0; j < values.length-2; j++) {%>
                             <td><%= values[j] %></td>
                             <% } %>
-                            <td> <a>update</a> || <a>delete</a></td>
+                            <td>
+                                <a href='students/edit/<%= data[i].id %>'>
+                                    <button>update</button>
+                                </a> 
+                                || 
+                                <a href='students/delete/<%= data[i].id %>'>
+                                    <button onclick="return confirm('Are you sure?')">delete</button>
+                                </a>
+                            </td>
                             </tr>   
                         <% } %>
                     </tbody>
