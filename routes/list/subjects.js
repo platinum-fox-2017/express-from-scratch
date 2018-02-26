@@ -46,11 +46,11 @@ subjectlist.post('/edit/:id', (request, response) => {
 subjectlist.get('/:id/enrolledstudents', (req,res)=> {
     // res.send('hello')
     model.Subject.findAll({
+        order: [[{model: model.Student}, 'first_name', 'ASC']],
         include: [{
-            model: model.StudentSubject,
+            model: model.StudentSubject
         },{
-            model: model.Student,
-            order: [['first_name', 'ASC']]
+            model: model.Student
         }],
         where: {
             id: req.params.id
