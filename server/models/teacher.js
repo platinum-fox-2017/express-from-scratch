@@ -4,9 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,
+    SubjectId: DataTypes.STRING,
   }, {});
   Teacher.associate = function(models) {
     // associations can be defined here
+    Teacher.belongsTo(models.Subject)
   };
   return Teacher;
 };

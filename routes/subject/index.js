@@ -3,31 +3,33 @@
 const subject = require('express').Router();
 const controller = require('../../server/controller');
 
-subject.get('/', function (request, respond) {
-    // respond.send("menampilkan data teachers dengan menggunakan table html");
-    // console.log("=====" + request.body)
-    // controller.updateData(request.params.id, 'Subject');
-    controller.readSubject(respond)
-})
-
-subject.get('/edit/:id', function (request, respond) {
-    // respond.send("menampilkan data subjects dengan menggunakan table html");
-    // console.log(request.params.id);
-    // respond.render('editView.ejs')
-    controller.updateData(respond, request.params.id, 'Subject');
-    // respond.redirect('/subject')
-})
-
-subject.get('/delete/:id', function (request, respond) {
-    // respond.send("menampilkan data subjects dengan menggunakan table html");
-    // console.log(request.params.id);
-    controller.deleteData(request.params.id, 'Subject');
+//CREATE
+subject.post('/', (request, respond) => {  
+    controller.addData(request.body, 'Subject')
     respond.redirect('/subject')
 })
 
-subject.post('/', (request, respond) => {  
-    // console.log(request.body)
-    controller.addData(request.body, 'Subject')
+//READ
+subject.get('/', function (request, respond) {
+    controller.readSubject(respond)
+})
+
+//UPDATE
+subject.get('/edit/:id', function (request, respond) {
+    controller.editSubject(respond, request.params.id, 'Subject');
+
+})
+
+subject.post('/edit', function (request, respond) {
+    controller.gantiData(respond, request.body, 'Subject');
+    // console.log(request.body);
+    respond.redirect('/subject/')
+    // controller.readSubject(respond)
+})
+
+//DELETE
+subject.get('/delete/:id', function (request, respond) {
+    controller.deleteData(request.params.id, 'Subject');
     respond.redirect('/subject')
 })
 

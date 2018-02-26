@@ -6,10 +6,16 @@ const express = require('express')
 class Controller{
   static readTeacher(respond) {
     model.Teacher.findAll({
+      include: [{
+        model:model.Subject,
+        attributes: [['subject_name', '']],
+        raw:true,
+      }],
       attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], ['email', 'Email']],
       raw:true,
       }).then(projects => {
       // projects will be an array of all Project instances
+      // projects = [projects.dataValues]
       view.printData(respond, projects, 'Teacher')
     })
   }
@@ -36,27 +42,14 @@ class Controller{
 
   static addData(request, table) {
     let keys = Object.keys(request)
-    // console.log(request);
-    // console.log(table);
-    // console.log(keys);
     let obj = {}
     for(let i=0; i<keys.length; i++) {
       obj[keys[i]] = request[keys[i]]
-    }    
-    // console.log(obj)
+    }
     
     model[table].create(obj).then(projects => {
       view.printData(projects, table)
     });
-  }
-
-  static updateData(respond, idRequest, table) {
-  let obj = {}
-      obj.idRequest = idRequest
-      view.editView(respond, idRequest, table)
-      // model.Contact.update(objContact, {where:{id: option[0]}}).then(projects => {
-      //   view.updateData('Contact', option, projects)
-      // });
   }
 
   static deleteData(request, table) {
@@ -65,8 +58,69 @@ class Controller{
     }); 
   }
 
-  
-  
+  static editSubject(respond, id, table) {
+    let objId = {}
+    objId.id = id
+
+    model[table].findAll({
+      attributes: ['id', ['subject_name', 'Subject Name']],
+      raw:true,
+      where: objId,
+    })
+    .then(data => {
+      view.editView(respond, data, table)
+    })
+  }
+
+  static editStudent(respond, id, table) {
+    let objId = {}
+    objId.id = id
+
+    model[table].findAll({
+      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], ['email', 'Email']],
+      raw:true,
+      where: objId,
+    })
+    .then(data => {
+      view.editView(respond, data, table)
+    })
+  }
+
+  static editTeacher(respond, id, table) {
+    let objId = {}
+    objId.id = id
+
+    model[table].findAll({
+      attributes: ['id', ['first_name', 'First Name'], ['last_name', 'Last Name'], ['email', 'Email'], ['SubjectId', 'Subject ID']],
+      raw:true,
+      where: objId,
+    })
+    .then(data => {
+      console.log('=============', data);
+      view.editView(respond, data, table)
+    })
+  }
+
+  static gantiData(respond, objUpdate, table) {
+    // let key = Object.keys(objUpdate)
+    // let obj = {}
+    // for(let i-0; i<objUpdate.length; i++) {
+    //   obj[key[i]] = objUpdate
+    // }
+    // obj.id = objUpdate.id
+    // obj.subject_name = objUpdate.subject_name
+
+    model[table].update(
+      objUpdate,
+      {where:
+        {id: objUpdate.id}
+      }).then(data => {
+        console.log(objUpdate);
+        
+      view.printData(respond, data, table)
+    }); 
+  }
+
   static homePage(respond) {
     view.homePage(respond);
   }

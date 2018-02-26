@@ -1,51 +1,28 @@
 <!-- view/viewTable.ejs -->
-
 <html>
     <head>
         <title>WikaSilo School | P1W3</title>
-        <link rel="stylesheet" href="style.css">
     </head>
 
-    <body>
+    <body font-family: "Helvetica Neue",Helvetica,Arial,sans-serif>
         <div>
-            <%- include('partials/navbar')  %>        
+            <%- include('partials/navbar')  %>               
             <div>
                 <h4>Data <%= table %></h4>
-                <table border="1" cellspacing="0" cellpadding="10">
-                    <tr>
-                        <% let key = Object.keys(data[0]) %>
-                        <% let keys = [] %>
-                        <% for(let i=0; i<key.length; i++) { %>
-                            <td><%= key[i] %></td>
-                            <% keys.push(key[i]) %>
-                        <% } %>
-                        <td>Option</td>
-                    </tr>
-                        <tr>
-                        <% for(let i=0; i<data.length; i++) { %>
-                            <% for(let j=0; j<keys.length; j++) { %>
-                                <td><%= data[i][keys[j]] %></td>
-                            <% } %>
-                            <div method="post">
-                            <td><a href="/<%= table.toLowerCase() %>/edit/<%= data[i].id %>">edit</a> | <a href="/<%= table.toLowerCase() %>/delete/<%= data[i].id %>">delete</a></td>
-                            </div>
-                        </tr>
-                        <% } %>
-                </table>
-            </div>
+                <form action="/<%= table.toLowerCase() %>/edit" method="POST">
+                    <% let key = Object.keys(data[0]) %>
 
-            <div>
-                <h4>Add Data <%= table %></h4>
-                <form action="/<%= table.toLowerCase() %>/" method="POST">
-                    <% for(let i=1; i<key.length; i++) { %>
-                    <%= key[i] %>:<br>
-                    <input type="text" name=<%= key[i].toLowerCase().split(' ').join('_') %>><br>
-                    <% } %>
-                    <br>
-                    <input type="submit" value="Add <%= table %>"><br> 
+                    <% for(let i=0; i<data.length; i++) { %>
+                        <% for(let j=0; j<key.length; j++) { %>
+
+                        <%= key[j] %>:<br>
+                        <input type="text" name=<%= key[j].toLowerCase().split(' ').join('_')%> value="<%= data[i][key[j]] %>"><br>
+
+                        <% } %>
+                    <% } %>                    
+                    <input type="submit" value="Edit <%= table %>"><br> 
                 </form>
             </div>
-
             <%- include('partials/footer') %>
         </div>
     </body>

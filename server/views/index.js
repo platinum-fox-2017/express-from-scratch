@@ -11,8 +11,8 @@ class View {
         respond.render('home.ejs')
     }
 
-    static editView(respond, id, table) {
-        respond.render('editView.ejs', {id, table});
+    static editView(respond, data, table) {
+        respond.render('editView.ejs', {data, table});
     }
 }
 

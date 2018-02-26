@@ -6,7 +6,6 @@ const controller = require('../server/controller')
 
 routes.get('/', function (request, respond) {
     controller.homePage(respond);
-    // respond.send("I love hacktiv8!");
 })
 
 routes.use('/subject', require('./subject'));

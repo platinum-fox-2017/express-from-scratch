@@ -24,7 +24,11 @@
                         <tr>
                         <% for(let i=0; i<data.length; i++) { %>
                             <% for(let j=0; j<keys.length; j++) { %>
+                                <% if(!data[i][keys[j]]) { %>
+                                <td><%= "unassigned" %></td>
+                                <% } else { %> 
                                 <td><%= data[i][keys[j]] %></td>
+                                <% } %>
                             <% } %>
                             
                             <div method="POST">
@@ -37,7 +41,7 @@
 
             <div>
                 <h4>Add Data <%= table %></h4>
-                <form action="/<%= table.toLowerCase() %>/" method="POST">
+                <form action="/<%= table.toLowerCase() %>" method="POST">
                     <% for(let i=1; i<key.length; i++) { %>
                     <%= key[i] %>:<br>
                     <input type="text" name=<%= key[i].toLowerCase().split(' ').join('_') %>><br>
