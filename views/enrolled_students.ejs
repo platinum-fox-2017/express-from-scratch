@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>
+            WEBSITE SMDIA
+        </title>
+        <link href="../css/form.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1><%= title %></h1>
+        </header>
+
+        <form method="POST">
+            <h4><a href="/subjects">Return to subjects list</a></h4>
+            <table border=1px>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+                <% for (let i = 0; i < arrStudents.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= `${arrStudents[i].Student.first_name} ${arrStudents[i].Student.last_name}` %>
+                        </td>
+                        <td>
+                            <% if (!arrStudents[i].Score) { %>
+                            <a href='/subjects/<%=arrStudents[i].SubjectId%>/enrolledstudents/<%=arrStudents[i].StudentId%>/givescore'>Give Score</a>
+                            <% } else { %>
+                            <%= arrStudents[i].Score %>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </form>
+    </body>
+
+</html>

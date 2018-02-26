@@ -28,44 +28,93 @@ routes.post('/add', (request, response) => {
         .spread((Student, created) => {
             console.log(Student.get({plain: true}))
             console.log(created)
-        response.render('thanks.ejs');
+        response.redirect('/students');
     })
 });
 
 
-routes.get('/edit', (request, response) => {
+routes.get('/edit/:id', (request, response) => {
+    // let id = request.params.id
+    // response.send({nomor: id});
     let obj = {
         title: 'Edit Students Data'
     };
     response.render('edit_students_form.ejs', obj);
 });
 
-routes.post('/edit', (request, response) => {
+routes.post('/edit/:id', (request, response) => {
+    let id = request.params.id
+    // response.send({nomor: id});
     // console.log(request.body)
     var obj = request.body;
-    models.Student.update(obj, {where: {id: obj.ID}})
+    models.Student.update(obj, {where: {id: id}})
     .then(() => {
         console.log(obj);
-        response.render('thanks.ejs');
+        response.redirect('/students');
     })
 });
 
-routes.get('/delete', (request, response) => {
-    let obj = {
-        title: 'Delete Students Data'
-    };
-    response.render('delete_students_form.ejs', obj);
-});
-
-
-routes.post('/delete', (request, response) => {
-    var obj = request.body;
-    models.Student.destroy({where: {id: obj.ID}})
+routes.get('/delete/:id', (request, response) => {
+    // let obj = {
+    //     title: 'Delete Students Data'
+    // };
+    // response.render('delete_students_form.ejs', obj); // USING FORM
+    let id = request.params.id
+    models.Student.destroy({where: {id: id}})
         .then(() => {  
-            console.log(`Successfully deleted ID ${obj.ID}`);
+            console.log(`Successfully deleted ID ${id}`);
         })
     response.render('thanks.ejs');
 });
+
+routes.get('/:id/addsubject', (request, response) => {
+    let id = request.params.id
+    models.Student.findById(id).then(objStudent => {
+        // response.send(objStudent);
+        let obj = {
+            title: 'ADD SUBJECT TO STUDENT',
+            arrStudent: objStudent
+        };
+        response.render('edit_studentsubjects_form.ejs', obj);
+    });
+});
+
+
+routes.post('/:id/addsubject', (request, response) => {
+    // response.send(request.body);
+    let id = request.params.id
+    let getObjSubjects = request.body;
+    
+    let newObj = {}
+    newObj['StudentId'] = id;
+    newObj['SubjectId'] = getObjSubjects.arrSubjectsId; // array of string of subjects Id
+
+    for (let i = 0; i < newObj.SubjectId.length; i++) {
+        models.StudentSubject.create({ StudentId: newObj.StudentId, SubjectId: newObj.SubjectId[i] })
+        .then(() => models.StudentSubject.findOrCreate({where: {StudentId: newObj.StudentId}, defaults: {}}))
+        .spread((StudentSubject, created) => {
+            console.log(StudentSubject.get({plain: true}))
+            // console.log(created)
+            response.redirect('/students');
+        })
+    }
+
+});
+
+
+
+
+
+
+// DELETE USING FORM
+// routes.post('/delete/:id', (request, response) => {
+//     var obj = request.body;
+//     models.Student.destroy({where: {id: obj.ID}})
+//         .then(() => {  
+//             console.log(`Successfully deleted ID ${obj.ID}`);
+//         })
+//     response.render('thanks.ejs');
+// });
 
 
 
