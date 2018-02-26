@@ -1,9 +1,11 @@
 const express = require('express');
 const routes = express.Router();
 const models = require('../models');
+const sequelize = require('sequelize');
 
 routes.get('/', function(request,response) {
-  models.Teacher.findAll({raw:true}).then((dataTeacher)=>{
+  models.Teacher.findAll({include:[{model:models.Subject}],order:sequelize.literal('id ASC')})
+  .then((dataTeacher)=>{
     let obj = {
       title: 'TEACHERS',
       teachers: dataTeacher
@@ -20,7 +22,7 @@ routes.get('/add', function(request, response){
     firstName: '',
     lastName: '',
     email: '',
-    subjectName: ''
+    subjectId: ''
   }
   response.render('teachersForm.ejs', obj);
 })
@@ -30,7 +32,7 @@ routes.post('/add', function(request, response){
     first_name: request.body.newFirstName,
     last_name: request.body.newLastName,
     email: request.body.newEmail,
-    SubjectName: request.body.newSubjectName,
+    SubjectId: request.body.newSubjectId,
     createdAt: new Date(),
     updatedAt: new Date()
   }).then(function(){
@@ -47,7 +49,7 @@ routes.get('/edit/:id', function(request, response){
       firstName: dataTeacher.first_name,
       lastName: dataTeacher.last_name,
       email: dataTeacher.email,
-      subjectName: dataTeacher.SubjectName
+      subjectId: dataTeacher.SubjectId
     }
     response.render('teachersForm.ejs', obj)
   })
@@ -58,7 +60,7 @@ routes.post('/edit', function(request, response){
     first_name: request.body.newFirstName,
     last_name: request.body.newLastName,
     email: request.body.newEmail,
-    SubjectName: request.body.newSubjectName
+    SubjectId: request.body.newSubjectId
   }, { where: { id: request.body.id }
   }).then(function(){
     response.redirect('/teachers')

@@ -1,9 +1,10 @@
 const express = require('express');
 const routes = express.Router();
 const models = require('../models');
+const sequelize = require('sequelize');
 
 routes.get('/', function(request,response) {
-  models.Student.findAll({raw:true}).then((dataStudent)=>{
+  models.Student.findAll({raw:true,order:sequelize.literal('id ASC')}).then((dataStudent)=>{
     let obj = {
       title: 'STUDENTS',
       students: dataStudent

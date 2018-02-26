@@ -12,11 +12,19 @@
       <tr>
         <th>ID</th>
         <th>Subject Name</th>
+        <th>Teacher</th>
       </tr>
       <% for(let i=0;i<subjects.length;i++){ %>
       <tr>
         <td><%= subjects[i].id %></td>
         <td><%= subjects[i].subject_name %></td>
+        <% if(subjects[i].Teachers===null){ %>
+          <td>no teacher yet</td>
+        <% } else { %>
+          <% for(let j=0;j<subjects[i].Teachers.length;j++){ %>
+            <td><%= subjects[i].Teachers[j].first_name + ' ' + subjects[i].Teachers[j].last_name%></br></td>
+          <% } %>
+        <% } %>
       </tr>
       <% } %>
     </table>

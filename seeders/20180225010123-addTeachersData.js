@@ -10,11 +10,10 @@ module.exports = {
       let first = teacher[0];
       let last = teacher[1];
       let imel = teacher[2];
-      let subject = 'unassigned';
       let waktuSekarang = new Date();
       let updateNanti = new Date();
       arrayOfTeachers.push({first_name:first,last_name:last,createdAt:waktuSekarang,
-        updatedAt:updateNanti,email:imel,SubjectName:subject});
+        updatedAt:updateNanti,email:imel});
     }
     return queryInterface.bulkInsert('Teachers',arrayOfTeachers,{});
   },
