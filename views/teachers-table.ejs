@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link href="/style/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="tag-line">
+        <h1>Welcome to Hacktiv8 School !</h1>
+    </div>
+
+    <div id="logo-school">
+        <img src="/images/hacktiv8.png">
+    </div>
+
+    <div class = "add-link">
+        <a href="/teachers/add">Add New Teachers</a>
+    </div>
+
+    <div class="data-table">
+        <table style="border:1px;">
+            <tr>
+                <th>Teacher Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Action</th>
+            </tr>
+            <% teachers.forEach(function(teacher){ %>
+                <tr>
+                    <td><%= teacher.id %></td>
+                    <td><%= teacher.name %></td>
+                    <td><%= teacher.email %></td>
+                    <% if (teacher.Subject != null) { %>
+                        <td><%= teacher.Subject.name %></td>
+                    <% } else {%> 
+                        <td>-</td>
+                    <% } %>
+                    <td>
+                        <a href='teachers/edit/<%= teacher.id %>'>Edit</a>   
+                        <a href='teachers/delete/<%= teacher.id %>'>Delete</a>
+                    </td> 
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

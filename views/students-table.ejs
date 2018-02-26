@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <link href="/style/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="tag-line">
+        <h1>Welcome to Hacktiv8 School !</h1>
+    </div>
+
+    <div id="logo-school">
+        <img src="/images/hacktiv8.png">
+    </div>
+
+    <div class = "add-link"><a href="/students/add">Add New Students</a></div>
+
+    <div class="data-table">
+        <table style="border:1px;">
+            <tr>
+                <th>Students Id</th>
+                <th>Name</th>
+                <th>Email </th>
+                <th>Subject</th>
+                <th>Action</th>
+            </tr>
+            <% students.forEach(function(student){ %>
+                <tr>
+                    <td><%= student.id %></td>
+                    <td><%= student.name %></td>
+                    <td><%= student.email %></td>
+                    <td>
+                        <a href='students/<%= student.id %>/addsubject'>Add Subject</a>   
+                    </td>    
+                    <td>
+                        <a href='students/edit/<%= student.id %>'>Edit</a>   
+                        <a href='students/delete/<%= student.id %>'>Delete</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

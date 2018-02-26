@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <link href="/style/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="tag-line">
+        <h1>Welcome to Hacktiv8 School !</h1>
+    </div>
+
+    <div id="logo-school">
+        <img src="/images/hacktiv8.png">
+    </div>
+
+    <div class = "add-link"><a href="/subjects/add">Add New Subject</a></div>
+
+    <div class="data-table">
+        <table style="border:1px;">
+            <tr>
+                <th>No</th>
+                <th>Students Name</th>
+                <th>Score</th>
+                <th>Desc</th>
+                <th>Action</th>
+            </tr>
+            <% 
+                let i = 1;
+                enrolledstudents.forEach(function(estudent){ %>
+                <tr>
+                    <td><%= i %></td>
+                    <td><%= estudent.Student.name %></td> 
+                    <% if(estudent.score != null) { %>
+                        <td>
+                            <%= estudent.score %>
+                        </td>
+                    <% } else { %>
+                        <td>-</td>
+                    <% } %>
+
+                    <% if(estudent.score > 80) { %>
+                        <td>A</td>
+                    <%  }  else if (estudent.score > 70) { %>
+                        <td>B</td>
+                    <%  }  else if (estudent.score > 60) {  %>
+                        <td>C</td>
+                    <% } else if (estudent.score > 50) { %>
+                        <td>D</td>    
+                    <% } else  {%>
+                        <td>-</td>
+                    <% } i++%>
+                    <td>
+                        <a href="/subjects/<%=estudent.id%>/givescore">Give Score</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+
+
+</body>
+
+</html>
