@@ -9,7 +9,7 @@ studentList.use(bodyParser.urlencoded({extended: false}))
 studentList.get('/', (request, response) => {
     model.Student.findAll({
         raw:true,
-        order: [['id', 'ASC']]
+        order: [['first_name', 'ASC']]
     })
     .then((students) => {
         console.log(students)

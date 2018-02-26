@@ -23,6 +23,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Students</th>
                                 <th>Score</th>
                             </tr>
@@ -30,6 +31,7 @@
                         <tbody>
                             <% for (let i = 0; i < data[0].Students.length; i++) { %>
                                 <tr>
+                                    <td><%= i+1 %></td>
                                     <td><%= data[0].Students[i].first_name + ' ' + data[0].Students[i].last_name %> </td>
                                     <% if (!data[0].StudentSubjects[i].Score){ %>
                                         <td><a href='<%= `givescore/`+ data[0].StudentSubjects[i].StudentId %>'>Give Score</a></td>

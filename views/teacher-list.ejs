@@ -26,6 +26,7 @@
                             <% for (let i = 0; i < keys.length-3; i++){ %>
                             <th><%= keys[i] %></th>
                             <% } %> -->
+                            <th>no</th>
                             <th>id</th>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -37,6 +38,7 @@
                     <tbody>
                         <% for (let i = 0; i < data.length; i++){ %>
                             <tr>
+                                <td><%= i+1 %></td>
                                 <td><%= data[i].id %></td>
                                 <td><%= data[i].first_name %></td>
                                 <td><%= data[i].last_name %></td>

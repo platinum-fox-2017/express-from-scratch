@@ -10,7 +10,7 @@ teacherlist.get('/', (request, response) => {
     console.log(request.body)
     model.Teacher.findAll({
         
-        order: [['id', 'ASC']],
+        order: [['first_name', 'ASC']],
         include: [
             {model: model.Subject}
         ]

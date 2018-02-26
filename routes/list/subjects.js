@@ -47,11 +47,14 @@ subjectlist.get('/:id/enrolledstudents', (req,res)=> {
     // res.send('hello')
     model.Subject.findAll({
         include: [{
-            model: model.StudentSubject
+            model: model.StudentSubject,
         },{
-            model: model.Student
+            model: model.Student,
+            order: [['first_name', 'ASC']]
         }],
-        where: {id: req.params.id}
+        where: {
+            id: req.params.id
+         }
     })
     .then(data => {
         // res.send(data)
