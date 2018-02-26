@@ -51,7 +51,9 @@ class Student {
         View.displayAddData(newStudent);
       }
 
-    });
+    }).catch(err=>{
+      console.log('-----',err.message);
+    })
   }
 
   static readStudent(options){

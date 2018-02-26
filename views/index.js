@@ -29,10 +29,7 @@ class View {
 
   //display table
   static displayTable(res, foundDatas, tableName, newData, method) {
-    // console.log(foundDatas[0].dataValues);
     let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
-    // console.log(props);
-    // let rawData = foundDatas
     let path = tableName.toLowerCase();
     res.render('table.ejs', {
       title: tableName,
@@ -46,7 +43,6 @@ class View {
   }
 
   static displayStudentTable(res, foundDatas, tableName, newData, method) {
-    // console.log(foundDatas[0]);
     let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
     let path = tableName.toLowerCase();
     res.render('./students_view/tableStudent.ejs', {
@@ -61,10 +57,7 @@ class View {
   }
 
   static displayTeacherTable(res, foundDatas, tableName, newData, method) {
-    // console.log(foundDatas[0].dataValues);
     let props = Object.getOwnPropertyNames(foundDatas[0].dataValues);
-    // console.log(props);
-    // let rawData = foundDatas
     let path = tableName.toLowerCase();
     res.render('./teachers_view/tableTeacher.ejs', {
       title: tableName,
@@ -109,34 +102,6 @@ class View {
   static redirect(res, route){
     res.redirect(route);
   }
-  // <ol>
-  // <% for (let j = 0; j < foundDatas[i].Teachers.length; j++) { %>
-  //   <li><%= foundDatas[i].Teachers[j].fullName() %></li>
-  // <% } %>
-  // </ol>
-
-
-  // <% for (let i = 0; i < teachers.length; i++) { %>
-  //   <tr>
-  //   <% let datas = Object.values(teachers[i].dataValues) %>
-  //   <% for (var j = 0; j < datas.length; j++) { %>
-  //     <td><%= datas[j] %></td>
-  //   <% } %>
-  //   </tr>
-  // <% } %>
-
-  // <% if (title === 'Students') { %>
-  //   <a href="/Students/add">
-  //     <button type="button" name="button">
-  //       Add Student
-  //     </button>
-  //   </a>
-  // <% } %>
-
-  // <% if (newData) { %>
-  //   <% let info = `Added ${newData.first_name} ${newData.last_name} ${newData.email}` %>
-  //   <h1><%= info %></h1>
-  // <% } %>
 
 }
 

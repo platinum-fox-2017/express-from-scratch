@@ -1,6 +1,7 @@
 'use strict'
 const db = require('../models/index.js');
-const View = require('../views/index.js')
+const View = require('../views/index.js');
+const express = require('express');
 
 class Subject {
   constructor() {
@@ -37,11 +38,9 @@ class Subject {
   // CRUD
   static addSubject(options, res){
     db.Subject.create({
-      first_name: options[0],
-      last_name: options[1],
+      subject_name: options[0],
       createdAt: new Date(),
-      updatedAt: new Date(),
-      email: options[2]
+      updatedAt: new Date()
     }).then(newSubject => {
       if (res) {
         Subject.tableResponse(res, newSubject, 'added')
@@ -141,15 +140,106 @@ class Subject {
     });
   }
 
-  static subjectStudentsList(res, subjectId){
+
+  static form(req,res){
+    res.render('form.ejs', {
+      title:'Subject',
+      h1:'Subject Data',
+      path:'subjects',
+      err: null
+    })
+  }
+
+  static formPost(req,res){
+    let subject_name = req.body.subject_name;
+    db.Subject.create({
+      subject_name: subject_name,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }).then(newSubject => {
+        Subject.tableResponse(req, res)
+    }).catch(err=>{
+      res.render('form.ejs', {
+        title:'Subject',
+        h1:'Subject Data',
+        path:'subjects',
+        err : err
+      })
+    })
+  }
+
+  static editSubject(req,res){
+    let id = req.params.id
+    res.render('formEdit.ejs', {
+      title:'Edit Subject',
+      h1:'Edit Subject Data',
+      id: id,
+      path:'subjects',
+      err: null
+    })
+  }
+
+  static editSubjectPost(req, res){
+    let id = req.params.id
+    let subject_name = req.body.subject_name;
+
+    db.Subject.findOne({
+      where:{
+        id:id
+      }
+    }).then(foundSubject => {
+      let updateData = {
+        subject_name: subject_name
+      };
+      foundSubject.update(updateData).then(()=>{
+        View.redirect(res, '/subjects');
+      })
+    }).catch(err =>{
+      res.render('formEdit.ejs', {
+        title:'Edit Subject',
+        h1:'Edit Subject Data',
+        id: id,
+        path:'subjects',
+        err: err
+      })
+    });
+  }
+
+  static deleteSubjectWeb(req,res){
+    let id = req.params.id
+    db.Subject.findOne({
+      where:{
+        id:id
+      }
+    }).then(foundSubject => {
+        return foundSubject.destroy()
+    }).then(()=>{
+      View.redirect(res, '/subjects');
+    });
+  }
+
+  static subjectStudentsList(req, res){
+    let subjectId = req.params.subjectId
     db.Subject.findOne({
       where:{id:subjectId},
       include:[{
         model: db.Student,
         attributes: ['id',['first_name', 'First Name'], ['last_name', 'Last Name']]
-      },{model: db.StudentSubject}]
+      },
+      {
+        model: db.StudentSubject
+      }]
     }).then(foundSubject=>{
-      View.displayEnrolledStudents(res, foundSubject, 'Subjects', subjectId)
+      // View.displayEnrolledStudents(res, foundSubject, 'Subjects', subjectId)
+      let params = {
+        title: 'Subjects',
+        foundDatas: foundSubject.Students,
+        StudentSubjects: foundSubject.StudentSubjects,
+        subject_name:foundSubject.subject_name,
+        path: 'subjects',
+        subjectId:subjectId
+      }
+      res.render('./subjects_view/subjectStudentsList.ejs', params)
     })
   }
 
