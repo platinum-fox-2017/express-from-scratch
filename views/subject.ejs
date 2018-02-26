@@ -33,9 +33,9 @@
                 </ul>
               <%})%>
             </td>
-            <td> <a href=" "><button type="button" name="button">SHOW ENROLLED STUDENTS</button></a></td>
+            <td> <a href="/subjects/enroll/<%=subject.id%>"><button type="button" name="button">SHOW ENROLLED STUDENTS</button></a></td>
             <td>
-            <a href="/subjects/updateTeachers">
+            <a href="/subjects/updateSubject">
               <button type="button" name="button">EDIT</button> </a>
             <br>
           <a href="subject/delete/<%=subject.id%>"onclick="return confirm('Yakin mau delete Guru: \n<%=subject.first_name%>' '<%=subject.last_name%>\n Klik cancel untuk membatalkan')">

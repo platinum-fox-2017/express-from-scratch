@@ -1,0 +1,35 @@
+<%include ./partials/header%>
+<container>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          </table>
+            <br>
+            <table border = '3'>
+              <thead>
+                <td>SUBJECT ID</td>
+                <td>SUBJECT NAME</td>
+                <td>STUDENT ID</td>
+                <td>STUDENT NAME</td>
+                <td>STUDENT SCORE</td>
+              </thead>
+              <tbody>
+                <%dataSubject.Students.forEach(student=>{%>
+                  <tr>
+                    <td><%=dataSubject.id%></td>
+                    <td><%=dataSubject.name%></td>
+                    <td><%=student.id%></td>
+                    <td><%=student.name%></td>
+                    <td>
+                      <%if(student.Score.score===0){%>
+                        <a href="/subjects/assignScore/<%=dataSubject.id%>/<%=student.id%>">ASSIGN</a>
+                      <%}else{%>
+                        <%=student.Score.score%>
+                      <%}%>
+                    </td>
+                  </tr>
+                <%})%>
+              </tbody>
+          </table>
+        </div>
+    </div>
+</container>

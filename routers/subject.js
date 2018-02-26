@@ -16,14 +16,11 @@ router.get('/',function(req,res){
 
 router.post('/add',function(req,res){
   let obj = {
-    first_name:req.body.first_name,
-    last_name:req.body.last_name,
-    email:req.body.email,
+    name:req.body.first_name,
     createdAt: new Date(),
     updatedAt: new Date(),
-    id_subject:req.body.id_subject
   }
-  Students.create(obj).
+  Subject.create(obj).
   then(function(dataStudents){
     res.redirect(req.get(`referer`))
   }).catch(function(err){
@@ -32,22 +29,21 @@ router.post('/add',function(req,res){
 })
 
 router.get('/update/:id',(req, res)=> {
-    Students.findById(req.params.id).then(dataStudents=>{
-      res.render('updateStudents',{dataStudents:dataStudents})
+    Subject.findById(req.params.id).then(dataSubjects=>{
+      res.render('updateSubject',{dataSubjects:dataSubjects})
     })
 })
 
 router.post('/update/:id',(req, res)=> {
-    objStudent={
-        name :req.body.name,
-        email:req.body.email
+    objSubject={
+        name :req.body.name
     }
-    Students.update(objStudent,{
+    Subject.update(objSubject,{
         where:{
             id:req.params.id
         }
    }).then(()=>{
-       res.redirect('/students')
+       res.redirect('/subjects')
    }).catch(err=>{
        res.send(err)
    })
@@ -59,36 +55,62 @@ router.get('/delete/:id',(req, res)=> {
             id:req.params.id
         }
     }).then(()=>{
-        res.redirect('/students')
+        res.redirect('/subjects')
     }).catch(err=>{
         res.send(err)
     })
 })
 
-router.get('/assign/:id',(req,res)=>{
-    Students.findById(req.params.id)
-    .then(dataStudents=>{
-      Subject.findAll()
-      .then(dataSubject=>{
-        // res.send(dataSubject)
-        res.render('assignSubjectStudent',{dataStudents:dataStudents,dataSubject:dataSubject})
+router.get('/enroll/:id',(req,res)=>{
+    Subject.findOne({
+      where:{
+        id : req.params.id,
+      },
+      include : [Students]
+    })
+    .then(dataSubject=>{
+      // res.send(dataSubject)
+      res.render('showEnrollStudents',{dataSubject:dataSubject})
+    })
+})
+
+router.get('/assignScore/:id/:id2', (req,res) => {
+    Score.findAll({
+      where:{
+
+      }
+    }).then(dataScore=>{
+      Students.findOne({
+        where:{
+          id:req.params.id
+        }
+      })
+      .then(dataStudents=>{
+        Subject.findOne({
+          where:{
+            id:req.params.id2
+          }
+        }).then(dataSubject=>{
+          // res.send(dataSubject)
+          res.render('assignScore',{dataScore:dataScore,dataStudents:dataStudents,dataSubject:dataSubject})
+        })
       })
     })
 })
 
-router.post('/assign/:id',(req,res)=>{
+
+router.post('/assignScore/:id/:id2',(req,res)=>{
   let obj = {
-    score : 0,
-    id_subject : parseInt(req.body.id_subject),
-    id_student : parseInt(req.params.id),
-    createdAt: new Date(),
-    updatedAt: new Date()
+    score : req.body.score,
   }
-  console.log(obj);
-  Score.create(obj).
+  Score.update(obj,{
+    where:{
+      id_student:req.params.id,
+      id_subject:req.params.id2
+    }
+  }).
   then(function(){
-    console.log(obj);
-    res.redirect(`/students`)
+    res.redirect(`/subjects`)
   }).catch(function(err){
     res.send(err)
   })

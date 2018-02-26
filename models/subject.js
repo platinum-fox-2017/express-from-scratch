@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     })
     Subject.belongsToMany(models.Students,{
       through:'Score',
-      foreignKey:'id_student'
+      foreignKey:'id_subject'
     })
   };
   return Subject;
