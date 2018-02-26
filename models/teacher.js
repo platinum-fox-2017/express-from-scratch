@@ -5,8 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
+      unique: true,
       validate: {
-        isEmail: true
+        isEmail: {
+          args: true,
+          msg: "email format is incorrect"
+        }
       }
     },
     id_subject: DataTypes.INTEGER

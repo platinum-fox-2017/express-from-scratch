@@ -14,7 +14,8 @@ router.get('/', function (req,res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('add-student')
+  let err = ''
+  res.render('add-student', {err})
 })
 
 router.post('/add', function (req, res) {
@@ -25,6 +26,8 @@ router.post('/add', function (req, res) {
   }
   models.Student.create(obj).then(students => {
     res.redirect('/students')
+  }).catch(err => {
+    res.render('add-student', { err })
   })
 })
 

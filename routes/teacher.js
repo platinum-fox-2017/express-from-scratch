@@ -11,7 +11,6 @@ router.get('/', function (req, res) {
     }]
   }).then(teachers => {
     let data = JSON.parse(JSON.stringify(teachers))
-    console.log(data);
     res.render('teacher', {data_teacher: teachers})
   })
 })
@@ -38,7 +37,6 @@ router.get('/edit/:id', function (req,res) {
   models.Teacher.findById(req.params.id).then(teachers => {
     models.Subject.findAll().then(subjects => {
       res.render('edit-teacher', {data_teacher: teachers, data_subject: subjects})
-
     })
   })
 })

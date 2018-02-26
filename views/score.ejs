@@ -5,7 +5,7 @@
     <title>Give Score</title>
   </head>
   <body>
-    <form class="" action="subjects/<%=data.id%>/give_score" method="post">
+    <form class="" action="/subjects/<%=data.Subject.id%>/<%=data.Student.id%>/givescore" method="post">
       <input type="number" placeholder="score" name="score">
       <button>SUBMIT</button>
     </form>
