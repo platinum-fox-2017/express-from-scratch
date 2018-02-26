@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const { Student, Subject, StudentSubject } = require('../models')
-
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 router.get('/', (req, res) => {
     Student.findAll({
         order: [
