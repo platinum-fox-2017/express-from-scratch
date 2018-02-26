@@ -6,9 +6,28 @@ module.exports = (sequelize, DataTypes) => {
     email:{
       type:DataTypes.STRING,
       validate:{
-        isEmail: true,
+        isEmail: {
+          args: true,
+          msg : 'gunakan format email yang benar'
+        },
+        isUnique:(value, next)=>{
+          Teacher.findAll({
+            where:{
+              email:value
+            }
+          }).then(data =>{
+            if(data.length === 0){
+              next()
+            }else{
+              next('email telah digunakan')
+            }
+          }).catch(err=>{
+            nex(err)
+          })
+        }
       }
-    }
+    },
+    id_subject:DataTypes.INTEGER,
   }, {});
 
   Teacher.associate = function (models) {

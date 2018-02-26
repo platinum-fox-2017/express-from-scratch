@@ -21,7 +21,7 @@ let objTeacher ={
 }
 router.get('/add',(req, res)=> {
     Model.Subject.findAll().then(data=>{
-        res.render('./teacher/v_teacherForm',{subject:data,teacher:objTeacher, action:'add'})  
+        res.render('./teacher/v_teacherForm',{error:null, subject:data,teacher:objTeacher, action:'add'})  
     })          
 })
 router.post('/add',(req, res)=> {
@@ -33,7 +33,10 @@ router.post('/add',(req, res)=> {
    }).then(()=>{
        res.redirect('/teachers')
    }).catch(err=>{
-       res.send(err)
+    //    res.send()
+        Model.Subject.findAll().then(data=>{
+        res.render('./teacher/v_teacherForm',{error:err.errors[0].message, subject:data,teacher:objTeacher, action:'add'})  
+    })  
    })
 })
 

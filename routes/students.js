@@ -17,7 +17,7 @@ let objStudent ={
     email:'',
 }
 router.get('/add',(req, res)=> {
-    res.render('./student/v_studentForm',{student:objStudent, action:'add'})          
+    res.render('./student/v_studentForm',{student:objStudent, action:'add', error:null})          
 })
 router.post('/add',(req, res)=> {
     Model.Student.create({
@@ -27,7 +27,7 @@ router.post('/add',(req, res)=> {
    }).then(()=>{
        res.redirect('/students')
    }).catch(err=>{
-       res.send(err)
+        res.render('./student/v_studentForm',{student:objStudent, action:'add', error:err.errors[0].message})          
    })
 })
 
