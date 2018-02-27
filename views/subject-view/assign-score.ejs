@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assign Score Page</title>
+</head>
+<body>
+    <center>
+        <h1>Assign Score</h1>
+        <div>
+            <p>Student Name: <%=data[0].Student.firstName%> <%=data[0].Student.lastName%></p>
+            <p>Subject Name: <%=data[0].Subject.name%></p>
+        </div>
+        <div>
+        <form action="/subject/enroll/<%=subjectId%>/<%=data[0].Subject.id%>/<%=data[0].Student.id%>" method="POST" class="score">
+            <input type="text" name="score" id="score" placeholder="Score, ex:79">
+            <button type="submit">Give Score</button>
+        </form>
+        </div>
+    </center>
+</body>
+</html>

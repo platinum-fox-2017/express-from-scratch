@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Student Page</title>
+</head>
+<body>
+    <center>
+        <h1>Add Student</h1>
+        <div>
+        <form action="/teacher/edit/<%=data.id%>" method="POST" class="teacher">
+            <input type="text" name="firstName" id="firstName" placeholder= "First Name" value="<%=data.firstName%>">
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="<%=data.lastName%>">
+            <input type="text" name="email" id="email" placeholder="Email" value="<%=data.email%>">
+            <select class="form-control" name="subjectId">
+                <% dataSubject.map(element=>{ %>
+                <option value="<%=element.id%>"><%=element.name%></option>
+                <% }) %>
+            </select>
+            <button type="submit">Update Teacher Data</button>
+        </form>
+        </div>
+    </center>
+</body>
+</html>

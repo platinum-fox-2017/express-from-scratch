@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Subject Page</title>
+</head>
+<body>
+    <center>
+        <h1>Subject List</h1>
+        <div>
+        <form action="subject/add" method="POST" class="subject">
+            <input type="text" name="name" id="name" placeholder="Subject Name">
+            <button type="submit">Add New Subject</button>
+        </form>
+        </br>
+        </div>
+        <div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Subject Name</th>
+                        <th>Teachers</th>
+                        <th>Students</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.map(element=>{ %>
+                <tr>
+                    <td><%=element.id%></td>
+                    <td><%=element.name%></td>
+                    <td><%=element.Teachers[0].firstName%> <%=element.Teachers[0].lastName%></td>
+                    <td>
+                        <a href="/subject/enroll/<%= element.id %>">Enrolled Student</a>
+                    </td>
+                    <td>
+                        <a href="/subject/edit/<%= element.id %>"><button>Edit</button></a>
+                        <a href="/subject/delete/<%= element.id %>"><button onclick="return confirm('Are you sure you want to delete <%=element.name%>?');">Delete</button></a>
+                    </td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </center>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Teacher Page</title>
+</head>
+<body>
+    <center>
+        <h1>Teacher List</h1>
+        <div>
+        <form action="teacher/add" method="POST" class="teacher">
+            <input type="text" name="firstName" id="firstName" placeholder="First Name">
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name">
+            <input type="text" name="email" id="email" placeholder="Email">
+            <select class="form-control" name="subjectId">
+                <% dataSubject.map(element=>{ %>
+                <option value="<%=element.id%>"><%=element.name%></option>
+                <% }) %>
+            </select>
+            <button type="submit">Add New Teacher</button>
+        </form>
+        </div>
+    </br>
+        <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                    <th>Subject</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.map(element=>{ %>
+                <tr>
+                    <td><%=element.id%></td>
+                    <td><%=element.firstName%></td>
+                    <td><%=element.lastName%></td>
+                    <td><%=element.email%></td>
+                    <td>
+                        <a href="teacher/edit/<%= element.id %>"><button>Edit</button></a>
+                        <a href="teacher/delete/<%= element.id %>"><button onclick="return confirm('Are you sure you want to delete <%=element.firstName%> <%=element.lastName%>?');">Delete</button></a>
+                    </td>
+                        <%if(element.subjectId !== null){%>
+                            <td><%=element.Subject.name %></td>
+                            <%}else{%>
+                            <td>unassigned</td>
+                            <%}%>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        </div>
+    </center>
+</body>
+</html>

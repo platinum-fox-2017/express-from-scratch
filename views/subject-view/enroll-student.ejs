@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>View Student Score</title>
+</head>
+<body>
+    <center>
+        <h1>Class name</h1>
+        <div>
+            
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Student Name</th>
+                        <th>Score</th>
+                        <th>Desc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%data.map(element => {%>
+                    <tr>
+                        <td><%=element.id%></td>
+                        <td><%=element.Student.firstName%> <%=element.Student.lastName%></td>
+                        <%if (element.score === null){%>
+                        <td>
+                            <a href="/subject/enroll/<%=subjectId%>/<%=element.id%>/<%=element.Student.id%>">Give Score</a>
+                        </td>
+                        <%}else{%>
+                        <td><%=element.score%></td>
+                        <%}%>
+                        <td><%=scoringHelper(element.score)%></td>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+        </div>
+    </center>
+</body>
+</html>
