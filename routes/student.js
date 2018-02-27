@@ -14,7 +14,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/add', (req, res) => {
-  res.render('student-insert.ejs')
+  res.render('student-insert.ejs', {err: ''});
 });
 
 routes.post('/add', (req, res) => {
@@ -25,17 +25,25 @@ routes.post('/add', (req, res) => {
     name: name,
     email: email,
     phone: phone
-  }).then(student=>{
+  })
+    .then(student => {
       res.redirect('/student');
     })
-    .catch(err=>{
-      console.log(err)
+    .catch(err => {
+      console.log(err.message);
+      res.render('student-insert.ejs', {err: err.message});
     });
 });
 
 routes.get('/:id/edit', (req, res) => {
   let id = req.params.id;
-  res.render('student-edit.ejs', {id: id})
+  model.Student.findOne({where :{id: id}})
+    .then(student => {
+      res.render('student-edit.ejs', {student: student})
+    })
+    .catch(err => {
+      console.log(err);
+    })
 })
 
 routes.post('/:id/edit', (req, res) => {

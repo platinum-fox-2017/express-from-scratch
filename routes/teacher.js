@@ -35,16 +35,24 @@ routes.post('/:id/edit', (req, res) => {
 });
 
 routes.get('/add', (req, res) => {
-  res.render('teacher-insert.ejs')
+  model.Subject.findAll()
+    .then(subjects => {
+      res.render('teacher-insert.ejs', {subjects: subjects})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  
 });
 
 routes.post('/add', (req, res) => {
   let name = req.body.name;
   let email = req.body.email;
+  let subjectId = req.body.SubjectId;
   model.Teacher.create({
     name: name,
     email: email,
-    SubjectId: 2
+    SubjectId: subjectId
   }).then(teacher=>{
       res.redirect('/teacher');
     })
