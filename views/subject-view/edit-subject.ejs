@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Student Page</title>
+</head>
+<body>
+    <center>
+        <h1>Edit Student</h1>
+        <div>
+        <form action="/subject/edit/<%=data.id%>" method="POST" class="subject">
+            <input type="text" name="name" id="name" placeholder="Name" value="<%=data.name%>">
+            <button type="submit">Update Subject Data</button>
+        </form>
+        </div>
+    </center>
+</body>
+</html>
