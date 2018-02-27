@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>subject list</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>Subject List</h2>
+  <br>
+  <br>
+  <div class="col-md-2">
+    <form action="/subject" method="post">
+      <label for="subject_name">Subject Name</label><br>
+      <input type="text" name="subject_name" value="" placeholder="subject_name"><br><br>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+    <div class="col-md-10">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Teacher</th>
+                <th>Action</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let count = 1 %>
+              <% data.forEach(subject => { %>
+                <tr>
+                  <td><%= count++ %></td>
+                  <td><%= subject.id %></td>
+                  <td><%= subject.subject_name %></td>
+                    <td>
+                      <ol>
+                        <% subject.Teachers.forEach(teacher => { %>
+                        <li>
+                          <%= teacher.first_name + ' ' + teacher.last_name %>
+                        </li>
+                        <% }) %>
+                      </ol>
+                    </td>
+                  <td>
+                    <a href="/subject/<%= subject.id %>/enrolledstudents">Enrolled Students</a>
+                  </td>
+                  <td>
+                    <a class="button is-link" href="/subject/edit/<%= subject.id %>">edit</a><br>
+                    <a class="button is-link" href="/subject/delete/<%= subject.id %>">delete</a>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+        </table>
+    </div>
+  </div>
+  </body>
+</html>

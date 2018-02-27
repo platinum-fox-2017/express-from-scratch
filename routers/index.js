@@ -1,13 +1,9 @@
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
+const Model = require('../models')
 
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
   res.render('index')
 })
 
-router.get('/form', (req,res) => {
-  console.log('hahahah');
-  res.render('form')
-})
-
-module.exports = router
+module.exports = router;
