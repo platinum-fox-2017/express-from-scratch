@@ -1,0 +1,30 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Students Data</title>
+
+   <link rel="stylesheet" href="/css/style.css">
+</head>
+
+    <body>
+        <ul id="nav_bar">
+             <li><a href="/students">Students</a></li>
+             <li><a href="/teachers">Teachers</a></li>
+             <li><a href="/subjects">Subjects</a></li>
+        </ul>
+        <h1>
+            Edit Students Data
+        </h1>
+
+        <form action='/students/edit/' method='post'>
+            <input type='hidden' value= "<%=tempObj.id%>" name = "id">
+            First name: <br>
+            <input type='text' value= "<%=tempObj.first_name%>" name='firstname'><br>
+            Last name: <br>
+            <input type='text' value= "<%=tempObj.last_name%>" name='lastname'><br>
+            Email:<br>
+            <input type='text' value= "<%=tempObj.email%>" name = 'email'><br>
+            <input type='submit' value = 'Edit Student'>
+        </form>
+    </body>
