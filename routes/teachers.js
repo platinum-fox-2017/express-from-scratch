@@ -4,7 +4,7 @@ const models = require('../models');
 const sequelize = require('sequelize');
 
 routes.get('/', function(request,response) {
-  models.Teacher.findAll({include:[{model:models.Subject}],order:sequelize.literal('id ASC')})
+  models.Teacher.findAll({include:[{model:models.Subject}],order:sequelize.literal('first_name ASC')})
   .then((dataTeacher)=>{
     let obj = {
       title: 'TEACHERS',

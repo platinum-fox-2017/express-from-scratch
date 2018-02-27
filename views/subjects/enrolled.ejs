@@ -6,14 +6,17 @@
     <h1><%= title %></h1>
     <table align="center">
       <tr>
+        <th>No</th>
         <th>Student Name</th>
         <th>Score</th>
       </tr>
       <% for(let i=0;i<subjects[0].Students.length;i++){ %>
       <tr>
+        <td><%= i+1 %></td>
         <td><%= subjects[0].Students[i].first_name + ' ' + subjects[0].Students[i].last_name %></td>
         <% if(subjects[0].Students[i].StudentSubject.score===null){ %>
-          <td><a href="/subjects/givescore/<%= subjects[0].Students[i].StudentSubject.id %>"
+          <td><a href="/subjects/<%= subjects[0].Students[i].StudentSubject.StudentId %>/
+            <%= subjects[0].Students[i].StudentSubject.SubjectId %>/givescore"
             >Give Score</a></td>
         <% } else { %>
           <td><%= subjects[0].Students[i].StudentSubject.score %></td>

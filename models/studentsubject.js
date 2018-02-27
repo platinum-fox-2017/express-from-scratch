@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     score: DataTypes.INTEGER
   }, {});
   StudentSubject.associate = function(models) {
-    // associations can be defined here
+    StudentSubject.belongsTo(models.Student);
+    StudentSubject.belongsTo(models.Subject);
   };
   return StudentSubject;
 };

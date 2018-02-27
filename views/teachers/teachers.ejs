@@ -11,16 +11,20 @@
       <a href="/teachers/add">Add Teacher</a>
       <table align="center">
         <tr>
+          <th>No</th>
           <th>ID</th>
-          <th>Name</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Email</th>
           <th>Subject</th>
           <th>Option</th>
         </tr>
         <% for(let i=0;i<teachers.length;i++){ %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= teachers[i].id %></td>
-          <td><%= teachers[i].first_name + ' ' + teachers[i].last_name %></td>
+          <td><%= teachers[i].first_name %></td>
+          <td><%= teachers[i].last_name %></td>
           <td><%= teachers[i].email %></td>
           <% if(teachers[i].SubjectId===null){ %>
             <td>unassigned</td>
