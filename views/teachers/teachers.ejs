@@ -1,0 +1,47 @@
+<!doctype html>
+
+    <head>
+      <meta charset="utf-8">
+      <title>Teachers Data</title>
+
+       <link rel="stylesheet" href="/css/style.css">
+    </head>
+
+    <body>
+        <ul id="nav_bar">
+             <li><a href="/students">Students</a></li>
+             <li><a href="/teachers">Teachers</a></li>
+             <li><a href="/subjects">Subjects</a></li>
+        </ul>
+        <h1>
+            All Teachers Data
+        </h1>
+        <h3>
+            <a href = "/teachers/add">add teacher data</a>
+        </h3>
+        <div>
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Options</th>
+                </tr>
+                    <% for(let i = 0; i < teachers.length; i++){%>
+                        <tr>
+                            <td><%=i+1%></th>
+                            <td><%=teachers[i].id%></td>
+                            <td><%=teachers[i].first_name%></td>
+                            <td><%=teachers[i].last_name%></td>
+                            <td><%=teachers[i].email%></td>
+                            <td><%=teachers[i].Subject.subject_name%></td>
+                            <td><a href="/teachers/edit/<%=teachers[i].id%>">Edit</a> |
+                            <a href="/teachers/delete/<%=teachers[i].id%>">Delete</td>
+                        </tr>
+                    <%}%>
+            </table>
+        </div>
+    </body>
