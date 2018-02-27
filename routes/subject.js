@@ -35,15 +35,15 @@ router.get('/:id/enrolledstudents', (req, res) => {
             include: [
                 Student, Subject
             ],
-            attributes: ['id'],
+            attributes: ['id', 'score'],
             where: { subjectId: id },
             order: [
                 [Student, 'first_name', 'ASC']
             ]
         }
     ).then((data) => {
-        res.send(data)
-        // res.render('subject/enrolledstudent', { data: data })
+        // res.send(data)
+                res.render('subject/enrolledstudent', { data: data })
     }).catch((err) => { console.log(err) })
 })
 
@@ -55,12 +55,11 @@ router.get('/:id/:studentId/give-score', (req, res) => {
             include: [
                 Student, Subject
             ],
-            attributes: ['id'],
             where: { subjectId: id, studentId: studentId }
         }
     ).then((data) => {
-        res.send(data)
-        // res.render('subject/score', { data: data })
+        // res.send(data)
+        res.render('subject/score', { data: data })
     }).catch((err) => { console.log(err) })
 })
 
