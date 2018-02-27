@@ -15,13 +15,25 @@ routes.get('/', function(request,response){
   });
 });
 
-routes.get('/enrolled/:id', function(request,response){
+routes.get('/:id/enrolled', function(request,response){
   models.Subject.findAll({include:[{model:models.Student}],
     where:{id:request.param('id')}
   }).then((dataSubject)=> {
     let obj = {
       title: 'ENROLLED STUDENT',
-      formAction: '/subjects/enrolled',
+      subjects: dataSubject
+    }
+    response.render('subjects/enrolled.ejs',obj)
+    // response.send(dataSubject)
+  })
+})
+
+routes.get('/:id/givescore', function(request,response){
+  models.Subject.findAll({include:[{model:models.Student}],
+    where:{id:request.param('id')}
+  }).then((dataSubject)=> {
+    let obj = {
+      title: 'ENROLLED STUDENT',
       subjects: dataSubject
     }
     response.render('subjects/enrolled.ejs',obj)

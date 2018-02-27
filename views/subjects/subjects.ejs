@@ -26,7 +26,7 @@
             <td><%= subjects[i].Teachers[j].first_name + ' ' + subjects[i].Teachers[j].last_name%></br></td>
           <% } %>
         <% } %>
-        <td><a href="/subjects/:id/enrolled/<%= subjects[i].id %>">Enrolled Students</a></td>
+        <td><a href="/subjects/<%= subjects[i].id %>/enrolled">Enrolled Students</a></td>
       </tr>
       <% } %>
     </table>
