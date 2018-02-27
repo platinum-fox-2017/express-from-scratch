@@ -32,7 +32,7 @@
             <% if (students[i].score == null) { %>
               <a href="/subjects/<%= students[i].id %>/give-score"> Give Score </a>
             <% } else { %>
-              <%= students[i].score %>
+              <%= students[i].alphabetScore() %>
             <% } %>
             </td>
           </tr>
