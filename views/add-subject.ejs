@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>SIT Permata Bunda</title>
+    <meta charset="utf-8">
+    <link href="../styles/pages.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <nav class="navbar" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">SIT Permata Bunda</a>
+        <ul>
+            <li><a href="/subject">Subject</a></li>
+            <li><a href="/student">Student</a></li>
+            <li><a href="/teacher">Teacher</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="box">
+      <form class="pure-form pure-form-stacked" action="/student/<%=student.id %>/addsubject" method="post">
+          <fieldset>
+            <label for="first_name">First Name</label>
+            <input name="first_name" type="text" placeholder="First Name" value="<%=student.first_name %>" readonly>
+          
+            <label for="last_name">Last Name</label>
+            <input name="last_name" type="text" placeholder="Last Name" value="<%=student.last_name %>" readonly>
+          
+            <label for="email">Email</label>
+            <input name="email" type="email" placeholder="Email" value="<%=student.email %>" readonly>
+            
+            <label for"subject">Subject:</label>
+            <select name="SubjectId">
+                <%subjects.forEach((subject)=>{%>
+                  <option value="<%=subject.id%>"><%= subject.subject_name%></option>
+                <%})%>
+            </select>
+            <button type="submit" class="pure-button pure-button-primary">Add Subject</button>
+          </fieldset>
+        </form>
+    </div>
+  </body>
+</html>

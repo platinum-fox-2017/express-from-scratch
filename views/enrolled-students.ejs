@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>SIT Permata Bunda</title>
+    <meta charset="utf-8">
+    <link href="../styles/pages.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <nav class="navbar" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">SIT Permata Bunda</a>
+        <ul>
+            <li class="menu"><a href="/subject">Subject</a></li>
+            <li class="menu"><a href="/student">Student</a></li>
+            <li class="menu"><a href="/teacher">Teacher</a></li>
+            <li class="menu"><a href="#about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="table">
+      <p><%= students[0].Subjects[0].subject_name%></p>
+      <table class="table-striped">
+        <thead>
+          <th>No</th>
+          <th>Students Name</th>
+          <th>Score</th>
+          <th>Desc</th>
+        </thead>
+        <tbody>
+          <%students.forEach((student,i)=>{%>
+            <tr>
+              <td><%= i+1%></td>
+              <td><%= student.getFullName()%></td>
+              <%if(!student.Subjects[0].StudentSubject.score) {%>
+                <td><a href="/subject/<%=student.Subjects[0].id%>/<%=student.id%>/givescore"></span>Give Score</a></td>
+              <%} else {%>
+                <td><%=student.Subjects[0].StudentSubject.score%></td>
+              <%}%>
+              <%if(!student.Subjects[0].StudentSubject.score) {%>
+                <td>-</td>
+                <%} else if(student.Subjects[0].StudentSubject.score >= 90 && student.Subjects[0].StudentSubject.score <= 100) {%>
+                <td>A</td>
+                <%} else if(student.Subjects[0].StudentSubject.score >= 80 && student.Subjects[0].StudentSubject.score <= 89) {%>
+                <td>B</td>
+                <%} else if(student.Subjects[0].StudentSubject.score >= 70 && student.Subjects[0].StudentSubject.score <= 79) {%>
+                <td>C</td>
+                <%} else if(student.Subjects[0].StudentSubject.score >= 60 && student.Subjects[0].StudentSubject.score <= 69) {%>
+                <td>D</td>
+                <%} else {%>
+                <td>F</td>
+                <%}%>
+            </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

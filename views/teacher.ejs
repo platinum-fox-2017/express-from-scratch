@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>SIT Permata Bunda</title>
+    <meta charset="utf-8">
+    <link href="../styles/pages.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+    <body>
+    <nav class="navbar" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">SIT Permata Bunda</a>
+        <ul>
+            <li class="menu"><a href="/subject">Subject</a></li>
+            <li class="menu"><a href="/student">Student</a></li>
+            <li class="menu"><a href="/teacher">Teacher</a></li>
+            <li class="menu"><a href="#about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="box">
+      <form class="pure-form pure-form-stacked" action="/teacher" method="post">
+          <fieldset>
+            <label for="first_name">First Name</label>
+            <input name="first_name" type="text" placeholder="First Name">
+          
+            <label for="last_name">Last Name</label>
+            <input name="last_name" type="text" placeholder="Last Name">
+          
+            <label for="email">Email</label>
+            <input name="email" type="email" placeholder="Email">
+          
+            <button type="submit" class="pure-button pure-button-primary">Add New Teacher</button>
+          </fieldset>
+        </form>
+    </div>
+
+    <div class="table">
+      <table class="table-striped">
+        <thead>
+          <th>No</th>
+          <th>ID</th>
+          <th>Teacher Name</th>
+          <th>Email</th>
+          <th>Subject Name</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <%teacher.forEach((data,i)=>{%>
+            <tr>
+              <td><%=i+1%></td>
+              <td><%=data.id%></td>
+              <td><%=data.getFullName()%></td>
+              <td class="email"><%=data.email%></td>
+              <%if(data.SubjectId == null) {%>
+                <td>unassigned</td>
+              <%} else {%>
+                <td><%=data.Subject.subject_name%></td>
+              <%}%>
+              <td>
+                <a href="teacher/update/<%=data.id%>"></span>edit</a>
+                <a href="teacher/delete/<%=data.id%>"onclick="return confirm('Are you sure you want to delete: \n<%=data.getFullName()%>\n')"></span>delete</a>
+              </td>
+            </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
