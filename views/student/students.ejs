@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Student Data</title>
+</head>
+
+<body>
+    <h1 class="text-center">Students Data</h1>
+    <div class="col-md-6 offset-md-3">
+        <p class="text-center">
+            <a href="/students/add">Add Student</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i<datas.length; i++){ %>
+                    <tr>
+                        <td>
+                            <%= i+1 %>
+                        </td>
+                        <td>
+                            <%=datas[i].id %>
+                        </td>
+                        <td>
+                            <%=datas[i].fullname %>
+                        </td>
+                        <td>
+                            <%=datas[i].email %>
+                        </td>
+                        <td>
+                            <a href="/students/<%=datas[i].id%>/addsubject">Add Subject</a>
+                        </td>
+                        <td>
+                            <a href="/students/edit/<%=datas[i].id %>">Edit</a>
+                            <a href="/students/delete/<%=datas[i].id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <%  }%>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        Teachers Data
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+</head>
+
+<body>
+    <h1 class="text-center">All Teachers Data</h1>
+    <div class="col-md-6 offset-md-3">
+        <p class="text-center">
+            <a href="/teachers/add">Add Teachers Data</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">NO</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i <datas.length; i++) {%>
+                    <tr>
+                        <td>
+                            <%=i+1%>
+                        </td>
+                        <td>
+                            <%=datas[i].id %>
+                        </td>
+                        <td>
+                            <%=datas[i].first_name %>
+                        </td>
+                        <td>
+                            <%=datas[i].last_name%>
+                        </td>
+                        <td>
+                            <%=datas[i].email%>
+                        </td>
+                        <td>
+                            <% if (datas[i].Subject === null) { %>
+                                <p>unassigned</p>
+                                <% }else{ %>
+                                    <%=datas[i].Subject.subject_name%>
+                                        <%} %>
+                        </td>
+                        <td>
+                            <a href="/teachers/edit/<%=datas[i].id%>">Edit</a>
+                            <a href="/teachers/delete/<%=datas[i].id%>">Delete</a>
+                        </td>
+                    </tr>
+                    <% }%>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
