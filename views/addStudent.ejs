@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student Data</title>
+</head>
+<body>
+    <center>
+    <h1> Add Students Data </h1>
+    
+    <form class="" action="/student/add" method="post">
+        <p>First Name</p>
+        <input type="text" placeholder="first_name" name="first_name">
+        <p>Last Name</p>
+        <input type="text" placeholder="last_name" name="last_name">
+        </br>
+        </br>
+        <%if(error && error.email){%>
+            <span style = "color: red"><%=error.email%></span>
+        <%}%>
+        <p>Email </p>
+        <input type="text" placeholder="email" name="email">
+        </br>
+        </br>
+        <button>Submit Data</button>
+    </form>
+    </center> 
+</body>
+</html>

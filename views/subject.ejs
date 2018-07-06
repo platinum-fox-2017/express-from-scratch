@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+        <%include ./partial/head %>
+<head>
+    <title>Subject</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <center>
+        <h2> All Subjects Data</h2>
+    <table class = 'table'>
+        <tr>
+            <th>No</th>
+            <th>Subject_name</th>
+            <th>Teacher</th>
+            <th>Actions </th>
+        </tr>
+          <% data.forEach((row,index) => { %>
+          <tr>
+            <td><%= index+1      %></td>
+            <td><%= row.subject_name%></td>
+            <td>
+                <%if(row.teachers.length > 0){%>
+                    <%for(let[index,value] of row.teachers.entries()){%>
+                    <span><%=index+1%>. <%=value.first_name%> <%=value.last_name%></span>
+                    </br>
+                    <%}%>
+                <%}else{%>
+                    <span>None</span>
+                <%}%>
+            </td>
+            <td> 
+                <a href = 'subject/<%=row.id%>/enrolledstudent'> Enrolled Students </a>
+            </td>
+          </tr>
+          <% }) %>
+        </table>
+    </center>   
+</body>
+</html>
