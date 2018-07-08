@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>
+      HALAMAN TEACHERS
+    </title>
+  </head>
+  <body>
+    <header>
+      <h1><%= title %></h1>
+    </header>
+      <a href="/teachers/add">Add Teacher</a>
+      <table align="center">
+        <tr>
+          <th>No</th>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Subject</th>
+          <th>Option</th>
+        </tr>
+        <% for(let i=0;i<teachers.length;i++){ %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= teachers[i].id %></td>
+          <td><%= teachers[i].first_name %></td>
+          <td><%= teachers[i].last_name %></td>
+          <td><%= teachers[i].email %></td>
+          <% if(teachers[i].SubjectId===null){ %>
+            <td>unassigned</td>
+          <% } else { %>
+            <td><%= teachers[i].Subject.subject_name %></td>
+          <% } %>
+          <td>
+            <a href="/teachers/edit/<%= teachers[i].id %>">Edit</a>
+            <a href="/teachers/delete/<%= teachers[i].id %>">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+  </body>
+</html>

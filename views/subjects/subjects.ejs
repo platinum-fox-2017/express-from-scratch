@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>
+      HALAMAN SUBJECT
+    </title>
+  </head>
+  <body>
+    <header>
+      <h1><%= title %></h1>
+    </header>
+    <table align="center">
+      <tr>
+        <th>ID</th>
+        <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Option</th>
+      </tr>
+      <% for(let i=0;i<subjects.length;i++){ %>
+      <tr>
+        <td><%= subjects[i].id %></td>
+        <td><%= subjects[i].subject_name %></td>
+        <% if(subjects[i].Teachers===null){ %>
+          <td>no teacher yet</td>
+        <% } else { %>
+          <% for(let j=0;j<subjects[i].Teachers.length;j++){ %>
+            <td><%= subjects[i].Teachers[j].first_name + ' ' + subjects[i].Teachers[j].last_name%></br></td>
+          <% } %>
+        <% } %>
+        <td><a href="/subjects/<%= subjects[i].id %>/enrolled">Enrolled Students</a></td>
+      </tr>
+      <% } %>
+    </table>
+  </body>
+</html>
