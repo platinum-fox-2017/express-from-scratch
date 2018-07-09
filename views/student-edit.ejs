@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title> SchoolExpress </title>
+        <link href='/styles/style.css' rel='stylesheet' type='text/css'/>
+    </head>
+    <body>
+        <header>
+            <nav class="navigation">
+                <ul>
+                    <a href='/'><li>HOME</li></a>
+                    <a class='right' href="list/students"><li>OUR STUDENTS</li></a>                  
+                    <a class='right' href="/list/teachers"><li>OUR TEACHERS</li></a>                  
+                    <a class='right' href="list/subjects"><li>OUR SUBJECTS</li></a> 
+                </ul>
+            </nav>
+        </header>
+        <div class='home-container'>
+            <div class='description'>
+                <h1>Update your data below</h1>
+            </div>
+                <form id ="correction" action="<%= data.id %>" method="POST">
+                    <h3>Student's Correction Form</h3>
+                    <p>First Name: </p>
+                    <input type="text" id="first-name" name='first_name' value="<%= data.first_name %>" placeholder="<%= data.first_name %>"/>
+                    <p>Last Name: </p>
+                    <input type="text" id="last-name" name='last_name' value="<%= data.last_name %>" placeholder="<%= data.last_name %>" />
+                    <p>Email: </p>
+                    <input type="text" id="email" name='email' value="<%= data.email %>" placeholder="<%= data.email %>" />
+                    <p></p>
+                    <input type="submit" value="Submit"></input>
+                </form>
+        </div>
+    </body>
+</html>

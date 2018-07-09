@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title> SchoolExpress </title>
+        <link href='../styles/style.css' rel='stylesheet' type='text/css'/>
+    </head>
+    <body>
+        <header>
+            <nav class="navigation">
+                <ul>
+                    <a href='../'><li>HOME</li></a>
+                    <a class='right' href="students"><li>OUR STUDENTS</li></a>                  
+                    <a class='right' href="teachers"><li>OUR TEACHERS</li></a>                  
+                    <a class='right' href="subjects"><li>OUR SUBJECTS</li></a> 
+                </ul>
+            </nav>
+        </header>
+        <div class='home-container' id="teacher-table">
+            <div class='description'>
+                <h1>Our Teachers</h1>
+            </div>
+            <table class="table">
+                <div>
+                    <thead>
+                        <tr>
+                            <!-- <% let keys = Object.keys(data[0]) %>
+                            <% for (let i = 0; i < keys.length-3; i++){ %>
+                            <th><%= keys[i] %></th>
+                            <% } %> -->
+                            <th>no</th>
+                            <th>id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>email</th>
+                            <th>subjects</th>
+                            <th>options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < data.length; i++){ %>
+                            <tr>
+                                <td><%= i+1 %></td>
+                                <td><%= data[i].id %></td>
+                                <td><%= data[i].first_name %></td>
+                                <td><%= data[i].last_name %></td>
+                                <td><%= data[i].email %></td>
+                                <% if (!data[i].SubjectId){ %>
+                                    <td>unassigned</td>
+                                <% } else { %>
+                                    <td><%= data[i].Subject.subject_name %></td>
+                                <% } %>
+                                <td>
+                                    <a href='teachers/edit/<%= data[i].id %>'>
+                                        <button>update</button>
+                                    </a> 
+                                    || 
+                                    <a href='teachers/delete/<%= data[i].id %>'>
+                                        <button onclick="return confirm('Are you sure?')">delete</button>
+                                    </a>
+                                </td>
+                            </tr>   
+                        <% } %>
+                    </tbody>
+                </div>
+            </table>
+        </div>
+    </body>
+</html>

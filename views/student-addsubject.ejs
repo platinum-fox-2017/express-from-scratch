@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> SchoolExpress </title>
+        <link href='/styles/style.css' rel='stylesheet' type='text/css'/>
+    </head>
+    <body>
+        <header>
+            <nav class="navigation">
+                <ul>
+                    <a href='/'><li>HOME</li></a>
+                    <a class='right' href="list/students"><li>OUR STUDENTS</li></a>                  
+                    <a class='right' href="/list/teachers"><li>OUR TEACHERS</li></a>                  
+                    <a class='right' href="list/subjects"><li>OUR SUBJECTS</li></a> 
+                </ul>
+            </nav>
+        </header>
+        <div class='home-container'>
+            <div class='description'>
+                <h1>Add Subject to Student</h1>
+            </div>
+                <form id ="correction" action="" method="POST">
+                    <!-- <h3>Add Subject to Student</h3> -->
+                    <p>First Name: <%= profile.first_name %></p>
+                    <p>Last Name: <%= profile.last_name %> </p>
+                    <p>Email: <%= profile.email %> </p>
+                    <select name="SubjectId">
+                        <% for (let i = 0; i < subject.length; i++ ){ %>
+                            <option value="<%=subject[i].id %>"><%= subject[i].subject_name %></option>
+                       <% } %>
+                    </select>
+                    <p></p>
+                    <input type="submit" value="Submit"></input>
+                </form>
+        </div>
+    </body>
+</html>

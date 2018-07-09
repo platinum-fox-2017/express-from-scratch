@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title> SchoolExpress </title>
+        <link href='../styles/style.css' rel='stylesheet' type='text/css'/>
+    </head>
+    <body>
+        <header>
+            <nav class="navigation">
+                <ul>
+                    <a href='../'><li>HOME</li></a>
+                    <a class='right' href="students"><li>OUR STUDENTS</li></a>                  
+                    <a class='right' href="teachers"><li>OUR TEACHERS</li></a>                  
+                    <a class='right' href="subjects"><li>OUR SUBJECTS</li></a> 
+                </ul>
+            </nav>
+        </header>
+        <div class='home-container' id="subject-table">
+            <div class='description'>
+                <h1>Our Subjects</h1>
+            </div>
+            <table class="table">
+                <div>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>subject name</th>
+                            <th>teachers</th>
+                            <th>actions</th>
+                            <th>options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < data.length; i++){ %>
+                            <tr>
+                            <td><%= data[i].id %></td>
+                            <td><%= data[i].subject_name %></td>
+                            <td>
+                                <ul>
+                            <% data[i].Teachers.forEach(teachers => { %>
+                                    <li><%= teachers.fullName() %></li>
+                            <% }) %>
+                                </ul>
+                            </td>
+                            <td><a href='subjects/<%= data[i].id %>/enrolledstudents'>enrolled students</a></td>
+                            <td>
+                                <a href='subjects/edit/<%= data[i].id %>'>
+                                    <button>update</button>
+                                </a> 
+                                || 
+                                <a href='subjects/delete/<%= data[i].id %>'>
+                                    <button onclick="return confirm('Are you sure?')">delete</button>
+                                </a>
+                            </td>
+                            </tr>   
+                        <% } %>
+                        </tr>
+                    </tbody>
+                </div>
+            </table>
+        </div>
+    </body>
+</html>
