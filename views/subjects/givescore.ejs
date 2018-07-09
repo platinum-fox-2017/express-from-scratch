@@ -1,0 +1,39 @@
+<%- include ../templates/header.ejs %>
+  <div class="container">
+    <br>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/subjects">Subjects Data</a></li>
+      <li class="breadcrumb-item"><a href="/subjects/<%= score.Subject.id %>/enrolled-students">Enrolled Students</a></li>
+    </ol>
+    <h3>Add Score To Student's Subject</h3>
+    <br>
+    <table class="table">
+      <tbody>
+          <tr>
+            <td>
+              Student Name
+            </td>
+            <td>
+              <%= score.Student.firstName + ' '+ score.Student.lastName %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Subject Name
+            </td>
+            <td>
+              <%= score.Subject.subjectName %>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <form  action="/subjects/<%= score.id %>/give-score" method="post">
+      <div class="form-group">
+        <label>Fill Score</label>
+        <input type="text" name="score" value="0" class="form-control" autofocus>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Subject</button>
+    </form>
+  </div>
+  <%- include ../templates/footer.ejs %>

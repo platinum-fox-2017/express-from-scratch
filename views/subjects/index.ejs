@@ -1,0 +1,72 @@
+<%- include ../templates/header.ejs %>
+  <div class="container">
+    <br>
+    <% if(alert.message != '') { %>
+    <div class="alert alert-<%= alert.status %>">
+      <%= alert.message %>
+    </div>
+    <% } %>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item">Subjects Data</li>
+    </ol>
+    <h3>Subject Data</h3>
+    <br>
+    <a href="/subjects/create" class="btn btn-primary">Add New Stutdent</a>
+    <br>
+    <br>
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Student</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < subjects.length; i++) { %>
+          <tr>
+            <td>
+              <%= subjects[i].id %>
+            </td>
+            <td>
+              <%= subjects[i].subjectName %>
+            </td>
+            <td>
+              <ol>
+              <% for (var j = 0; j < subjects[i].Teachers.length; j++) { %>
+                <li> <%= subjects[i].Teachers[j].firstName +" " + subjects[i].Teachers[j].lastName %> </li>
+              <% } %>
+              </ol>
+            </td>
+            <td>
+              <a href="/subjects/<%= subjects[i].id %>/enrolled-students" class="btn btn-sm btn-warning"> Enrolled Students </a>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger btn-delete" data-id="<%= subjects[i].id %>"> Delete </button>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+    <% var paginationFor = "subjects" %>
+    <%- include ../templates/pagination.ejs %>
+  </div>
+  <script type="text/javascript">
+  $('.btn-delete').click(function(){
+    let id = $(this).attr('data-id');
+    swal({
+      title: "Yakin Ingin Menghapus Subject?",
+      text: "Data yang dihapus, tidak bisa kembali lagi.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location.assign(`/subjects/delete/${id}`);
+      }
+    });
+  });
+  </script>
+  <%- include ../templates/footer.ejs %>
