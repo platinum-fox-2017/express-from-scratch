@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>belajar express</title>
+    <!-- <link rel="stylesheet" href="/css/master.css"> -->
+    <style media="screen">
+      @font-face {
+          font-family: 'papantulis';
+          src: url('../fontpapantulis.ttf');
+      }
+      body{
+        background: url('../belakang.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .konten{
+        background-image:url('../papantulis.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin-right : 50px;
+        margin-left : 50px;
+        padding-bottom: 20px;
+      }
+      .table{
+        margin: 80px;
+      }
+      td{
+        padding-top:10px;
+        padding-bottom:10px;
+        text-align: center;
+        color :white;
+      }
+      th{
+        padding-top:10px;
+        padding-bottom:10px;
+        font-family: 'papantulis';
+
+      }
+      h1{
+        text-align: center;
+        font-family: 'papantulis';
+        color:white;
+        font-size: 50px;
+      }
+      table{
+        border-style: inset;
+        border-collapse: collapse;
+        border-color: white;
+      }
+
+      button {
+          background-color: #008CBA;
+          border: none;
+          color: white;
+          padding: 15px 15px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+      }
+
+      button:hover {
+          background-color: #4CAF50;
+          color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="konten">
+      <div class="table">
+        <br/><br/>
+        <h1>ALL SUBJECT DATA</h1>
+        <table border='1'>
+          <tr>
+            <th style="padding-left:5px; padding-right:5px"> NO </th>
+            <th width="40%">Teacher</th>
+            <th width="40%">Actions</th>
+            <th width="20%">Enroll</th>
+
+          </tr>
+          <% for(let i=0;i<data.length;i++){%>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= data[i][1]%></td>
+              <td><%= data[i][2]%></td>
+              <td><a href="/teachers/allsubject/score/<%= data[i][0] %>"><button>enrolled students</button></a></td>
+            </tr>
+          <%}%>
+
+        </table>
+      </div>
+    </div>
+
+  </body>
+</html>

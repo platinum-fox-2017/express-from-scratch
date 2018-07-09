@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action="/teachers/editteacher/<%=data.id%>" method="post">
+      <table>
+        <tr>
+          <td>first name</td>
+          <td><input type="text" name="first_name" value="<%= data.first_name%>"></td>
+        </tr>
+        <tr>
+          <td>last name</td>
+          <td><input type="text" name="last_name" value="<%= data.last_name %>"></td>
+        </tr>
+        <tr>
+          <td>email</td>
+          <td><input type="text" name="email" value="<%= data.email%>"></td>
+        </tr>
+        <tr>
+          <td>subject </td>
+          <td>
+            <select name="subject_id">
+              <% for(let i=0;i<matkul.length;i++){ %>
+              <option value="<%= matkul[i].id %>"><%= matkul[i].subject_name%></option>
+              <% } %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><input type='submit' name='submit' value='submit'></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

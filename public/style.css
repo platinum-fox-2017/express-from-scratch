@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'paktua'; /*a name to be used later*/
+    src: url('paktua.ttf'); /*URL to font*/
+}
+body{
+  background-image: url('background.gif');
+}
+
+h1{
+  text-align: center;
+  font-family:'paktua';;
+}

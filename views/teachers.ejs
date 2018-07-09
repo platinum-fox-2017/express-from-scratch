@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>belajar express</title>
+    <!-- <link rel="stylesheet" href="/css/master.css"> -->
+    <style media="screen">
+      @font-face {
+          font-family: 'papantulis';
+          src: url('fontpapantulis.ttf');
+      }
+      body{
+        background: url('belakang.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .konten{
+        background-image:url('papantulis.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin-right : 50px;
+        margin-left : 50px;
+        padding-bottom: 20px;
+      }
+      .table{
+        margin: 80px;
+      }
+      td{
+        padding-top:10px;
+        padding-bottom:10px;
+        text-align: center;
+        color :white;
+      }
+      th{
+        padding-top:10px;
+        padding-bottom:10px;
+        font-family: 'papantulis';
+
+      }
+      h1{
+        text-align: center;
+        font-family: 'papantulis';
+        color:white;
+        font-size: 50px;
+      }
+      table{
+        border-style: inset;
+        border-collapse: collapse;
+        border-color: white;
+      }
+
+      button {
+          background-color: #008CBA;
+          border: none;
+          color: white;
+          padding: 15px 15px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+      }
+
+      button:hover {
+          background-color: #4CAF50;
+          color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="konten">
+      <div class="table">
+        <br/><br/>
+        <h1>DAFTAR GURU</h1>
+        <a href="/teachers/formtambahguru"><button type="button" name="button">tambah teacher</button></a> <br /> <br />
+        <table border='1'>
+          <tr>
+            <th style="padding-left:5px; padding-right:5px"> NO </th>
+            <th width="20%">FIRST NAME</th>
+            <th width="20%">LAST NAME</th>
+            <th width="20%">EMAIL</th>
+            <th width="20%">MATA KULIAH</th>
+            <th width="20%">OPTION</th>
+          </tr>
+          <% for(let i=0;i<data.length;i++){ %>
+          <tr>
+            <td><%= (i+1) %></td>
+            <td><%= data[i].first_name %></td>
+            <td><%= data[i].last_name %></td>
+            <td><%= data[i].email %></td>
+            <% if(data[i].subject_id == null){ %>
+              <td>unassigned</td>
+            <% } else{%>
+              <td><%= data[i].subject.subject_name %></td>
+            <% } %>
+            <td><a href="/teachers/update/<%= data[i].id %>"><button>update</button></a>
+            <a href="/teachers/delete/<%= data[i].id %>"><button>delete</button></a> </td>
+          </tr>
+          <% } %>
+        </table>
+      </div>
+    </div>
+
+  </body>
+</html>

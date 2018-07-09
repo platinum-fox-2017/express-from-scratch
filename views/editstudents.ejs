@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .content{
+      margin: 0px 100px;
+      margin-top:20px;
+      background-image: url('../../kertas.jpg');
+      background-size: cover;
+      padding: 20px;
+      padding-top: 120px;
+      height: 500px;
+    }
+    h1{
+      text-align: center;
+    }
+
+    table{
+      margin-top:50px;
+      margin-left: 250px;
+    }
+    </style>
+  </head>
+  <body>
+  <div class="content">
+    <form action="/students/editstudents/<%=data.id%>" method="post">
+        <h1>Form Pendaftaran Students</h1>
+        <table>
+          <tr>
+            <td><label for="first_name">nama depan</label></td>
+            <td><input type="text" name="first_name" id="first_name" value="<%= data.first_name %>"></td>
+          </tr>
+          <tr>
+            <td><label for="last_name">nama belakang</label></td>
+            <td><input type="text" name="last_name" id="last_name" value="<%= data.last_name %>"></td>
+          </tr>
+          <tr>
+            <td><label for="email">email</label></td>
+            <td><input type="text" name="email" id="email" value="<%= data.email %>"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" name="submit" value="submit">
+            <input type="reset" name="submit" value="reset"></td>
+          </tr>
+        </table>
+    </form>
+  </div>
+
+
+  </body>
+</html>
