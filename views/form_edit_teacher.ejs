@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ./index%>
+        <title>Registration </title>
+    </head>
+<body>
+    <h1>Add Teachers Data</h1>
+    <a href = "/teachers">show all data</a>
+    <form class= "" action="/teachers/edit/<%=dataTeacher.id%>" method = "post">
+      <input type ="text" placeholder="first name" value="<%=dataTeacher.first_name%>" name="first_name"> </br>
+      <input type ="text" placeholder="last_name" value="<%=dataTeacher.last_name%>" name="last_name"> </br>
+      <input type ="text" placeholder="email" value="<%=dataTeacher.email%>" name="email"></br>
+      <select name = "id_subject">
+        <%subject.forEach(dataSubject =>{%>
+        <%if (dataSubject.id == dataTeacher.id_subject){%>
+        <option value="<%=dataSubject.id%>" selected><%=dataSubject.id%>-<%=dataSubject.subject_name%></option>
+        <%}else {%>
+        <option value = "<%=dataSubject.id%>"><%=dataSubject.id%>-<%=dataSubject.subject_name%></option>
+        <%}})%>
+    </select>
+      <button> Edit Teacher Data </button>      
+  </form>
+
+</body>
+</html>

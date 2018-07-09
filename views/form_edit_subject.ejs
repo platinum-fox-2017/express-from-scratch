@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ./index%>
+        <title>Edit Data Subject </title>
+    </head>
+<body>
+    <h1>Add Subject Data</h1>
+    <a href = "/subjects">show all data</a>
+    <form class= "" action="/subjects/edit/<%=dataSubject.id%>" method = "post">
+      <input type ="text" placeholder="subject name" value="<%=dataSubject.subject_name%>" name="subject_name"> </br>
+      <button> Edit Subject </button>      
+  </form>
+
+</body>
+</html>

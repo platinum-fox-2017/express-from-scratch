@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Add Score </title>
+    </head>
+<body>
+    <h1>Add Score For Students</h1>
+    <a href = "/">show all data</a>
+		<form class= "" action="/subjects/<%=data.id_subject%>/<%=data.id_student%>/givescore" method = "post">
+      Student Name :
+      <input type ="text" value="<%=data.Student.first_name + ' ' +data.Student.last_name%>" readonly> </br>
+      Subject Name :
+			<input type ="text" value="<%=data.Subject.subject_name%>" readonly></br>
+			<input type ="text" placeholder="ex.80" name = 'score'></br>
+      <button> Give Score </button>      
+  </form>
+
+</body>
+</html>

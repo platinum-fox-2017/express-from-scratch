@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./index%>
+    <title>Student </title>
+</head>
+<body>
+    <h1><center>Student List</center></h1>
+    <center><a href="/students/add">add Student</a></center>
+    <center>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Action</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+                <%data.forEach((student,i) => {%>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=student.id%></td>
+                <td><%=student.getFullname()%></td>
+                <td><%=student.email%></td>
+                <td><a href = "/students/<%=student.id%>/addsubject">Add Subject</a>
+               <td><a href = "/students/edit/<%=student.id%>">Edit</a> |<a href = "/students/delete/<%=student.id%>" onclick="return confirm('Delete student ?')">Delete</a> </td>
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>

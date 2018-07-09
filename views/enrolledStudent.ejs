@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./index%>
+    <title>Enrolled student </title>
+</head>
+<body>
+	
+		<%if(data.length === 0){%>
+			<h1><center>Currently no student enrolled in this course!</center></h1>
+			<center><a href="/subjects">return to subject list</a></center>
+		<%}else{%>
+			<h1><center><%=data[0].Subject.subject_name%></center></h1>
+			<center><a href="/subjects">return to subject list</a></center>
+			<center>
+			<table class = "table">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Name</th>
+						<th>Score</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+						<%data.forEach((detail,i) => {%>  
+					<tr>
+						<td><%=i+1%></td>
+						<td><%=detail.Student.first_name + ' ' + detail.Student.last_name%></td>
+						<%if(detail.score !== null){%>
+							<td><%=detail.score%></td>
+							<td><%=convert.convertScore(detail.score)%></td>
+						<%}else{%>
+							<td><a href = '/subjects/<%=detail.id_subject%>/<%=detail.id_student%>/givescore'>Give Score</a></td>
+							<td>-</td>
+							<%}%>
+						
+					</tr>
+					<%})%>
+				</tbody>
+			</table>
+			</center>
+		<%}%>
+	
+
+</body>
+</html>

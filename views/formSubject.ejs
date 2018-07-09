@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ./index%>
+        <title>Add subjects </title>
+    </head>
+<body>
+    <h1>Add Subjects Data</h1>
+    <a href = "/subjects">show all data</a>
+    <form class= 'form-inline' action='/subjects/add' method = 'post'>
+    <label>Subject Name</label> <br/>
+      <input type ='text' placeholder='subject name' name='subject_name'> </br>
+        </br>
+      <button> Add Subject </button>      
+  </form>
+
+</body>
+</html>

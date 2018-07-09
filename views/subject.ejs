@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./index%>
+    <title>Subject </title>
+</head>
+<body>
+	<h1><center>Subject Data</center></h1>
+	<center><a href="/subjects/add">add Subject</a></center>
+	<center>
+	<table class = "table">
+			<thead>
+					<tr>
+							<th>ID</th>
+							<th>Subject Name</th>
+							<th>Teacher</th>
+							<th>Actions</th>
+							<th>Options</th>
+					</tr>
+			</thead>
+			<tbody>
+							<%data.forEach(subject => {%>
+					<tr>
+							<td><%=subject.id%></td>
+							<td><%=subject.subject_name%></td>
+							<td>
+									<ol>
+											<%subject.Teachers.forEach(teacher=>{%>
+									
+													<li><%=teacher.first_name + ' ' +teacher.last_name%></li>
+									
+											<%})%>
+									</ol>
+							</td>
+							<td><a href = "/subjects/<%=subject.id%>/enrolledstudents">Enrolled Students</a></td>
+							<td><a href = "/subjects/edit/<%=subject.id%>">Edit</a> |<a href = "/subjects/delete/<%=subject.id%>" onclick="return confirm('Delete subject ?')">Delete</a> </td>
+					</tr>
+					<%})%>
+			</tbody>
+	</table>
+</center>
+</body>
+</html>

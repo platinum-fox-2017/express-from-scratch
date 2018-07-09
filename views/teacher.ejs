@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./index%>
+    <title>Teacher </title>
+</head>
+<body>
+    <h1><center>Teacher List</center></h1>
+    <center><a href="/teachers/add">add Teachers Data</a></center>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+                <%data.forEach((datateacher,i) => {%>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=datateacher.id%></td>
+                <td><%=datateacher.first_name%></td>
+                <td><%=datateacher.last_name%></td>
+                <td><%=datateacher.email%></td>
+                <%if(datateacher.Subject !== null){%>
+                    <td><%=datateacher.Subject.subject_name%></td>
+                <%}else{%>
+                    <td>unassigned</td>
+                <% }%>
+                
+                <td><a href = "/teachers/edit/<%=datateacher.id%>">Edit</a> |<a href = "/teachers/delete/<%=datateacher.id%>" onclick="return confirm('Delete teacher ?')">Delete</a> </td>
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+</body>
+</html>
