@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>
+            WEBSITE SMDIA
+        </title>
+        <link href="../css/form.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1><%= title %></h1>
+            <h3>Subject: <%= arrObjScore[0].Subject.subject_name %></h3>
+        </header>
+
+        <form method="POST">
+            <table>
+                <tr>
+                    <td>Student ID</td>
+                    <td>:</td>
+                    <td><%= `${arrObjScore[0].Student.id}` %></td>
+                </tr>
+                <tr>
+                    <td>Full Name</td>
+                    <td>:</td>
+                    <td><%= `${arrObjScore[0].Student.first_name} ${arrObjScore[0].Student.last_name}` %></th>
+                </tr>
+                <tr>
+                    <td>Score</td>
+                    <td>:</td>
+                    <td>
+                        <input type="number" name="Score">
+                    </td>
+                </tr>
+                <tr colspan="3">
+                    <td>
+                        <input type="submit" value="Add Score">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+
+</html>

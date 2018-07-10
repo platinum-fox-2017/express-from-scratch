@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>
+            WEBSITE SMDIA
+        </title>
+        <link href="./css/subjects.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1><%= title %></h1>
+        </header>
+        <!-- <div class="table"> -->
+            <table align="center">
+                <tr>
+                    <th>ID</th>
+                    <th>Subject Name</th>
+                    <th>Teachers</th>
+                    <th>Actions</th>
+                </tr>
+                <% for (var i = 0; i < arrSubjects.length; i++) { %>
+                <tr>
+                    <td><%= arrSubjects[i].id %></td>
+                    <td><%= arrSubjects[i].subject_name %></td>
+                    <td><% if (arrSubjects[i].Teachers.length == 0) { %>
+                        <%= 'Vaccant' %>
+                        <% } else { %>
+                            <% for (var j = 0; j < arrSubjects[i].Teachers.length; j++) { %>
+                            <%= `${j+1}. ${arrSubjects[i].Teachers[j].first_name} ${arrSubjects[i].Teachers[j].last_name}` %><br>
+                            <% } %>
+                        <% } %>
+                    </td>
+                    <td><a href='subjects/<%=arrSubjects[i].id%>/enrolledstudents'>Enrolled Students</a></td>
+                </tr>
+                <% } %>
+
+
+    
+            </table>
+        <!-- </div> -->
+
+    </body>
+
+
+</html>

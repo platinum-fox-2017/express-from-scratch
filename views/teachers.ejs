@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>
+            WEBSITE SMDIA
+        </title>
+        <link href="./css/teachers.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1><%= title %></h1>
+        </header>
+
+            <div>
+                <button class="button1">
+                    <a href="./teachers/add">
+                        Add Teachers
+                    </a>
+                </button> 
+            </div><br>
+
+            <table align="center">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th> 
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Subjects</th>
+                    <th>Options</th>
+                </tr>
+                <% for (var i = 0; i < arrTeachers.length; i++) { %>
+                <tr>
+                    <td><%= arrTeachers[i].id %></td>
+                    <td><%= arrTeachers[i].first_name %></td>
+                    <td><%= arrTeachers[i].last_name %></td>
+                    <td><%= arrTeachers[i].email %></td>
+                    <td><% if (!arrTeachers[i].SubjectId) { %>
+                        <%= 'unassigned' %>
+                        <% } else { %>
+                        <%= arrTeachers[i].Subject.subject_name %> 
+                        <% } %>
+                        </td>
+                    <td><a href="teachers/edit/<%=arrTeachers[i].id%>">Edit</a> | <a href="teachers/delete/<%=arrTeachers[i].id%>">Delete</a></td>
+                </tr>
+                <% } %>
+    
+            </table>
+        <!-- </div> -->
+
+    </body>
+
+
+</html>

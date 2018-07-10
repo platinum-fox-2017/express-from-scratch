@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>
+            WEBSITE SMDIA
+        </title>
+        <link href="../css/form.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1><%= title %></h1>
+        </header>
+
+        <form method="POST"> 
+            First Name: <%= arrStudent.first_name %> <br>
+            Last Name:  <%= arrStudent.last_name %> <br>
+            Email:      <%= arrStudent.email %> <br>
+            <br>
+            <b>Choose Subject:</b> <br>
+            <select name="arrSubjectsId" multiple>
+                <option value=1>Kimia</option>
+                <option value=2>Biologi</option>
+                <option value=4>Matematika</option>
+                <option value=5>Sosiologi</option>
+                <option value=6>Olahraga</option>
+                <option value=7>Komputer</option>
+                <option value=8>Fisika</option>
+                <option value=9>Sastra</option>
+                <option value=10>Sejarah</option>                
+            </select>
+            <br><i>Please select subjects using control or shift button.</i>
+            <br><br>
+            <input type="submit" value="Add Subject">
+        </form>
+    </body>
+
+</html>
