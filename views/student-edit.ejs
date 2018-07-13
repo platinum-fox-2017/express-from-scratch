@@ -1,0 +1,19 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="/student/<%= student.id %>/edit" method="POST">
+            Name:<br>
+            <input type="text" name="name" value="<%= student.name %>">
+            <br>
+            Email:<br>
+            <input type="text" name="email" value="<%= student.email %>">
+            <br>
+            Phone:<br>
+            <input type="text" name="phone" value="<%= student.phone %>">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

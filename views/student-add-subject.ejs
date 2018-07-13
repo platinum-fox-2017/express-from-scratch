@@ -1,0 +1,26 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="/student/<%= student.id %>/add-subject" method="POST">
+            Name:<br>
+            <input type="text" name="name" value="<%= student.name %>" disabled>
+            <br>
+            Email:<br>
+            <input type="text" name="email" value="<%= student.email %>" disabled>
+            <br>
+            Phone:<br>
+            <input type="text" name="phone" value="<%= student.phone %>" disabled>
+            <br>
+            Subject:<br>
+            <select name="SubjectId">
+                <% for(let i=0; i<subjects.length; i++){ %>
+                    <option value="<%= subjects[i].id %>"> <%= subjects[i].subjectName %> </option>
+                <% } %>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

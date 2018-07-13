@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="background"></div> 
+        <img class="header-background" src="img/header-img.jpg" alt="hacktiv8-img">
+        <header>
+            <a href="/">
+                <img class="logo" src="img/hacktiv8-logo.png" alt="hacktiv8-logo">
+            </a>
+            <div class="menu">
+                <nav>
+                    <a href="/student">Student</a>
+                    <a href="/teacher">Teacher</a>
+                    <a href="/subject">Subject</a>
+                </nav>
+            </div>
+        </header>
+        <div class="content-container">
+            <div class="content">
+                <button class="btn-add" onclick="window.location.href='/student/add'">Add New Student</button>
+                <table>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th> 
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Subject</th>
+                    </tr>
+                    <% for(let i=0; i<data.length; i++){ %>
+                        <tr>
+                            <td><%= data[i].id %></td>
+                            <td><%= data[i].name %></td> 
+                            <td><%= data[i].email %></td>
+                            <td><%= data[i].phone %></td>
+                            <td><button onclick="window.location.href='/student/<%= data[i].id %>/add-subject'">Add Subject</button></td>
+                            <td><button onclick="window.location.href='/student/<%= data[i].id %>/edit'">Edit</button></td>
+                            <td>
+                                <form action="/student/<%= data[i].id %>/delete" method="POST">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                  </table> 
+            </div>
+        </div>
+    </body>
+</html>

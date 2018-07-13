@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="background"></div> 
+        <img class="header-background" src="img/header-img.jpg" alt="hacktiv8-img">
+        <header>
+            <a href="/">
+                <img class="logo" src="img/hacktiv8-logo.png" alt="hacktiv8-logo">
+            </a>
+            <div class="menu">
+                <nav>
+                    <a href="/student">Student</a>
+                    <a href="/teacher">Teacher</a>
+                    <a href="/subject">Subject</a>
+                </nav>
+            </div>
+        </header>
+        <div class="content-container">
+            <div class="content">
+                <button class="btn-add" onclick="window.location.href='/subject/add'">Add New Subject</button>
+                <table>
+                    <tr>
+                      <th>ID</th>
+                      <th>Subject Name</th>
+                      <th>Teachers</th> 
+                    </tr>
+                    <% for(let i=0; i<data.length; i++){ %>
+                        <tr>
+                            <td><%= data[i].id %></td>
+                            <td><%= data[i].subjectName %></td> 
+                            <td>
+                                <% for(let j=0; j<data[i].Teachers.length; j++){ %>
+                                    <li><%= data[i].Teachers[j].name %></li>
+                                <% } %>
+                            </td>
+                            <td>
+                                <button onclick="window.location.href='/subject/<%= data[i].id %>/edit'">Edit</button>
+                            </td>
+                            <td>
+                                <form action="/subject/<%= data[i].id %>/delete" method="POST">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                            <td>
+                                <button onclick="window.location.href='/subject/<%= data[i].id %>/enrolled-student'">Enrolled Student</button>
+                            </td>
+                          </tr>
+                    <% } %>
+                  </table> 
+            </div>
+        </div>
+    </body>
+</html>
