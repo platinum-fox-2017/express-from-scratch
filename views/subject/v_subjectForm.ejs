@@ -1,0 +1,13 @@
+<% include ../v_index%>
+<container>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4">
+        <form action="/subjects/<%=action === 'add' ? 'add' : 'edit'%>/<%=subject.id%>" method="post">
+            <div class="form-group">
+                <label for="subject_name" class="col-form-label">First Name:</label>
+                <input type="text" class="form-control" name="subject_name" value="<%=subject.subject_name%>">
+            <button><%=action === 'add' ? 'Add Subject' : 'Edit Subject'%></button> 
+        </form>            
+        </div>
+    </div>
+</container>

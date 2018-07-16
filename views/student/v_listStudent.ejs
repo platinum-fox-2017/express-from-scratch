@@ -1,0 +1,41 @@
+<% include ../v_index%>
+<div class="container">
+    <div>
+        <a href="students/add">
+            <button type="button" name="button" class="btn  btn-primary" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span> Add Student
+            </button> 
+        </a>           
+        
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <th>No</th>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <%student.forEach((data,i)=>{%>
+                    <tr>
+                        <td><%=i+1%></td>
+                        <td><%=data.id%></td>
+                        <td><%=data.getFullName()%></td>
+                        <td><%=data.email%></td>
+                        <td>
+                            <a href="students/<%=data.id%>/addsubject"><span class="glyphicon glyphicon-book"></span>Add Subject</a>
+                        </td>
+                        <td> 
+                            <a href="students/edit/<%=data.id%>"><span class="glyphicon glyphicon-edit"></span>edit</a>
+                            <a href="students/delete/<%=data.id%>"onclick="return confirm('Yakin mau delete siswa ?')"><span class="glyphicon glyphicon-trash"></span>delete</a>
+                        </td>
+                    </tr>
+                <%})%>
+            </tbody>
+           
+        </table>
+    </div> 
+</div>

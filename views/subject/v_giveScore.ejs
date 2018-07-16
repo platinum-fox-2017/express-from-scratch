@@ -1,0 +1,38 @@
+<% include ../v_index%>
+<container>
+   <center>
+   <form action="/subjects/<%=score.Subject.id%>/<%=score.Student.id%>/give-score" method="post">
+    <%if(error !== null){%>
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> <%=error%>.
+        </div>
+    <%}%>
+      <table>
+         <tbody>
+            <tr>
+               <td>Student Name</td>
+               <td>&nbsp; :&nbsp;</td>
+               <td><%=score.Student.getFullName()%></td>
+            </tr>
+            <tr>
+               <td>Subject Name</td>
+               <td>&nbsp; :&nbsp;</td>
+               <td><%=score.Subject.subject_name%></td>
+            </tr>
+            <tr>
+               <td>Score</td>
+               <td>&nbsp; :&nbsp;</td>
+               <td> <input name="score" placeholder="ex: 79" class="form-control" autofocus="" type="text"></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td></td>
+               <td><button class="btn btn-info">Give Score</button></td>
+            </tr>
+         </tbody>
+      </table>
+   </form>
+   </center>
+</container>
+

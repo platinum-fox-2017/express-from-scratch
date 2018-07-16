@@ -1,0 +1,44 @@
+<% include ../v_index%>
+<div class="container">
+   <center>
+   <%if(score.length !== 0){%>
+   <H1><%=score[0].Subject.subject_name%></H1>
+   <div class="table-responsive">
+      <table class="table table-striped">
+         <thead>
+            <th>No</th>
+            <th>Student Name</th>
+            <th>Score</th>
+            <th>Description</th>
+         </thead>
+         <tbody>
+            <%score.forEach((data,i)=>{%>
+            <tr>
+               <td><%=i+1%></td>
+               <td><%=data.Student.getFullName()%></td>
+               <%if(data.score !== null){%>
+               <td><%=data.score%></td>
+               <%}else{%>
+               <td>
+                  <a href="/subjects/<%=data.Subject.id%>/<%=data.Student.id%>/give-score">
+                  <button type="button" class="btn btn-primary">Give Score</button> 
+                  </a>
+               </td>
+                <%}%>
+                <%if(data.score !== null){%>
+                    <td><%=predicate.getPredicate(data.score)%></td>
+                <%}else{%>
+               <td>-</td>
+               <%}%>
+            </tr>
+            <%})%>
+         </tbody>
+      </table>
+   </div>
+   <%}else{%>
+   belum ada data
+   <%}%>
+   </center>
+   </container> 
+</div>
+
