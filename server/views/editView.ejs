@@ -1,0 +1,29 @@
+<!-- view/viewTable.ejs -->
+<html>
+    <head>
+        <title>WikaSilo School | P1W3</title>
+    </head>
+
+    <body font-family: "Helvetica Neue",Helvetica,Arial,sans-serif>
+        <div>
+            <%- include('partials/navbar')  %>               
+            <div>
+                <h4>Data <%= table %></h4>
+                <form action="/<%= table.toLowerCase() %>/edit" method="POST">
+                    <% let key = Object.keys(data[0]) %>
+
+                    <% for(let i=0; i<data.length; i++) { %>
+                        <% for(let j=0; j<key.length; j++) { %>
+
+                        <%= key[j] %>:<br>
+                        <input type="text" name=<%= key[j].toLowerCase().split(' ').join('_')%> value="<%= data[i][key[j]] %>"><br>
+
+                        <% } %>
+                    <% } %>                    
+                    <input type="submit" value="Edit <%= table %>"><br> 
+                </form>
+            </div>
+            <%- include('partials/footer') %>
+        </div>
+    </body>
+</html>
